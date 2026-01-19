@@ -1,0 +1,8 @@
+*.json
+*.csv
+logs/
+backtests/
+data/
+.env
+attached_assets/
+__pycache__/
