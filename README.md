@@ -69,11 +69,12 @@ V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES
 
 ## System Architecture
 
-┌─────────────────────────────────────────────────────────────┐
-│  [1] STATE       → Direction Stabilization (Long/Short)    │
-│  [2] STB         → Entry Timing (94.1% TP-first)           │
-│  [3] V7 Grammar  → Outcome Classification (EE/HL)          │
-└─────────────────────────────────────────────────────────────┘
+| Layer | Module      | Function |
+|------|-------------|----------|
+| 1    | STATE       | Direction Stabilization (Long / Short) |
+| 2    | STB         | Entry Timing (94.1% TP-first) |
+| 3    | V7 Grammar  | Outcome Classification (EE / HL) |
+
 
 ### Key Metrics
 
