@@ -127,10 +127,9 @@ V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES
 
 - [Strategy Overview](strategy_overview.md)
 - 
-- [Validation Cases (A–F)](validation_cases_a_f.md)
+- [Validation Cases (A–F)](validation_cases.md)
 - 
-- [Live Results (All Phases)](live_results_all_phases.md) *(In Progress)*
-
+- [Live Results](live_results.md) *(In Progress)*
 ---
 
 ## Current Stage
