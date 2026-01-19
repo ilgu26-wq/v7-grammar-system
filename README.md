@@ -37,7 +37,6 @@ This system freezes the decision criteria. Predictions can fail; the judgment fr
 > Any predictive alpha can be plugged into this system
 > without affecting execution integrity or risk semantics.
 
-```
 [ Market Data ]
       ↓
 [ Decision Grammar (V7) ]   ← Core (Immutable)
@@ -50,7 +49,6 @@ This system freezes the decision criteria. Predictions can fail; the judgment fr
           ↓
    (feeds into)
 [ Decision Grammar ]
-```
 
 ---
 
@@ -70,20 +68,18 @@ V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES
 
 ## System Architecture
 
-```
 ┌─────────────────────────────────────────────────────────────┐
 │  [1] STATE       → Direction Stabilization (Long/Short)    │
 │  [2] STB         → Entry Timing (94.1% TP-first)           │
 │  [3] V7 Grammar  → Outcome Classification (EE/HL)          │
 └─────────────────────────────────────────────────────────────┘
-```
 
 ### Key Metrics
 
 | Component | Metric | Definition |
 |-----------|--------|------------|
-| 배율 (Ratio) | Price Momentum | (close - low) / (high - close) |
-| 채널% (Channel) | Price Position | Relative position in 20-bar range |
+| Ratio | Price Momentum | (close - low) / (high - close) |
+| Channel% | Price Position | Relative position in 20-bar range |
 
 ---
 
@@ -113,23 +109,21 @@ V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES
 
 ---
 
-## Performance Metrics
+## Performance Metrics (Conservative)
 
 | Metric | Value |
 |--------|-------|
 | STB TP-first Rate | 94.1% |
 | Avg R per Trade | +0.411R |
 | Recovery Factor | 115.7x |
-| Sharpe Ratio | 0.93 |
-| Sortino Ratio | 1.55 |
 
 ---
 
 ## Documentation
 
-- [Strategy Overview](docs/strategy_overview.md)
-- [Validation Cases A~F](docs/validation_cases.md)
-- [Live Results](docs/live_results.md) (In Progress)
+- [Strategy Overview](strategy_overview.md)
+- [Validation Cases A–F](validation_cases.md)
+- [Live Results](live_results.md) *(In Progress)*
 
 ---
 
@@ -152,4 +146,4 @@ V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES
 
 ---
 
-*Generated: 2026-01-18*
+*Generated: 2026-01-19*
