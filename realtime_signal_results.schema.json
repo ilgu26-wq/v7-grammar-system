@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Realtime Signal Results Schema",
+  "description": "Schema for live shadow backtest signal tracking (V7 Grammar System)",
+  "type": "object",
+  "properties": {
+    "log_type": {
+      "type": "string",
+      "const": "realtime_signal_results"
+    },
+    "signals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique signal ID (format: YYYYMMDD_HHMMSS_SIGNALNAME)"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Signal date (YYYY-MM-DD)"
+          },
+          "signal_name": {
+            "type": "string",
+            "description": "Signal type (e.g., STB숏, STB롱, RESIST_zscore)"
+          },
+          "trigger_time": {
+            "type": "string",
+            "description": "Trigger time (HH:MM KST)"
+          },
+          "entry_price": {
+            "type": "number",
+            "description": "Entry price at signal trigger"
+          },
+          "direction": {
+            "type": "string",
+            "enum": ["long", "short"]
+          },
+          "tp_target": {
+            "type": "number",
+            "description": "Take profit target price"
+          },
+          "sl_target": {
+            "type": "number",
+            "description": "Stop loss target price"
+          },
+          "result": {
+            "type": "string",
+            "enum": ["PENDING", "TP_HIT", "SL_HIT"],
+            "description": "Signal outcome"
+          },
+          "exit_price": {
+            "type": ["number", "null"],
+            "description": "Exit price (null if PENDING)"
+          },
+          "exit_time": {
+            "type": ["string", "null"],
+            "description": "Exit time (null if PENDING)"
+          },
+          "pnl_points": {
+            "type": ["number", "null"],
+            "description": "Profit/loss in points (null if PENDING)"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "date", "signal_name", "entry_price", "direction", "result"]
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_signals": {"type": "integer"},
+        "tp_hits": {"type": "integer"},
+        "sl_hits": {"type": "integer"},
+        "pending": {"type": "integer"},
+        "win_rate": {"type": ["number", "null"]},
+        "total_pnl": {"type": "number"},
+        "last_updated": {"type": "string", "format": "date-time"}
+      }
+    },
+    "excluded_dates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "reason": {"type": "string"}
+        }
+      },
+      "description": "Dates excluded from performance metrics due to operational gaps"
+    }
+  },
+  "example": {
+    "signals": [
+      {
+        "id": "EXAMPLE_20260120_0949_STB_SHORT",
+        "date": "2026-01-20",
+        "signal_name": "STB숏",
+        "trigger_time": "09:49",
+        "entry_price": 25446.25,
+        "direction": "short",
+        "tp_target": 25426.25,
+        "sl_target": 25476.25,
+        "result": "TP_HIT",
+        "exit_price": 25426.25,
+        "exit_time": "10:15",
+        "pnl_points": 20,
+        "notes": ""
+      }
+    ],
+    "summary": {
+      "total_signals": 1,
+      "tp_hits": 1,
+      "sl_hits": 0,
+      "pending": 0,
+      "win_rate": 100.0,
+      "total_pnl": 20
+    },
+    "excluded_dates": [
+      {"date": "2026-01-19", "reason": "Ops gap: server downtime"}
+    ]
+  }
+}
