@@ -76,6 +76,15 @@ V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES
 | 3    | V7 Grammar  | Outcome Classification (EE / HL) |
 
 
+
+SPS (Structural Pressure Score) represents the relative strength of opposing market forces,
+used to compare directional pressure rather than to smooth volatility.
+
+STB functions as a stabilization and filtering layer, suppressing noise induced by volatility
+and allowing only structurally meaningful conditions to trigger entries.
+
+
+
 ### Key Metrics
 
 | Component | Metric | Definition |
