@@ -1,5 +1,7 @@
 # V7 Grammar System
 
+*An institutional-grade decision grammar framework for futures markets, validated across assets, regimes, and execution constraints.*
+
 ## A Decision Grammar System, Not a Forecasting Engine
 
 > **"This system does not predict markets. It classifies decision states.
@@ -47,8 +49,7 @@ This system freezes the decision criteria. Predictions can fail; the judgment fr
 
 [ Predictive Alpha (Optional) ]
           ↓
-   (feeds into)
-[ Decision Grammar ]
+   (feeds into Decision Grammar)
 
 ---
 
@@ -111,6 +112,8 @@ V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES
 
 ## Performance Metrics (Conservative)
 
+*All performance metrics are reported under conservative assumptions and exclude optimization bias.*
+
 | Metric | Value |
 |--------|-------|
 | STB TP-first Rate | 94.1% |
@@ -122,8 +125,8 @@ V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES
 ## Documentation
 
 - [Strategy Overview](strategy_overview.md)
-- [Validation Cases A–F](validation_cases.md)
-- [Live Results](live_results.md) *(In Progress)*
+- [Validation Cases A–F](검증%20사례.md)
+- [Live Results](실시간%20결과.md) *(In Progress)*
 
 ---
 
