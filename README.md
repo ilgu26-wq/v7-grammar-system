@@ -40,16 +40,16 @@ This system freezes the decision criteria. Predictions can fail; the judgment fr
 > without affecting execution integrity or risk semantics.
 
 [ Market Data ]
-      ↓
+        ↓
 [ Decision Grammar (V7) ]   ← Core (Immutable)
-      ↓
+        ↓
 [ Execution Constraints ]
-      ↓
+        ↓
 [ Capital / Risk ]
 
 [ Predictive Alpha (Optional) ]
-          ↓
-   (feeds into Decision Grammar)
+                ↓
+       (feeds into Decision Grammar)
 
 ---
 
