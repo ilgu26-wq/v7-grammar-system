@@ -1,10 +1,16 @@
-# Citadel Cover Letter - V7 Grammar System
+# # Application Sample – V7 Grammar System
+
 
 ## Final Version (2026-01-19)
 
 ---
 
-Dear Citadel Recruitment Team,
+> NOTE:
+> This document is provided as an example of application-style technical communication.
+> It is not firm-specific and does not represent a targeted submission.
+
+
+Dear Recruitment Team,
 
 I am submitting my application for the Quantitative Research position.
 
