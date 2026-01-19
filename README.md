@@ -1,16 +1,17 @@
 # V7 Grammar System
+
 *An institutional-grade decision grammar framework for futures markets, validated across assets, regimes, and execution constraints.*
 
 ## A Decision Grammar System, Not a Forecasting Engine
 
-> **"This system does not predict markets. It classifies decision states.  
+> **"This system does not predict markets. It classifies decision states.
 > Prediction modules can be added without destabilizing the core."**
 
 ---
 
 ## Core Philosophy
 
-This system was intentionally designed **not to predict market direction**.  
+This system was intentionally designed **not to predict market direction**.
 Instead, it defines a **decision grammar** that classifies market states and
 constrains execution under uncertainty.
 
@@ -25,138 +26,127 @@ destabilizing execution integrity, risk semantics, or portfolio behavior.
 ## Why This Matters
 
 | Approach | Stability |
-|--------|----------|
+|----------|-----------|
 | Prediction without decision grammar | Unstable |
 | Decision grammar without prediction | **Stable** |
 
-This system freezes the decision criteria.  
-Predictions can fail; the judgment framework cannot.
+This system freezes the decision criteria. Predictions can fail; the judgment framework cannot.
 
 ---
 
 ## Extensibility Declaration
 
-> Any predictive alpha can be plugged into this system  
+> Any predictive alpha can be plugged into this system
 > without affecting execution integrity or risk semantics.
 
-```text
-                 ┌─────────────────────┐
-                 │   Market Data       │
-                 └─────────┬───────────┘
-                           ↓
-            ┌────────────────────────────────┐
-            │  Decision Grammar (V7)          │  ← Core (Immutable)
-            │  - State Classification         │
-            │  - Outcome Grammar              │
-            └─────────┬──────────────────────┘
-                      ↓
-        ┌───────────────────────────────┐
-        │ Execution Constraints          │
-        │ (risk, timing, eligibility)   │
-        └─────────┬─────────────────────┘
-                  ↓
-        ┌───────────────────────────────┐
-        │ Capital / Risk Management      │
-        └───────────────────────────────┘
+[ Market Data ]
+      ↓
+[ Decision Grammar (V7) ]   ← Core (Immutable)
+      ↓
+[ Execution Constraints ]
+      ↓
+[ Capital / Risk ]
 
-        ┌───────────────────────────────┐
-        │ Predictive Alpha (Optional)    │
-        │ (models / forecasts / signals)│
-        └──────────────┬────────────────┘
-                       ↓
-            (feeds into Decision Grammar)
+[ Predictive Alpha (Optional) ]
+          ↓
+   (feeds into Decision Grammar)
 
-Overview
+---
 
-V7 Grammar System is a quantitative trading framework for futures markets
-(NQ / ES / BTC) that generates Conditional Alpha
-through market state classification, not price prediction.
+## Overview
 
-The system averages 50–70 decision-quality trades per month,
-prioritizing precision over frequency.
+V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES/BTC) that generates **Conditional Alpha** through market state classification rather than price prediction.
 
-Key Statement
+> **The system averages 50–70 decision-quality trades per month, prioritizing precision over frequency.**
 
-"This is not a return-maximizing strategy.
-It is a conditional alpha system that maximizes
-decision quality under uncertainty."
+### Key Statement
+
+> "This is not a return-maximizing strategy.  
+> It is a conditional alpha system that maximizes  
+> decision quality under uncertainty."
+
+---
+
+## System Architecture
 
 ┌─────────────────────────────────────────────────────────────┐
-│ [1] STATE        → Direction Stabilization (Long / Short)   │
-│ [2] STB          → Entry Timing (94.1% TP-first)            │
-│ [3] V7 Grammar   → Outcome Classification (EE / HL)         │
+│  [1] STATE       → Direction Stabilization (Long/Short)    │
+│  [2] STB         → Entry Timing (94.1% TP-first)           │
+│  [3] V7 Grammar  → Outcome Classification (EE/HL)          │
 └─────────────────────────────────────────────────────────────┘
 
+### Key Metrics
 
-Key Metrics
-Component	Metric	Definition
-Ratio	Price Momentum	(close − low) / (high − close)
-Channel %	Price Position	Relative position in 20-bar range
-Validation Summary
-24 / 24 Independent Tests Passed
-Case	Target	Result
-A	ES (S&P 500)	5 / 5 PASS
-B	BTC1 + Roll Events	6 / 6 PASS
-C	Multi-Timeframe (1m–1h)	4 / 4 PASS
-D	Event Stress (COVID / CPI / Bank)	5 / 5 PASS
-E	Portfolio Independence	H_E1, H_E3 PASS
-F	Execution Integrity	4 / 4 PASS
+| Component | Metric | Definition |
+|-----------|--------|------------|
+| Ratio | Price Momentum | (close - low) / (high - close) |
+| Channel% | Price Position | Relative position in 20-bar range |
 
-Logic Modifications: 0
+---
 
-Proven Properties
+## Validation Summary
 
-Asset-Agnostic: Identical logic across NQ / ES / BTC
+### 24/24 Independent Tests Passed
 
-Time-Invariant: 1-minute to 1-hour structure preserved
+| Case | Target | Result |
+|------|--------|--------|
+| A | ES (S&P 500) | 5/5 PASS |
+| B | BTC1 + Roll Events | 6/6 PASS |
+| C | Multi-Timeframe (1m~1h) | 4/4 PASS |
+| D | Event Stress (COVID/CPI/Bank) | 5/5 PASS |
+| E | Portfolio Independence | H_E1,H_E3 PASS |
+| F | Execution Integrity | 4/4 PASS |
 
-Regime-Robust: COVID, CPI shocks, banking crisis survived
+**Logic Modifications: 0**
 
-Roll-Robust: Superior performance during roll events
+### Proven Properties
 
-Portfolio-Ready: Zero triple-simultaneous occurrence
+- **Asset-Agnostic**: Identical logic across NQ/ES/BTC
+- **Time-Invariant**: 1-minute to 1-hour structure preserved
+- **Regime-Robust**: COVID, CPI shocks, banking crisis survived
+- **Roll-Robust**: Superior performance during roll events
+- **Portfolio-Ready**: Zero triple-simultaneous occurrence
+- **Operationally Sound**: Human-followable execution
 
-Operationally Sound: Human-followable execution
+---
 
-Performance Metrics (Conservative)
+## Performance Metrics (Conservative)
 
-All performance metrics are reported under conservative assumptions
-and exclude optimization bias.
+*All performance metrics are reported under conservative assumptions and exclude optimization bias.*
 
-Metric	Value
-STB TP-first Rate	94.1%
-Sample Size	1,406 trades
-Avg R per Trade	+0.411R
-Recovery Factor	115.7×
-Max Drawdown	−5R
-Sharpe Ratio	0.93
-Sortino Ratio	1.55
+| Metric | Value |
+|--------|-------|
+| STB TP-first Rate | 94.1% |
+| Avg R per Trade | +0.411R |
+| Recovery Factor | 115.7x |
 
-Note
-Risk-adjusted metrics (Sharpe / Sortino) are intentionally reported
-under conservative, full-state assumptions.
-Conditional, event-filtered metrics are provided separately
-in CVs and evaluation documents.
+---
 
-Documentation
+## Documentation
 
-Strategy Overview
+- [Strategy Overview](strategy_overview.md)
+- [Validation Cases A–F](검증%20사례.md)
+- [Live Results](실시간%20결과.md) *(In Progress)*
 
-Validation Cases A–F
+---
 
-Live Results (In Progress)
+## Current Stage
 
-Current Stage
+> **Live trading validation in progress**
 
-Live trading validation in progress
+---
 
-Key Statement
+## Key Statement
 
-"We know exactly where we make money,
-and we intentionally do not try elsewhere."
+> "We know exactly where we make money,  
+> and we intentionally do not try elsewhere."
 
-Grade
+---
 
-S (Superior) — Institutional-grade validation complete
+## Grade
 
-Generated: 2026-01-19
+**S (Superior)** - Institutional-grade validation complete
+
+---
+
+*Generated: 2026-01-19*
