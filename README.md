@@ -117,21 +117,17 @@ V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES
 | Metric | Value |
 |--------|-------|
 | STB TP-first Rate | 94.1% |
-| Sample Size | 1,406 trades |
 | Avg R per Trade | +0.411R |
 | Recovery Factor | 115.7x |
-| Max Drawdown | -5R |
-| Sharpe Ratio | 0.93 |
-| Sortino Ratio | 1.55 |
-
-> **Note:** Risk-adjusted metrics (Sharpe/Sortino) are intentionally reported under conservative, full-state assumptions. Conditional, event-filtered metrics are provided separately in the CV and evaluation reports to reflect decision-quality performance.
 
 ---
 
 ## Documentation
 
 - [Strategy Overview](strategy_overview.md)
+- 
 - [Validation Cases A–F](검증%20사례.md)
+- 
 - [Live Results](실시간%20결과.md) *(In Progress)*
 
 ---
