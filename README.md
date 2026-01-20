@@ -118,9 +118,22 @@ and allowing only structurally meaningful conditions to trigger entries.
 - **Portfolio-Ready**: Zero triple-simultaneous occurrence
 - **Operationally Sound**: Human-followable execution
 
+## Interpretation Scope
+
+At this stage, the system operates at a grammar-based resolution.
+
+Individual trade outcomes are not interpreted at the event level.
+Instead, validity is assessed by whether identical state conditions
+produce consistent decisions under fixed execution constraints.
+
+This document does not attempt to explain why a specific trade worked.
+It defines how decisions are enforced under equivalent market states.
+
+
 ---
 
-## Performance Metrics (Conservative)
+## Performance Metrics (Conservative Basis)
+
 
 > **Note:** Risk-adjusted metrics (Sharpe / Sortino) are intentionally reported  
 > under conservative, full-state assumptions.  
@@ -174,7 +187,8 @@ This repository is intentionally structured to separate **definition**, **operat
 
 ## Current Stage
 
-> **Live trading validation in progress**
+> **Live Shadow Trading Validation in Progress**
+
 
 ## Application & Communication Samples
 
@@ -189,6 +203,9 @@ philosophy, validation approach, and operational framing.
 - Provided to demonstrate technical communication and reasoning clarity
 
 [View Sample Application](cover_letter.md)
+
+These materials are intentionally separated from system specifications
+to avoid mixing communication examples with execution definitions.
 
 
 ---
