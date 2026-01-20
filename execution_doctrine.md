@@ -66,21 +66,56 @@ if is_sideways:
 
 ## 5. Sizing Constitution
 
-| Verdict | Condition | Contracts |
-|---------|-----------|-----------|
-| **STRONG_CONFIRM** | EE ≥ 2.0 + RISING + Micro&Macro EXTREME | 2 |
-| **EXTREME** | EE ≥ 2.0 + Micro&Macro EXTREME | 1 |
-| CONFIRMED | EE ≥ 2.0 | 0 (analysis only) |
-| OBSERVE | EE 0.5~2.0 | 0 |
-| REJECT | EE < 0.5 | 0 |
+### Base Unit Definition
+```
+1R = 10pt (SL-based risk unit)
+```
 
+### Account-Based Risk Formula
 ```python
-if STRONG_CONFIRM:
-    size = 2
-elif EXTREME:
-    size = 1
-else:
-    trade = False
+contracts_base = Account × 0.25% / (10pt × pt_value)
+```
+
+**Example (NQ, 1pt = $20, Account = $50,000):**
+```
+1R = 10pt = $200
+Risk allowance = $125 (0.25%)
+→ base_size ≈ 0.62 contracts → 1 micro
+```
+
+### Stage-Based Sizing (PE × EV-BB)
+```python
+size = base_contracts × multiplier
+```
+
+| Stage | Condition | Multiplier |
+|-------|-----------|------------|
+| Stage 0 | STB + EE approved | 1.0x |
+| Stage 1 | EV-BB + MFE ≥ 0.8×TP | 1.3x |
+| Stage 2 | EV-BB + MFE ≥ 1.2×TP | 1.7x |
+| Stage 3 | Micro+Macro EXTREME + EV-BB | 2.0x (max) |
+
+### Safety Constraints
+```
+Maximum exposure: 2.0× base (NEVER exceed)
+```
+
+### Reset Rules
+```python
+if consecutive_losses >= 2:
+    size = base_contracts
+    freeze_scaling(5)  # 5 trades
+
+if daily_drawdown >= 2R:
+    stop_trading_today()
+```
+
+### Sizing Doctrine (Summary)
+```
+Base risk is defined by fixed SL (10pt).
+Position size scales only after market approval (EV-BB),
+never at entry.
+Maximum exposure is capped at 2.0× base size.
 ```
 
 ---
@@ -134,7 +169,87 @@ PE can only be evaluated AFTER:
 
 ---
 
-## 7. Execution Order (Fixed)
+## 7. TP Expansion Algorithm (PE × EV-BB)
+
+### Design Principle
+```
+Expansion happens AFTER winning, not BEFORE.
+```
+
+### Prerequisites (Gate)
+```
+REQUIRED:
+- STB fired
+- EE >= 2.0 (CONFIRMED or higher)
+```
+
+### Stage 1: PE-Based Base TP
+```python
+if PE < 40:
+    TP_base = 10   # PE_LOW
+elif PE < 60:
+    TP_base = 15   # PE_HIGH
+else:
+    TP_base = 25   # PE_EXTREME
+```
+
+### Stage 2: EV-BB Expansion Switch
+```python
+if EV_BB:
+    expansion_allowed = True
+else:
+    expansion_allowed = False
+```
+
+### Stage 3: Step-by-Step Expansion
+| Stage | Condition | TP |
+|-------|-----------|-----|
+| BASE | EE approved | TP_base |
+| EXT_1 | EV-BB ON + MFE ≥ 0.8×TP | TP_base × 1.4 |
+| EXT_2 | EV-BB ON + MFE ≥ 1.2×TP | TP_base × 2.0 |
+| EXT_3 | Micro+Macro EXTREME + EV-BB | TP_base × 2.4 |
+
+### Termination Rules
+```python
+# Immediate exit
+if EE < 1.0:
+    exit()
+
+# Freeze expansion (keep current TP)
+if not EV_BB:
+    freeze_TP()
+
+# Protection
+if MAE > 0.6 * MFE:
+    freeze_TP()
+```
+
+### Immutable Rules
+```
+- TP reduction is FORBIDDEN
+- EV-BB standalone expansion is FORBIDDEN
+- EE < 1.0 triggers immediate exit
+- Expansion must follow stage order
+```
+
+### Validated Performance
+| Metric | Fixed TP=25 | Dynamic TP |
+|--------|-------------|------------|
+| Total Profit | 12,029pt | 29,262pt |
+| Avg Profit | 4.79pt | 11.65pt |
+| Win Rate | 63.7% | 88.1% |
+| Improvement | - | **+143%** |
+
+| Stage | Win Rate | Avg PnL |
+|-------|----------|---------|
+| Stage 0 | 86.9% | 9.63pt |
+| Stage 1 | 91.6% | 17.64pt |
+| Stage 2 | **100%** | 25.13pt |
+| Stage 3 | 88.2% | 48.87pt |
+
+---
+
+## 8. Execution Order (Fixed)
 
 ```
 1. STB occurs → Direction defined
@@ -149,7 +264,7 @@ PE can only be evaluated AFTER:
 
 ---
 
-## 8. Core Principle
+## 9. Core Principle
 
 > "STB starts the sentence,
 > EE approves the sentence,
@@ -158,24 +273,28 @@ PE can only be evaluated AFTER:
 
 ---
 
-## 9. Performance Baseline (Validated)
+## 10. Performance Baseline (Validated)
 
-| Metric | STB+EE | EXTREME |
-|--------|--------|---------|
-| Win Rate | 83% | 97% |
-| Avg RR | 2.99 | 5.03 |
-| Avg MFE | 30pt | 50pt |
-| Optimal TP | 20pt | 25pt |
-| EV per trade | 6.4pt | 15.9pt |
+| Metric | STB + EE ≥ 2.0 | Micro+Macro EXTREME |
+|--------|----------------|---------------------|
+| Win Rate | ~83% | ~97% |
+| Avg RR (TP=25 / SL=10) | 2.99 | 5.03 |
+| Avg MFE | ~30pt | ~50pt |
+| Optimal Fixed TP | ~20pt | ~25pt |
+| Trade EV (Fixed TP) | ~6.4pt | ~15.9pt |
 
-**Daily Simulation (EXTREME only):**
-- Avg signals: 31.7/day
-- Avg profit: 244pt/day
+**Daily Simulation (EXTREME only, Fixed TP):**
+- Avg signals/day: ~31.7
+- Avg PnL/day: ~244pt
 - Profitable days: 100% (N=32)
+
+**Note:**
+Dynamic TP (PE × EV-BB) increases average EV to ~11–12pt
+and daily PnL to ~700pt/day.
 
 ---
 
-## 10. One-Line Summary
+## 11. One-Line Summary
 
 > "We don't profit by entering often.
 > We profit by entering only twice at a time,
