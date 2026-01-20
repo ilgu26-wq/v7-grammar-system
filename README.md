@@ -176,6 +176,21 @@ This repository is intentionally structured to separate **definition**, **operat
 
 > **Live trading validation in progress**
 
+## Application & Communication Samples
+
+**Application Sample – V7 Grammar System**
+
+Example of application-style technical communication describing the system’s
+philosophy, validation approach, and operational framing.
+
+- This document is **illustrative only**
+- Not firm-specific
+- Not a performance claim
+- Provided to demonstrate technical communication and reasoning clarity
+
+[View Sample Application](cover_letter.md)
+
+
 ---
 
 ## Key Statement
