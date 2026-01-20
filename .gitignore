@@ -2,6 +2,9 @@
 # V7 Grammar System - Public Release Ignore
 # ===========================================
 
+# Execution engine (PRIVATE)
+main.py
+
 # Data files (private - DO NOT commit)
 *.json
 *.csv
