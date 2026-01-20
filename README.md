@@ -73,9 +73,9 @@ V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES
 |------|-------------|----------|
 | 1    | STATE       | Direction Stabilization (Long / Short) |
 | 2    | STB         | Entry Timing (94.1% TP-first) |
-| 3    | V7 Grammar  | Outcome Classification (EE / HL) |
+| 3 | V7 Grammar | Outcome Classification (EE / HL) |
 
-
+### Structural Components
 
 SPS (Structural Pressure Score) represents the relative strength of opposing market forces,
 used to compare directional pressure rather than to smooth volatility.
@@ -107,6 +107,20 @@ and allowing only structurally meaningful conditions to trigger entries.
 | E | Portfolio Independence | H_E1,H_E3 PASS |
 | F | Execution Integrity | 4/4 PASS |
 
+## Interpretation Scope
+
+This repository evaluates the system at a **decision grammar level**.
+
+Trade-level outcome metrics may differ across documents depending on
+their interpretive scope:
+- structural validation,
+- operational behavior,
+- or communication examples.
+
+Numerical differences across documents are expected and intentional,
+as each document serves a **distinct evaluation purpose**.
+
+
 **Logic Modifications: 0**
 
 ### Proven Properties
@@ -118,35 +132,42 @@ and allowing only structurally meaningful conditions to trigger entries.
 - **Portfolio-Ready**: Zero triple-simultaneous occurrence
 - **Operationally Sound**: Human-followable execution
 
-## Interpretation Scope
-
-At this stage, the system operates at a grammar-based resolution.
-
-Individual trade outcomes are not interpreted at the event level.
-Instead, validity is assessed by whether identical state conditions
-produce consistent decisions under fixed execution constraints.
-
-This document does not attempt to explain why a specific trade worked.
-It defines how decisions are enforced under equivalent market states.
-
-
 ---
 
-## Performance Metrics (Conservative Basis)
+## Performance Metrics (Decision-Integrity Scope)
 
+> **Important:**  
+> Metrics reported in this section are provided **only to validate
+> decision integrity and execution consistency**.  
+> This document does **not** report portfolio-level performance.
 
-> **Note:** Risk-adjusted metrics (Sharpe / Sortino) are intentionally reported  
-> under conservative, full-state assumptions.  
-> Conditional, event-filtered metrics are provided separately in the CV  
-> and evaluation reports to reflect **decision-quality performance**.
+All metrics are calculated under **conservative assumptions**, where:
+- suppressed states,
+- inactive states,
+- and non-entry conditions  
+are treated as neutral or unfavorable outcomes.
 
-*All performance metrics are reported under conservative assumptions and exclude optimization bias.*
+### Reported Metrics
 
-| Metric | Value |
-|--------|-------|
-| STB TP-first Rate | 94.1% |
-| Avg R per Trade | +0.411R |
-| Recovery Factor | 115.7x |
+| Metric | Value | Scope |
+|------|------|------|
+| STB TP-first Rate | 94.1% | Conditional STB execution only |
+| Sharpe Ratio | 3.84 | Conditional STB execution sequence |
+| Sortino Ratio | 21.34 | Conditional STB execution sequence |
+
+### Intentionally Excluded Metrics
+
+The following metrics are **intentionally excluded** from this document:
+
+- Average R per Trade  
+- Recovery Factor  
+- Portfolio-level P&L  
+
+These metrics are reported **only in operational summaries or
+evaluation documents**, as they do **not** serve to validate the grammar itself.
+
+> **This is a design choice, not missing data.**
+
 ---
 
 ## Repository Structure & Reading Guide
@@ -182,7 +203,9 @@ This repository is intentionally structured to separate **definition**, **operat
  
 - [Validation Cases (A–F)](validation_cases.md)
  
-- [Live Results](live_results.md) *(In Progress)*
+- [Live Results](live_results.md) *(In Progress)*  
+  → Reports operational outcome metrics under fixed grammar and execution rules.
+
 ---
 
 ## Current Stage
@@ -223,4 +246,4 @@ to avoid mixing communication examples with execution definitions.
 
 ---
 
-*Generated: 2026-01-19*
+*Updated: 2026-01-19*
