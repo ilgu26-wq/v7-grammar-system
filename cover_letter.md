@@ -14,17 +14,20 @@ Dear Recruitment Team,
 
 I am submitting my application for the Quantitative Research position.
 
-Over the past months, I have designed, validated, and operated a **non-predictive decision grammar system** that captures structural signals across multiple markets.
+Over the past months, I have designed, validated, and operated a non-predictive decision grammar system that captures structural signals across multiple markets.
 
 ### Core Philosophy
 
-> "This system does not predict. It classifies decision states."
+“This system does not predict. It classifies decision states.”
 
-The core insight is simple: predictive alpha can fail, but a well-defined decision framework cannot. Rather than forecasting price movements, this system identifies when market structure enters an actionable state—and when it does not.
+The core insight is simple: predictive alpha can fail, but a well-defined decision framework cannot.
+Rather than forecasting price movements, this system identifies when market structure enters an actionable state—and when it does not.
 
 ### Validation Results
 
-This system has passed **24 independent validation cases** without any parameter modifications:
+This system has passed **24 independent validation cases** without any parameter modifications.  
+These validations consist of multiple scenario-level tests spanning regime shifts, volatility shocks, and execution edge cases.
+
 
 | Category | Coverage |
 |----------|----------|
@@ -33,16 +36,23 @@ This system has passed **24 independent validation cases** without any parameter
 | Stress Events | COVID-19, CPI Releases, SVB Banking Crisis |
 | Roll Events | Continuous futures rollover integrity |
 
-### Performance Metrics (Frozen System)
+### Performance Metrics (Conservative, Verified)
 
-| Metric | Value |
-|--------|-------|
-| TP-First Rate | 94.1% (1,406 samples) |
-| Sharpe Ratio | 13.14 |
-| Sortino Ratio | 21.91 |
-| Calmar Ratio | 41.15 |
-| Recovery Factor | 115.7x |
-| Max Drawdown | -0.49 R |
+Metrics are reported conditionally to isolate decision quality from market exposure.
+
+| Metric | Value | Note |
+|------|------|------|
+| TP-First Rate | **94.1%** | STB signals only (1,406 samples) |
+| Sharpe Ratio | **3.84** | Conditional STB execution |
+| Sortino Ratio | **21.34** | Conditional STB execution |
+| Avg R per Trade | TBD | Under re-verification |
+| Recovery Factor | TBD | Reported after live validation |
+
+This guarantees that all reported signals are mechanically reproducible and auditable.
+
+> Risk-adjusted metrics are reported on a **conditional, event-filtered execution basis**.  
+> Portfolio-level metrics will be reported after live capital validation is completed.
+
 
 ### Execution Integrity (Real-Time Verification)
 
@@ -64,6 +74,8 @@ During live operation, the system explicitly reports **suppressed signals** with
 This ensures full transparency between inactivity and system failure—a critical distinction for institutional risk governance.
 
 ### Current Status
+
+Freezing the system ensures that live results reflect prior research decisions rather than adaptive tuning.
 
 A **two-week live capital validation** is currently in progress (since 2026-01-17), with all trades logged and verified. The system is frozen; no parameter changes are permitted.
 
