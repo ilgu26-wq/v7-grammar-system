@@ -93,10 +93,10 @@ EE is strictly post-entry, non-predictive, and does not affect entry selection.
 
 
 - **EE Definition (Grammar-level)**  
-  → `docs/grammar/ee_definition.md`
+  →[docs/grammar/ee_definition.md](docs/grammar/ee_definition.md)
 
 - **Empirical Continuation Validation (Post-entry behavior)**  
-  → `docs/validation/ee_continuation_manager.md`
+  → [docs/validation/ee_continuation_manager.md](docs/validation/ee_continuation_manager.md)
 
 This separation ensures that **decision grammar remains stable**,
 while continuation quality is enforced without altering
