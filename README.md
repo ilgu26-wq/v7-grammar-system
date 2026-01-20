@@ -155,6 +155,21 @@ are treated as neutral or unfavorable outcomes.
 | Sharpe Ratio | 3.84 | Conditional STB execution sequence |
 | Sortino Ratio | 21.34 | Conditional STB execution sequence |
 
+### Theoretical Avg R Registration Policy
+
+The theoretical Avg R (1.823R) is registered as a reference value only.
+
+It will be promoted to an official README metric after all of the following
+conditions are satisfied:
+
+- n ≥ 100 live shadow trades
+- Absolute deviation |ΔR| ≤ 0.30 compared to the theoretical value
+- 95% confidence interval includes 1.823R
+
+Until these conditions are met, the value remains contract-defined
+but unverified, and is excluded from performance summaries by design.
+
+
 ### Intentionally Excluded Metrics
 
 The following metrics are **intentionally excluded** from this document:
