@@ -55,9 +55,14 @@ This system freezes the decision criteria. Predictions can fail; the judgment fr
 
 ## Overview
 
-V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES/BTC) that generates **Conditional Alpha** through market state classification rather than price prediction.
+V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES/BTC) that supports **conditional alpha expression** through market state classification rather than price prediction.
 
-> **The system averages 50–70 decision-quality trades per month, prioritizing precision over frequency.**
+> **The system operates with intentionally constrained trade frequency,
+> prioritizing decision quality over activity.**
+
+This conditional expression is evaluated post-entry,
+and does not alter entry selection or predictive assumptions.
+
 
 ### Key Statement
 
@@ -72,8 +77,32 @@ V7 Grammar System is a quantitative trading framework for futures markets (NQ/ES
 | Layer | Module      | Function |
 |------|-------------|----------|
 | 1    | STATE       | Direction Stabilization (Long / Short) |
-| 2    | STB         | Entry Timing (94.1% TP-first) |
-| 3 | V7 Grammar | Outcome Classification (EE / HL) |
+| 2    | STB         | Entry Timing & Execution Ordering |
+| 3    | V7 Grammar  | Outcome & Continuation Classification (EE / HL) |
+
+### Post-Entry Continuation Control (EE)
+
+V7 Grammar System includes a post-entry continuation controller,  
+**EE (Expansion Eligibility)**, which determines whether an already-entered
+position is structurally worth maintaining.
+
+EE is strictly post-entry, non-predictive, and does not affect entry selection.
+
+→ [EE Definition](docs/grammar/ee_definition.md)  
+→ [EE Continuation Manager](docs/validation/ee_continuation_manager.md)
+
+
+- **EE Definition (Grammar-level)**  
+  → `docs/grammar/ee_definition.md`
+
+- **Empirical Continuation Validation (Post-entry behavior)**  
+  → `docs/validation/ee_continuation_manager.md`
+
+This separation ensures that **decision grammar remains stable**,
+while continuation quality is enforced without altering
+entry logic or introducing predictive assumptions.
+
+
 
 ### Structural Components
 
@@ -123,6 +152,10 @@ as each document serves a **distinct evaluation purpose**.
 
 **Logic Modifications: 0**
 
+This indicates that all validation results were obtained
+without parameter tuning or rule adjustment.
+
+
 ### Proven Properties
 
 - **Asset-Agnostic**: Identical logic across NQ/ES/BTC
@@ -134,7 +167,8 @@ as each document serves a **distinct evaluation purpose**.
 
 ---
 
-## Performance Metrics (Decision-Integrity Scope)
+## Decision-Integrity Metrics (Non-Portfolio Scope)
+
 
 > **Important:**  
 > Metrics reported in this section are provided **only to validate
@@ -154,6 +188,9 @@ are treated as neutral or unfavorable outcomes.
 | STB TP-first Rate | 94.1% | Conditional STB execution only |
 | Sharpe Ratio | 3.84 | Conditional STB execution sequence |
 | Sortino Ratio | 21.34 | Conditional STB execution sequence |
+
+> TP-first rate reflects execution ordering under predefined exits,
+> not directional prediction accuracy.
 
 ### Theoretical Avg R Registration Policy
 
@@ -257,7 +294,8 @@ to avoid mixing communication examples with execution definitions.
 
 ## Grade
 
-**S (Superior)** - Institutional-grade validation complete
+**S (Superior)** — Institutional-grade validation achieved
+
 
 ---
 
