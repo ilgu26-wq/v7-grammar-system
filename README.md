@@ -102,6 +102,15 @@ This separation ensures that **decision grammar remains stable**,
 while continuation quality is enforced without altering
 entry logic or introducing predictive assumptions.
 
+### Execution Doctrine (Operational Layer)
+
+The Execution Doctrine defines how validated structures are operated,
+including sizing, continuation thresholds, and expansion permissions.
+
+This document governs capital deployment behavior
+after structural validity has been established.
+
+→ [Execution Doctrine](execution_doctrine.md)
 
 
 ### Structural Components
