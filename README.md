@@ -136,6 +136,31 @@ and allowing only structurally meaningful conditions to trigger entries.
 | Recovery Factor | 115.7x |
 ---
 
+## Repository Structure & Reading Guide
+
+This repository is intentionally structured to separate **definition**, **operation**, and **data integrity**.
+
+### How to Read This Repository
+
+- **README.md**  
+  High-level philosophy, system architecture, validation summary, and performance framing.
+
+- **LIVE_TRADING_RESULTS.md**  
+  Official live shadow backtest documentation.  
+  Defines operational scope, execution constraints, ops-gap exclusion rules, and result interpretation contract.  
+  → This document specifies *how live results should be read*, not raw performance data.
+
+- **realtime_signal_results.schema.json**  
+  Schema definition for real-time signal result logging.  
+  This repository stores **structure only** — no live performance data is committed.
+
+### Data Policy (Important)
+
+- Live operational data files (e.g. `realtime_signal_results.json`, `ops_log.json`)  
+  are **explicitly excluded from version control** and remain local-only.
+- GitHub contains **definitions and contracts**, not live performance outcomes.
+
+
 ## Documentation
 
 - [V7 Grammar Table v1.0](v7_grammar_table.md)
