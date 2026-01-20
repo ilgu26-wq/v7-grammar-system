@@ -82,4 +82,9 @@ During live operation, the system explicitly reports suppressed signals with qua
 
 Operational gaps are treated as system availability events, not trading outcomes.
 
-*Last Updated: 2026-01-19*
+---
+
+Baseline declaration: Live shadow backtest officially started from 2026-01-20.
+
+
+*Last Updated: 2026-01-20*
