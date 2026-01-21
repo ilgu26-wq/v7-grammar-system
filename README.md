@@ -175,7 +175,12 @@ for illustrative purposes only.
 
 ## Current Stage
 
-> **Live Shadow Trading Validation in Progress**
+- Core decision grammar: **COMPLETE & LOCKED**
+- Structural validation: **FINISHED (24/24 tests passed)**
+- Live shadow trading: **IN PROGRESS (metric promotion pending)**
+
+No further logic changes are planned.
+Only data accumulation is ongoing.
 
 ---
 
