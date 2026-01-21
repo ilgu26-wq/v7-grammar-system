@@ -1,41 +1,64 @@
 {
-  "metric": "avg_r_theoretical",
+  "metric": "Average R",
+  "metric_id": "avg_r_theoretical",
   "value": 1.823,
   "unit": "R",
+
+  "scope": "theoretical",
+  "status": "PENDING",
+
   "calculation": {
     "stb_tp_first_rate": 0.941,
     "tp_r": 2.0,
     "sl_r": -1.0,
     "formula": "0.941 * 2R + 0.059 * (-1R)"
   },
+
   "assumptions": [
     "full TP or SL execution",
     "no slippage",
     "no partial fills",
     "no time-based exits"
   ],
-  "status": "PENDING_VALIDATION",
-  "validation_plan": {
+
+  "promotion_policy": {
     "phase_1": {
       "min_trades": 30,
+      "purpose": "sanity check",
       "status": "PENDING"
     },
     "phase_2": {
       "min_trades": 100,
+      "purpose": "README eligibility",
       "status": "PENDING",
       "action": "README_registration"
     },
     "phase_3": {
       "min_trades": 300,
+      "purpose": "statistical stabilization",
       "status": "PENDING",
       "action": "confidence_interval_stabilization"
     }
   },
+
   "acceptance_criteria": {
     "tolerance_abs_r": 0.30,
     "statistical_test": "one_sample_t_test",
     "confidence_level": 0.95
   },
+
+  "governance": {
+    "allowed_usage": [
+      "research",
+      "internal reference"
+    ],
+    "prohibited_usage": [
+      "README",
+      "performance claims",
+      "marketing statements"
+    ]
+  },
+
   "notes": "Theoretical reference only. Realized execution data intentionally excluded until validation.",
   "last_updated": "2026-01-20"
 }
