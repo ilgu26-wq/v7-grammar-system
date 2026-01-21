@@ -148,7 +148,7 @@ These metrics do not imply directional forecasting accuracy.
 
 - [V7 Grammar Table v1.0](v7_grammar_table.md)
 - [Strategy Overview](strategy_overview.md)
-- [Validation Cases (A–F)](validation_cases.md)
+- [Validation Cases (A–F)](validation/validation_cases.md)
 - [Live Results](live_results.md) *(In Progress)*
 
 ---
