@@ -184,6 +184,12 @@ Only data accumulation is ongoing.
 
 ---
 
+## Demo (Read-Only)
+
+- [Decision Grammar Demo](demos/grammar_demo.py)
+  - Classification logic only
+  - No execution, no live trading
+
 ## Key Statement
 
 > **"We know exactly where we make money,
