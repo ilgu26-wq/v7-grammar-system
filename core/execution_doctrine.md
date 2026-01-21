@@ -110,3 +110,16 @@ else:
 MFE ≥ 7 represents a statistical energy threshold observed across
 multiple parameter plateaus (5-7pt).
 The value 7 is selected as the conservative core setting.
+
+## G3 SL Defense – Final Interpretation
+
+The G3 SL Defense does not aim to improve win rate.
+Its sole purpose is to reduce loss magnitude under prolonged non-energy states.
+
+As a result:
+- Win rate may decrease or remain unchanged
+- Average loss is structurally reduced (≈ -30pt → -12pt)
+- EV is preserved or improved through tail-risk compression
+
+G3 is therefore classified as a **defensive physics rule**, not a probabilistic optimizer,
+and is locked as part of the V7 execution constitution.
