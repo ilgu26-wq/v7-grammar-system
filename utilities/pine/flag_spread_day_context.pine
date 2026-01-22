@@ -1,0 +1,2 @@
+//@version=5
+indicator("FLAG v3 — SPREAD DAY + TRUE BLACK(XB) + GRAY Risk(G?) + GREEN_SPOT(opt)", overlay=true, max_labels_count=500)
