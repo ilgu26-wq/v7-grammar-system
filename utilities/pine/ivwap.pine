@@ -1,0 +1,280 @@
+// -----------------------------------------------------------------------------
+// Auxiliary Execution Utility
+//
+// This script does NOT generate trading signals.
+// It is used solely for execution context and risk suppression.
+// No entries, exits, or performance optimization are included.
+//
+// Core decision logic is handled externally by the V7 Grammar System.
+// -----------------------------------------------------------------------------
+// ═══════════════════════════════════════════════════════════════
+// iVWAP 트렌드 레짐 탐지기 v3.0 (최적화 버전)
+// ═══════════════════════════════════════════════════════════════
+// 
+// 백테스트 최적 조건:
+// - Z-score: 2.2 (기본값)
+// - iVWAP 허용: ±10pt
+// - 레짐 룩백: 20봉
+// - 손절 20pt / 익절 120pt → 승률 30%, 기대값 +1.12R
+//
+// ═══════════════════════════════════════════════════════════════
+
+//@version=5
+indicator("iVWAP 트렌드 레짐 v3", overlay=true, max_bars_back=500)
+
+// ═══════════════════════════════════════════════════════════════
+// 1. 입력값 (백테스트 최적값 기본)
+// ═══════════════════════════════════════════════════════════════
+
+zscore_threshold = input.float(2.2, "Z-score 기준", minval=1.5, maxval=3.0, step=0.1)
+cluster_end_bars = input.int(5, "클러스터 마감 봉 수", minval=3, maxval=10)
+regime_confirm_bars = input.int(20, "레짐 확인 봉 수", minval=5, maxval=30)
+regime_tolerance = input.float(10.0, "iVWAP 허용 범위", minval=5.0, maxval=30.0)
+lookback = input.int(50, "SPS 누적 개수", minval=10, maxval=100)
+
+show_ma200 = input.bool(true, "200 MA 표시")
+show_entry_zone = input.bool(true, "진입 구간 표시")
+ma200 = ta.sma(close, 200)
+
+// ═══════════════════════════════════════════════════════════════
+// 2. 15분봉 데이터 가져오기
+// ═══════════════════════════════════════════════════════════════
+
+[o15, h15, l15, c15, v15] = request.security(syminfo.tickerid, "15", [open, high, low, close, volume])
+
+body15 = math.abs(c15 - o15)
+range15 = h15 - l15
+body_ratio15 = range15 > 0 ? body15 / range15 : 0
+upper_wick15 = h15 - math.max(c15, o15)
+lower_wick15 = math.min(c15, o15) - l15
+wick_ratio15 = range15 > 0 ? (upper_wick15 + lower_wick15) / range15 : 0
+
+is_valid15 = body_ratio15 >= 0.15 and wick_ratio15 <= 0.70
+sps_raw15 = v15 * body_ratio15
+sps_mean15 = ta.sma(sps_raw15, 10)
+sps_std15 = ta.stdev(sps_raw15, 10)
+zscore15 = sps_std15 > 0 ? (sps_raw15 - sps_mean15) / sps_std15 : 0
+
+is_bullish15 = c15 > o15
+is_bearish15 = c15 < o15
+is_strong_buy15 = is_valid15 and is_bullish15 and zscore15 >= zscore_threshold
+is_strong_sell15 = is_valid15 and is_bearish15 and zscore15 >= zscore_threshold
+
+// ═══════════════════════════════════════════════════════════════
+// 3. 1분봉 SPS (클러스터 감지용)
+// ═══════════════════════════════════════════════════════════════
+
+body1m = math.abs(close - open)
+range1m = high - low
+body_ratio1m = range1m > 0 ? body1m / range1m : 0
+upper_wick1m = high - math.max(close, open)
+lower_wick1m = math.min(close, open) - low
+wick_ratio1m = range1m > 0 ? (upper_wick1m + lower_wick1m) / range1m : 0
+
+is_valid1m = body_ratio1m >= 0.15 and wick_ratio1m <= 0.70
+sps_raw1m = volume * body_ratio1m
+sps_mean1m = ta.sma(sps_raw1m, 10)
+sps_std1m = ta.stdev(sps_raw1m, 10)
+zscore1m = sps_std1m > 0 ? (sps_raw1m - sps_mean1m) / sps_std1m : 0
+
+is_bullish1m = close > open
+is_bearish1m = close < open
+is_sps1m = is_valid1m and math.abs(zscore1m) >= zscore_threshold
+is_buy_sps1m = is_sps1m and is_bullish1m
+is_sell_sps1m = is_sps1m and is_bearish1m
+
+// ═══════════════════════════════════════════════════════════════
+// 4. 클러스터 마감 감지
+// ═══════════════════════════════════════════════════════════════
+
+var int no_sps_count = 0
+var bool in_cluster = false
+var bool cluster_just_ended = false
+
+cluster_just_ended := false
+
+if is_sps1m
+    in_cluster := true
+    no_sps_count := 0
+else
+    if in_cluster
+        no_sps_count := no_sps_count + 1
+        if no_sps_count >= cluster_end_bars
+            cluster_just_ended := true
+            in_cluster := false
+            no_sps_count := 0
+
+// ═══════════════════════════════════════════════════════════════
+// 5. iVWAP 계산
+// ═══════════════════════════════════════════════════════════════
+
+var float[] buy_prices = array.new_float(0)
+var float[] buy_weights = array.new_float(0)
+var float[] sell_prices = array.new_float(0)
+var float[] sell_weights = array.new_float(0)
+
+if cluster_just_ended
+    if is_strong_buy15
+        array.push(buy_prices, c15)
+        array.push(buy_weights, math.abs(zscore15))
+        while array.size(buy_prices) > lookback
+            array.shift(buy_prices)
+            array.shift(buy_weights)
+    
+    if is_strong_sell15
+        array.push(sell_prices, c15)
+        array.push(sell_weights, math.abs(zscore15))
+        while array.size(sell_prices) > lookback
+            array.shift(sell_prices)
+            array.shift(sell_weights)
+
+weighted_avg(prices, weights) =>
+    if array.size(prices) == 0
+        na
+    else
+        sum_w = 0.0
+        sum_pw = 0.0
+        for i = 0 to array.size(prices) - 1
+            w = array.get(weights, i)
+            p = array.get(prices, i)
+            sum_pw := sum_pw + (p * w)
+            sum_w := sum_w + w
+        sum_w > 0 ? sum_pw / sum_w : array.avg(prices)
+
+ivwap_buy = weighted_avg(buy_prices, buy_weights)
+ivwap_sell = weighted_avg(sell_prices, sell_weights)
+
+// ═══════════════════════════════════════════════════════════════
+// 6. 트렌드 레짐 판단
+// ═══════════════════════════════════════════════════════════════
+
+recent_buy_count = math.sum(is_buy_sps1m ? 1 : 0, regime_confirm_bars)
+recent_sell_count = math.sum(is_sell_sps1m ? 1 : 0, regime_confirm_bars)
+
+price_above_buy_ivwap = not na(ivwap_buy) and close > ivwap_buy + regime_tolerance
+price_below_sell_ivwap = not na(ivwap_sell) and close < ivwap_sell - regime_tolerance
+price_at_buy_ivwap = not na(ivwap_buy) and math.abs(close - ivwap_buy) <= regime_tolerance
+price_at_sell_ivwap = not na(ivwap_sell) and math.abs(close - ivwap_sell) <= regime_tolerance
+
+var int regime = 0
+
+bull_condition = recent_buy_count > recent_sell_count
+bear_condition = recent_sell_count > recent_buy_count
+
+if bull_condition and price_above_buy_ivwap
+    regime := 1
+else if bear_condition and price_below_sell_ivwap
+    regime := -1
+else if price_at_buy_ivwap or price_at_sell_ivwap
+    regime := 0
+
+regime_changed = ta.change(regime) != 0
+
+// ═══════════════════════════════════════════════════════════════
+// 7. A급 진입 조건 (최적화됨)
+// ═══════════════════════════════════════════════════════════════
+
+buy_a_grade = regime == 1 and price_at_buy_ivwap and is_buy_sps1m
+sell_a_grade = regime == -1 and price_at_sell_ivwap and is_sell_sps1m
+
+buy_ready = regime == 1 and price_at_buy_ivwap and not is_buy_sps1m
+sell_ready = regime == -1 and price_at_sell_ivwap and not is_sell_sps1m
+
+// ═══════════════════════════════════════════════════════════════
+// 8. 시각화
+// ═══════════════════════════════════════════════════════════════
+
+bull_bg = regime == 1 ? color.new(color.green, 90) : na
+bear_bg = regime == -1 ? color.new(color.red, 90) : na
+bgcolor(bull_bg, title="상승장")
+bgcolor(bear_bg, title="하락장")
+
+plot(ivwap_buy, "매수 iVWAP", color=color.green, linewidth=2, style=plot.style_stepline)
+plot(ivwap_sell, "매도 iVWAP", color=color.red, linewidth=2, style=plot.style_stepline)
+
+plot(show_entry_zone and not na(ivwap_buy) ? ivwap_buy + regime_tolerance : na, "매수 상단", color=color.new(color.green, 70), linewidth=1, style=plot.style_linebr)
+plot(show_entry_zone and not na(ivwap_buy) ? ivwap_buy - regime_tolerance : na, "매수 하단", color=color.new(color.green, 70), linewidth=1, style=plot.style_linebr)
+plot(show_entry_zone and not na(ivwap_sell) ? ivwap_sell + regime_tolerance : na, "매도 상단", color=color.new(color.red, 70), linewidth=1, style=plot.style_linebr)
+plot(show_entry_zone and not na(ivwap_sell) ? ivwap_sell - regime_tolerance : na, "매도 하단", color=color.new(color.red, 70), linewidth=1, style=plot.style_linebr)
+
+plot(show_ma200 ? ma200 : na, "200 MA", color=color.gray, linewidth=1)
+
+plotshape(series=buy_a_grade, title="매수 A급", style=shape.triangleup, location=location.belowbar, color=color.lime, size=size.large)
+plotshape(series=sell_a_grade, title="매도 A급", style=shape.triangledown, location=location.abovebar, color=color.red, size=size.large)
+
+plotshape(series=buy_ready, title="매수 대기", style=shape.circle, location=location.belowbar, color=color.new(color.lime, 50), size=size.small)
+plotshape(series=sell_ready, title="매도 대기", style=shape.circle, location=location.abovebar, color=color.new(color.red, 50), size=size.small)
+
+plotshape(series=regime_changed and regime == 1, title="상승 전환", style=shape.labelup, location=location.bottom, color=color.green, text="BULL", textcolor=color.white)
+plotshape(series=regime_changed and regime == -1, title="하락 전환", style=shape.labeldown, location=location.top, color=color.red, text="BEAR", textcolor=color.white)
+
+plotshape(series=is_buy_sps1m, title="매수 SPS", style=shape.circle, location=location.belowbar, color=color.new(color.green, 60), size=size.tiny)
+plotshape(series=is_sell_sps1m, title="매도 SPS", style=shape.circle, location=location.abovebar, color=color.new(color.red, 60), size=size.tiny)
+
+bgcolor(in_cluster ? color.new(color.yellow, 95) : na, title="클러스터 진행")
+
+// ═══════════════════════════════════════════════════════════════
+// 9. 정보 테이블
+// ═══════════════════════════════════════════════════════════════
+
+var table info = table.new(position.top_right, 2, 14, bgcolor=color.black, border_width=1)
+
+if barstate.islast
+    regime_text = regime == 1 ? "BULL" : regime == -1 ? "BEAR" : "NEUTRAL"
+    regime_color = regime == 1 ? color.green : regime == -1 ? color.red : color.gray
+    table.cell(info, 0, 0, "레짐", text_color=color.white, bgcolor=regime_color)
+    table.cell(info, 1, 0, regime_text, text_color=color.white, bgcolor=regime_color)
+    
+    table.cell(info, 0, 1, "매수 iVWAP", text_color=color.white)
+    table.cell(info, 1, 1, not na(ivwap_buy) ? str.tostring(ivwap_buy, "#.##") : "-", text_color=color.green)
+    
+    table.cell(info, 0, 2, "매도 iVWAP", text_color=color.white)
+    table.cell(info, 1, 2, not na(ivwap_sell) ? str.tostring(ivwap_sell, "#.##") : "-", text_color=color.red)
+    
+    dist_buy = not na(ivwap_buy) ? close - ivwap_buy : na
+    dist_sell = not na(ivwap_sell) ? close - ivwap_sell : na
+    table.cell(info, 0, 3, "매수iVWAP 거리", text_color=color.white)
+    table.cell(info, 1, 3, not na(dist_buy) ? str.tostring(dist_buy, "#.#") + "pt" : "-", text_color=math.abs(dist_buy) <= regime_tolerance ? color.lime : color.gray)
+    
+    table.cell(info, 0, 4, "매도iVWAP 거리", text_color=color.white)
+    table.cell(info, 1, 4, not na(dist_sell) ? str.tostring(dist_sell, "#.#") + "pt" : "-", text_color=math.abs(dist_sell) <= regime_tolerance ? color.lime : color.gray)
+    
+    table.cell(info, 0, 5, "매수 SPS (20봉)", text_color=color.white)
+    table.cell(info, 1, 5, str.tostring(recent_buy_count), text_color=recent_buy_count > recent_sell_count ? color.green : color.gray)
+    
+    table.cell(info, 0, 6, "매도 SPS (20봉)", text_color=color.white)
+    table.cell(info, 1, 6, str.tostring(recent_sell_count), text_color=recent_sell_count > recent_buy_count ? color.red : color.gray)
+    
+    table.cell(info, 0, 7, "1분 Z-score", text_color=color.white)
+    table.cell(info, 1, 7, str.tostring(zscore1m, "#.##"), text_color=math.abs(zscore1m) >= zscore_threshold ? color.lime : color.gray)
+    
+    table.cell(info, 0, 8, "15분 Z-score", text_color=color.white)
+    table.cell(info, 1, 8, str.tostring(zscore15, "#.##"), text_color=zscore15 >= zscore_threshold ? color.lime : color.gray)
+    
+    table.cell(info, 0, 9, "클러스터", text_color=color.white)
+    table.cell(info, 1, 9, in_cluster ? "진행중" : "대기", text_color=in_cluster ? color.yellow : color.gray)
+    
+    table.cell(info, 0, 10, "누적 매수SPS", text_color=color.white)
+    table.cell(info, 1, 10, str.tostring(array.size(buy_prices)), text_color=color.green)
+    
+    table.cell(info, 0, 11, "누적 매도SPS", text_color=color.white)
+    table.cell(info, 1, 11, str.tostring(array.size(sell_prices)), text_color=color.red)
+    
+    a_status = buy_a_grade ? "매수 A급!" : sell_a_grade ? "매도 A급!" : buy_ready ? "매수 대기" : sell_ready ? "매도 대기" : "-"
+    a_color = buy_a_grade or sell_a_grade ? color.lime : buy_ready or sell_ready ? color.yellow : color.gray
+    table.cell(info, 0, 12, "상태", text_color=color.white, bgcolor=a_color)
+    table.cell(info, 1, 12, a_status, text_color=color.black, bgcolor=a_color)
+    
+    table.cell(info, 0, 13, "손절/익절", text_color=color.white)
+    table.cell(info, 1, 13, "20pt / 120pt", text_color=color.orange)
+
+// ═══════════════════════════════════════════════════════════════
+// 10. 웹훅 JSON 알림
+// ═══════════════════════════════════════════════════════════════
+
+alertcondition(regime_changed and regime == 1, "상승장 전환", '{"signal":"BULL","regime":1,"price":{{close}},"time":"{{time}}"}')
+alertcondition(regime_changed and regime == -1, "하락장 전환", '{"signal":"BEAR","regime":-1,"price":{{close}},"time":"{{time}}"}')
+alertcondition(buy_a_grade, "매수 A급", '{"signal":"BUY","regime":1,"price":{{close}},"time":"{{time}}"}')
+alertcondition(sell_a_grade, "매도 A급", '{"signal":"SELL","regime":-1,"price":{{close}},"time":"{{time}}"}')
+alertcondition(buy_ready, "매수 대기", '{"signal":"BUY_READY","regime":1,"price":{{close}},"time":"{{time}}"}')
+alertcondition(sell_ready, "매도 대기", '{"signal":"SELL_READY","regime":-1,"price":{{close}},"time":"{{time}}"}')

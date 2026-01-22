@@ -1,0 +1,9 @@
+// -----------------------------------------------------------------------------
+// Auxiliary Execution Utility
+//
+// This script does NOT generate trading signals.
+// It is used solely for execution context and risk suppression.
+// No entries, exits, or performance optimization are included.
+//
+// Core decision logic is handled externally by the V7 Grammar System.
+// -----------------------------------------------------------------------------
