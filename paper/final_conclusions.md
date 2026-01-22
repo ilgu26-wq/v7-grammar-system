@@ -8,24 +8,25 @@ All core hypotheses (H1–H6) have been revalidated on a representative sample
 of 19,157 trades across assets, regimes, and execution conditions.
 
 No further logic changes are planned.
-V7 is considered a complete market state physics framework.
+V7 is considered a complete **market state observation framework** under the
+defined execution and risk constraints.
 
 ---
 
 ## What Failed: Prediction
 
-Across the full representative sample, all forms of prediction failed
-to produce stable or repeatable advantage:
+Across the full representative sample, predictive approaches failed
+to produce stable or repeatable advantages:
 
-- Directional forecasts
-- EE / EV-BB filters
+- Directional forecasting
+- EE / EV-BB–based estimators
 - Momentum and candle-based anticipation
 
 Higher estimated “energy” increased impulse volatility
-without improving outcome stability.
+without improving outcome stability or persistence.
 
 **Conclusion:**  
-Markets do not reveal future direction in advance.
+Future market direction is not reliably observable prior to state formation.
 
 ---
 
@@ -35,26 +36,26 @@ Empirical observations across 19,157 trades show:
 
 | Observation | Result |
 |------------|--------|
-| MFE ≥ 7 | Zero losses (engine-level) |
-| All losses | Occur before MFE threshold |
-| Win rate | Correlates with state transition |
+| MFE ≥ 7 | No realized losses at the engine level |
+| All realized losses | Occur prior to the MFE threshold |
+| Win rate | Strongly correlated with state persistence |
 
-MFE ≥ 7 represents a physical state transition threshold.
+MFE ≥ 7 functions as an **empirical state transition threshold**.
 Before this point, energy formation may fail.
-After this point, loss becomes structurally impossible.
+After this point, loss becomes structurally constrained under the V7 execution model.
 
 ---
 
-## Losses Are State Maintenance Failures
+## Losses as State Maintenance Failures
 
-Losses are not caused by incorrect entries.
-They are failures of state persistence.
+Losses are not attributable to incorrect directional entries.
+They arise from failures in state persistence.
 
-Key observations:
+Observed properties:
 
-- Average loss occurs ~22 bars after entry
-- 100% of losses occur before state transition
-- Hard cuts destroy recovery probability
+- Average loss occurs approximately 22 bars after entry
+- 100% of realized losses occur before state transition
+- Hard stop-loss enforcement reduces recovery probability
 
 ### Soft SL (G3)
 
@@ -62,17 +63,16 @@ Early detection of state collapse reduces loss magnitude:
 
 | Model | PnL | EV |
 |------|-----|----|
-| G0 (SL 30) | -69,600 | -7.27 |
+| G0 (Hard SL 30) | -69,600 | -7.27 |
 | G3 (Soft SL) | +16,944 | +1.77 |
 
-Loss reduction is achieved through collapse detection,
-not prediction.
+Loss reduction is achieved through **collapse detection**, not prediction.
 
 ---
 
-## Re-entry Debate Resolved by Persistence
+## Re-entry Resolved by Persistence
 
-Re-entry as a trading action provides no informational advantage.
+Re-entry as an isolated trading action provides no informational advantage.
 
 Persistence-based continuation does.
 
@@ -82,49 +82,49 @@ Persistence-based continuation does.
 | Persistence + price retest | 89.9% |
 
 Energy is not stored in price.
-It is stored in state space.
+It is expressed and maintained in state space.
 
 ---
 
-## Why EE Became Redundant
+## Why EE Became Non-Operational
 
-EE attempted to estimate energy.
-MFE and persistence directly observe it.
+EE attempted to estimate latent energy.
+MFE and persistence directly observe realized state behavior.
 
 Empirical results show:
 
 - EE increases impulse volatility
-- EE does not predict survival or persistence
+- EE does not improve survival or persistence classification
 
-EE is explanatory, not operational.
+EE remains explanatory, not operational, within V7.
 
 ---
 
 ## Final Constitutional Statement
 
-V7 Grammar System is not a trading strategy.
+The V7 Grammar System is not a trading strategy.
 
-It is a market state physics engine that observes:
+It is a **market state observation and control framework** that formalizes:
 
 - State creation
 - State persistence
 - State collapse
 
-### Locked Core
+### Locked Core Parameters
 
 - Entry: STB
 - State transition: MFE ≥ 7
-- Management: Trail = MFE − 1.5
+- Management: Trailing offset = MFE − 1.5
 - Loss defense: Soft SL (G3)
 - Measurement: PersistenceScore
 - Re-entry: Persistence + price retest only
-- Filters: None
+- Predictive filters: None
 
 ---
 
 ## One-Line Conclusion
 
 Markets are not forecastable systems.
-They are state-based physical processes.
+They are state-driven processes.
 
-V7 formalizes this.
+V7 formalizes this observation.
