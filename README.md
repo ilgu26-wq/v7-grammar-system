@@ -190,6 +190,35 @@ Only data accumulation is ongoing.
   - Classification logic only
   - No execution, no live trading
 
+  ---
+
+## Canonical Documents (Authoritative)
+
+This repository separates **final conclusions**, **research artifacts**, and
+**validation contracts** explicitly.
+
+### Final Conclusions
+- **Representative Sample Results (19,157 trades)**  
+  → [`paper/final_conclusions.md`](paper/final_conclusions.md)
+
+### Research & Theory
+- Theoretical Avg R Registry  
+  → [`research/avg_r/theoretical_avg_r_validation.md`](research/avg_r/theoretical_avg_r_validation.md)
+
+### Validation & Contracts
+- Signal Schema (Execution Contract)  
+  → [`validation/schemas/realtime_signal_results.schema.json`](validation/schemas/realtime_signal_results.schema.json)
+
+---
+
+## Reading Order (Recommended)
+
+1. README.md  
+2. paper/final_conclusions.md  
+3. research/  
+4. validation/  
+
+
 ## Key Statement
 
 > **"We know exactly where we make money,
