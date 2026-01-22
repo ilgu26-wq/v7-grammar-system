@@ -317,6 +317,19 @@ OPA operates under a separate, explicitly adaptive methodology.
 Policy updates are expected.
 Validation focuses on **stability bounds and failure containment**,
 not frozen-rule invariance.
+---
+
+### Empirical Validation Anchor (OPA θ=2)
+
+The validity of θ=2 as a state transition point and linear size scaling
+is empirically supported by reproducible research artifacts:
+
+- `research/opa_theta2/theta2_sensor_results.json`
+- `research/opa_theta2/theta_2_transition_results.json`
+- `research/opa_theta2/size_scaling_results.json`
+
+These artifacts demonstrate that OPA operates as a **state machine**,
+not a probabilistic filter.
 
 
 ---
