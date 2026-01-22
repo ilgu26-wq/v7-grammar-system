@@ -48,17 +48,10 @@
   },
 
   "governance": {
-    "allowed_usage": [
-      "research",
-      "internal reference"
-    ],
-    "prohibited_usage": [
-      "README",
-      "performance claims",
-      "marketing statements"
-    ]
+    "allowed_usage": ["research", "internal reference"],
+    "prohibited_usage": ["README", "performance claims", "marketing statements"]
   },
 
   "notes": "Theoretical reference only. Realized execution data intentionally excluded until validation.",
-  "last_updated": "2026-01-20"
+  "last_updated": "2026-01-22"
 }
