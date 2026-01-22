@@ -1,3 +1,14 @@
+## Project Status
+
+The V7 Grammar System is **structurally frozen**.
+No further logic changes are planned.
+
+Current focus:
+- Live data accumulation
+- Execution monitoring
+- Risk behavior observation
+
+
 # V7 Grammar System
 
 *An institutional-grade decision grammar framework for futures markets,
@@ -367,8 +378,8 @@ This system was not designed in a single step.
 Its development history is documented as a git-style commit timeline,
 showing how unstable ideas were systematically eliminated:
 
-→ [Thinking Evolution: Git-Style Commit History](docs/THINKING_EVOLUTION_GIT_STYLE.md)
-
+- [Thinking Evolution (Git-style)](docs/THINKING_EVOLUTION_GIT_STYLE.md)
+- [V7 Constitution](docs/V7_CONSTITUTION.md)
 
 ## Key Statement
 
