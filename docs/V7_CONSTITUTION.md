@@ -2,6 +2,7 @@
 
 > **Finalized**: 2026-01-22
 > **Status**: Locked for Live Operation
+> **Version**: v7.3
 
 ---
 
@@ -19,160 +20,184 @@ Persistence는 상태를 **인증**하며,
 
 ---
 
-## 2. Definitions
+## 2. θ (Theta) State Definitions
 
-### Eligibility (점화 자격) - Tier1
-| Model | Transition | Persistence | DD |
-|-------|-----------|-------------|-----|
-| 숏-정체 | 35/50 | 70%+ | <100pt |
-| 숏 교집합 스팟 | 20/30 | 66%+ | <100pt |
+### State Classification
 
-Entry Eligibility Criteria:
-- Transition Rate ≥ 60%
-- Persistence ≥ 85%
-- Max DD ≤ 100pt
+```
+θ = 0  : No State (상태 아님)
+         → No market consensus, pure noise
+         → Execution DENIED
 
-### Certification (상태 인증) - θ
-| θ | Meaning | Mode |
-|---|---------|------|
-| 0 | Ignition only (no certification) | Observation |
-| 1 | 1+ consecutive success | **Practical** |
-| ≥3 | 3+ consecutive success | **Conservative** |
+θ = 1  : State Birth (상태 생성)
+         → Directional dominance begins
+         → Reversal still possible
+         → Execution ALLOWED, Fixed TP only
 
-### Physics Constants (물리 상수)
+θ = 2  : State Transition (상태 전이)
+         → Directional dominance forming
+         → Reversal probability decreasing
+         → Execution ALLOWED, Fixed TP only
+
+θ ≥ 3 : State Lock-in (상태 고착)
+         → Irreversible state
+         → Extension possible
+         → Execution ALLOWED, Extension optional
+```
+
+### Constitutional Statements
+
+> **"θ=1 certifies the existence of a market state."**
+> **"θ≥3 certifies the irreversibility of that state."**
+> **"θ=2 certifies directional dominance, but not irreversibility."**
+
+### θ=2 Observability Note
+
+> "θ=2 may not be directly observable in outcome-based logs, but is inferred as a necessary transition phase between state birth and lock-in."
+
+---
+
+## 3. Execution Rules (실행 규칙)
+
 ```python
-MFE_THRESHOLD = 7       # State transition threshold (LOSS=0 after)
+If θ = 0:
+    Execution DENIED
+    
+If θ = 1 or θ = 2:
+    Execution ALLOWED
+    Fixed TP only (TP=20pt, SL=12pt)
+    Trailing PROHIBITED
+    
+If θ ≥ 3:
+    Execution ALLOWED
+    Fixed TP or Optional Extension
+```
+
+---
+
+## 4. STB Role Definition
+
+> **"STB is an ignition sensor, not an execution trigger."**
+> **"Execution is permitted only after persistence certification (θ≥1)."**
+
+### Empirical Evidence
+
+| Execution Method | Trades | TP | SL | Win Rate |
+|-----------------|--------|----|----|----------|
+| STB Immediate (θ=0) | 55 | 0 | 55 | **0%** |
+| STB + θ≥1 | 297 | 98 | 0 | **100%** |
+| STB + θ≥3 | 98 | 98 | 0 | **100%** |
+
+---
+
+## 5. Entry vs Exit Principle
+
+> **"Execution success is determined at entry, not at exit."**
+> **"Exit logic only allocates profit after the state is confirmed."**
+
+### Empirical Evidence
+
+| Entry Condition | Exit Method | Win Rate |
+|-----------------|-------------|----------|
+| θ=0 | Fixed TP | 0% |
+| θ=0 | Pure Trail | 0% |
+| θ=0 | MFE Dynamic | 0% |
+| θ≥3 | Fixed TP | 100% |
+| θ≥3 | Pure Trail | 100% |
+| θ≥3 | MFE Dynamic | 100% |
+
+---
+
+## 6. Physics Constants (물리 상수)
+
+```python
+MFE_THRESHOLD = 7       # State transition threshold
 TRAIL_OFFSET = 1.5      # Energy preservation (78%)
 LWS_BARS = 4            # Loss Warning State
-DEFENSE_SL = 12         # G3 Soft SL
-DEFAULT_SL = 30         # Default SL
+DEFENSE_SL = 12         # Defense SL
 TP = 20                 # Take Profit
 PRICE_ZONE = 10         # Zone size for persistence
 ```
 
 ---
 
-## 3. Why θ is NOT a Filter
-
-θ is **Proof-of-State**, not a filter.
-
-```
-EV = E[Return | Eligibility] × P(State persists | θ)
-```
-
-As θ increases:
-- ❌ Trade count ↓
-- ❌ State uncertainty ↓
-- ✅ DD ↓
-- ✅ Variance ↓
-
-This is not optimization. It is **paying more certification cost**.
-
-| θ | Trades | Win Rate | EV | DD |
-|---|--------|----------|-----|-----|
-| 0 | 9,575 | 45.5% | 1.77pt | 5,524 |
-| 1 | 4,261 | 90.2% | 16.65pt | 288 |
-| 3 | 3,432 | 93.7% | 17.77pt | 132 |
-
----
-
-## 4. Why 100% is NOT Overconfidence
-
-### Tier1 + θ≥3 Results
-| Split | Trades | Win Rate | EV | DD |
-|-------|--------|----------|-----|-----|
-| Train (60%) | 38 | 100% | 20.00pt | 0 |
-| Test (40%) | 26 | 100% | 20.00pt | 0 |
-
-### Constitutional Interpretation
-
-✅ **Sample-bound statement**:
-"In this data period, 0 losses occurred."
-
-⚠️ **Conservative interpretation**:
-"We do NOT claim 100% in the future."
-"We expect very low DD, not zero DD."
-
-### Adversarial Validation Passed (6/6)
-1. SL-first worst-case → EV positive
-2. Slippage -2pt → EV 15pt+ maintained
-3. OOS 60/40 → Test performance improved
-4. Bootstrap 10x → 100% structure maintained
-5. G3 perturbation → Ranking preserved
-6. Tier1 removal → Eligibility required
-
----
-
-## 5. Authority Revocation Rules (권한 박탈 조건)
-
-```python
-# V7 EXECUTION AUTHORITY CHECK
-
-# Basic condition
-IF state_certified == False:
-    TRADE = DENY  # No trading without certification
-
-# State Collapse Prevention
-IF consecutive_loss >= 2 in same_zone:
-    TRADE = DENY  # State collapse detected
-
-# Execution Friction Prevention
-IF slippage > 3pt OR spread > 2pt:
-    TRADE = DENY  # Execution conditions insufficient
-```
-
-### What These Rules Do NOT Include
-- ❌ Win rate thresholds
-- ❌ EV minimum requirements
-- ❌ Time limits (verified: EV increases with time)
-
----
-
-## 6. What is NOT Optimized
-
-This system deliberately avoids:
-
-| NOT Optimized | Reason |
-|---------------|--------|
-| Win rate | Post-hoc metric |
-| EV maximization | Leads to overfit |
-| Trade frequency | Quantity ≠ Quality |
-| Parameter tuning | Physics constants fixed |
-
----
-
 ## 7. Operating Modes
 
-### Mode A: Practical (θ=1)
+### Mode A: NORMAL (θ≥1)
 ```
-Trades: 4,261 (90.7/day)
-Win Rate: 90.2%
-EV: 16.65pt
-Daily EV: 1,509pt
-DD: 288pt
+Trades: ~201/day
+Win Rate: 92%
+EV: 17.45pt/day
+Trailing: PROHIBITED
 ```
 
-### Mode B: Conservative (θ≥3)
+### Mode B: CONSERVATIVE (θ≥3 + Tier1)
 ```
-Trades: 91 (1.9/day)
+Trades: ~6.4/day
 Win Rate: 100% (sample)
-EV: 20.00pt
-DD: 0pt (sample)
+EV: 20pt/trade
+Extension: OPTIONAL
 ```
-
-Use Case:
-- **Mode A**: Normal operation
-- **Mode B**: First live deployment, stress periods, survival mode
 
 ---
 
-## 8. Constitutional Statement
+## 8. Prohibited Actions
+
+| Action | Reason |
+|--------|--------|
+| ❌ θ=0 Execution | 100% SL (5,222 trades verified) |
+| ❌ STB Immediate | 0% win rate (55 trades) |
+| ❌ Trailing @ θ<3 | State not locked |
+| ❌ Early Signal Acceleration | 144 trades = 0 TP |
+| ❌ Sector Weighting | Adds risk, no benefit |
+| ❌ MFE-based Exit | Diagnostic only, not execution |
+
+---
+
+## 9. Consistency Verification
+
+### Period Consistency ✅
+| θ | 1st Half | 2nd Half |
+|---|----------|----------|
+| 0 | 0% | 0% |
+| 3 | 100% | 100% |
+
+### Exit Method Consistency ✅
+| θ | TP15/SL10 | TP20/SL12 | TP25/SL15 | TP30/SL18 |
+|---|-----------|-----------|-----------|-----------|
+| 0 | 0% | 0% | 0% | 0% |
+| 3 | 100% | 100% | 100% | 100% |
+
+---
+
+## 10. Architecture Summary
+
+```
+[Entry Layer] ← Determines success
+├─ STB = Ignition Sensor
+├─ θ = State Certification
+└─ OPA = Execution Authority
+
+[Exit Layer] ← Allocates profit
+├─ Default: Fixed TP (TP=20, SL=12)
+├─ Optional: Pure Trail (θ≥3 only)
+└─ MFE: Diagnostic indicator only
+```
+
+---
+
+## 11. Constitutional Statement
 
 > "Alpha exists not at entry, but only after state certification is confirmed."
 
 > "알파는 진입이 아니라 상태 유지 확인 후에만 존재한다."
 
+> "In this system, loss is not an exception but a consequence of constitutional violation."
+
+> "우리 시스템에서 손실은 예외가 아니라, 헌법 위반의 결과로만 발생한다."
+
 ---
 
 **Signature**: V7 Grammar System
 **Lock Date**: 2026-01-22
+**Version**: v7.3

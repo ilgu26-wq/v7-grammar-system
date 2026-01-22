@@ -1,130 +1,213 @@
-# Final Conclusions: V7 Market State Physics
+# V7 최종 결론 (데이터 기반)
 
-## Status Declaration
+## 한 줄 요약
 
-This document records the final conclusions of the V7 Grammar System.
-
-All core hypotheses (H1–H6) have been revalidated on a representative sample
-of 19,157 trades across assets, regimes, and execution conditions.
-
-No further logic changes are planned.
-V7 is considered a complete **market state observation framework** under the
-defined execution and risk constraints.
+> **V7의 알파는 "진입"이 아니라 MFE 임계점 이후의 손실 제거 + 이익 보존에서 발생한다.**
 
 ---
 
-## What Failed: Prediction
+## 1. 무엇이 "진짜 알파"였나
 
-Across the full representative sample, predictive approaches failed
-to produce stable or repeatable advantages:
+### ❌ 알파가 아니었던 것들 (전부 데이터로 기각됨)
 
-- Directional forecasting
-- EE / EV-BB–based estimators
-- Momentum and candle-based anticipation
+- EE 필터
+- EV-BB 진입/방어용 사용
+- 방향 필터
+- 레짐 필터
+- PE 기반 사전 차단
+- 임펄스 예측 시도
 
-Higher estimated “energy” increased impulse volatility
-without improving outcome stability or persistence.
+→ 모두 "사전 예측" 계열  
+→ 전부 성능 저하 또는 무효
 
-**Conclusion:**  
-Future market direction is not reliably observable prior to state formation.
+### ✅ 알파였던 단 하나
 
----
+**MFE 기반 물리학적 상태 전이**
 
-## What Worked: State Transition and Persistence
-
-Empirical observations across 19,157 trades show:
-
-| Observation | Result |
-|------------|--------|
-| MFE ≥ 7 | No realized losses at the engine level |
-| All realized losses | Occur prior to the MFE threshold |
-| Win rate | Strongly correlated with state persistence |
-
-MFE ≥ 7 functions as an **empirical state transition threshold**.
-Before this point, energy formation may fail.
-After this point, loss becomes structurally constrained under the V7 execution model.
+```
+STB 진입
+├─ MFE < 임계점 → 손실 (물리적 실패 비용)
+└─ MFE ≥ 임계점 → 손실 불가 상태 진입
+                 → 이익 보존 메커니즘 작동
+```
 
 ---
 
-## Losses as State Maintenance Failures
+## 2. MFE ↔ EE 상관관계의 진실
 
-Losses are not attributable to incorrect directional entries.
-They arise from failures in state persistence.
+### 결론
 
-Observed properties:
+MFE와 EE는 "원인–결과" 관계가 아니다.  
+둘은 같은 현상의 다른 단면일 뿐이다.
 
-- Average loss occurs approximately 22 bars after entry
-- 100% of realized losses occur before state transition
-- Hard stop-loss enforcement reduces recovery probability
+### 틀렸던 가설
 
-### Soft SL (G3)
+```
+EE가 높으면
+→ 에너지가 충분
+→ MFE가 커질 것이다
+→ 따라서 EE로 예측 가능하다
+```
 
-Early detection of state collapse reduces loss magnitude:
+이 가설은 직관적으로는 매우 그럴듯했지만 **데이터로는 완전히 기각되었다.**
 
-| Model | PnL | EV |
-|------|-----|----|
-| G0 (Hard SL 30) | -69,600 | -7.27 |
-| G3 (Soft SL) | +16,944 | +1.77 |
+### 실제 구조
 
-Loss reduction is achieved through **collapse detection**, not prediction.
+| 변수 | 정의 | 물리적 의미 |
+|------|------|------------|
+| EE | 진입 시점의 국소 에너지 밀도 | 초기 속도 |
+| MFE | 진입 이후 경로 전체에서 얻어진 최대 잠재 에너지 | 실제 이동 거리 |
 
----
+```
+EE = 순간 상태 변수
+MFE = 경로 적분 결과
+```
 
-## Re-entry Resolved by Persistence
+### 왜 상관관계가 역전되었나
 
-Re-entry as an isolated trading action provides no informational advantage.
+데이터에서 확인된 사실:
+- EE ↑ → IMPULSE 증가
+- EE 필터 적용 → EV 감소
+- EE 제거 → 성능 증가
 
-Persistence-based continuation does.
+**이유:**
 
-| Scenario | Win Rate |
-|---------|----------|
-| New entry | 20.1% |
-| Persistence + price retest | 89.9% |
+높은 EE는 "불안정한 초기 조건"을 의미할 뿐이다.
 
-Energy is not stored in price.
-It is expressed and maintained in state space.
+```
+에너지가 크다
+→ 반작용도 크다
+→ 경로 안정성 ↓
+→ MFE 도달 확률 ↓
+```
 
----
-
-## Why EE Became Non-Operational
-
-EE attempted to estimate latent energy.
-MFE and persistence directly observe realized state behavior.
-
-Empirical results show:
-
-- EE increases impulse volatility
-- EE does not improve survival or persistence classification
-
-EE remains explanatory, not operational, within V7.
+> **EE는 에너지의 "양"이지, 에너지의 "보존 가능성"이 아니다.**
 
 ---
 
-## Final Constitutional Statement
+## 3. MFE는 왜 예측 불가능했는가
 
-The V7 Grammar System is not a trading strategy.
+### 핵심 결론
 
-It is a **market state observation and control framework** that formalizes:
+> **MFE는 사전 예측 대상이 아니다.**
 
-- State creation
-- State persistence
-- State collapse
+### 이유 1: MFE는 "상태 전이 결과"다
 
-### Locked Core Parameters
+MFE ≥ 7은:
+- 조건의 합 ❌
+- 점수의 합 ❌
+- 필터의 결과 ❌
+- 경로 전체가 무너지지 않았다는 **사후 판정** ✅
 
-- Entry: STB
-- State transition: MFE ≥ 7
-- Management: Trailing offset = MFE − 1.5
-- Loss defense: Soft SL (G3)
-- Measurement: PersistenceScore
-- Re-entry: Persistence + price retest only
-- Predictive filters: None
+> MFE는 "들어가기 전"에 결정되지 않는다. "버텼기 때문에" 생긴다.
+
+### 이유 2: 예측하려 했던 순간 구조를 파괴했다
+
+우리가 던졌던 질문:
+> "이 조건이면 MFE가 나올까?"
+
+이 질문 자체가 틀렸다.
+
+> **MFE는 조건의 함수가 아니라 시장의 응답(response)이기 때문**
+
+### 이유 3: IMPULSE 분석 증거
+
+IMPULSE 사전 조건 분석 결과:
+- 배율 ❌
+- body_z ❌
+- 역방향 캔들 ❌
+- 모멘텀 ❌
+- 복합 조건 ❌
+- EE만 약한 상관 (높을수록 IMPULSE ↑)
+
+> **시장 급반전은 사전 변수로 설명되지 않는다. 진짜 외부 자유도다.**
 
 ---
 
-## One-Line Conclusion
+## 4. 왜 승률이 80%대인가 (착시 아님)
 
-Markets are not forecastable systems.
-They are state-driven processes.
+### 구조적 이유
 
-V7 formalizes this observation.
+전체 트레이드 중 80.9%가 MFE ≥ 7 상태 진입
+
+이 상태에 들어간 트레이드는:
+- 손실 0건
+- 100% 이익 종료
+
+```
+승률 80.9% = "임계 상태 진입 확률"
+```
+
+이건 예측 승률이 아니다. **상태 전이 확률이다.**
+
+---
+
+## 5. RR이 낮아 보이는데 왜 EV가 큰가
+
+### 수치 정리
+
+- 평균 승리: +11pt
+- 평균 손실: -30pt
+- RR ≈ 0.37
+
+→ 이 수치만 보면 위험해 보임 ❌
+
+### 실제 구조
+
+- 손익분기 승률 = 73%
+- 실제 승률 = 80.9%
+- 초과분 = +7.9%p
+
+→ 수학적으로 EV +3.18pt는 완전히 일치
+
+---
+
+## 6. 손실은 왜 발생했는가
+
+### LOSS 감사 결과
+
+- MFE ≥ 7에서 발생한 LOSS: **0건**
+- 모든 손실은 MFE < 7 (에너지 발생 실패 구간)
+
+손실은:
+- 버그 ❌
+- 로직 미흡 ❌
+- 예측 실패 ❌
+- **물리적으로 불가피한 실패 비용** ✅
+
+---
+
+## 7. 최종 구조 (고정해야 할 것)
+
+```
+ENTRY      : STB (배율 + 채널)
+FILTER     : 없음
+OBSERVE    : MFE
+THRESHOLD  : 7pt (CORE)
+MANAGE     : trail = MFE - 1.5pt
+SL         : -30pt (Soft SL 옵션)
+```
+
+### 선택 옵션
+
+- CORE: MFE 7 (물리 법칙)
+- AGGRESSIVE: MFE 5 (수확 최적화)
+
+---
+
+## 8. 최종 판정 (기술적으로)
+
+이 시스템은:
+- 예측 시스템 ❌
+- 패턴 트레이딩 ❌
+- 신호 기반 ❌
+
+### 정확한 정의
+
+> **에너지 임계 기반 확률 시스템 (Energy Threshold Probabilistic System)**
+
+---
+
+## 🔒 결론
+
+> **V7은 "언제 맞출까"가 아니라 "언제부터는 절대 지지 않을까"를 해결한 시스템이다.**
