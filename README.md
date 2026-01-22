@@ -95,3 +95,26 @@ v7-grammar-system/
 - 6/6 hypothesis tests passed
 
 **DO NOT EDIT casually.**
+# V7 Grammar System
+
+An institutional-grade decision grammar framework for futures markets.
+
+## Structure
+
+- core/        : immutable decision grammar
+- execution/   : execution constraints
+- opa/         : optional policy agents
+- docs/        : formal documentation
+
+Research artifacts, experiments, and historical drafts are preserved in
+`_raw_original/` for reference and auditability.
+
+> This README is a structural entry point, not a full research narrative.
+
+## Design Boundaries
+
+- `core/` defines *what decisions are allowed*
+- `execution/` defines *how allowed decisions are executed*
+- `opa/` may influence execution **but can never override core decisions**
+
+The core grammar remains invariant regardless of policy agents.
