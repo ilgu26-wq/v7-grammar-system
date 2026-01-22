@@ -380,6 +380,9 @@ showing how unstable ideas were systematically eliminated:
 
 - [Thinking Evolution (Git-style)](docs/THINKING_EVOLUTION_GIT_STYLE.md)
 - [V7 Constitution](docs/V7_CONSTITUTION.md)
+> The Graveyard Appendix documents hundreds of tested ideas that failed,
+> and explains why only the current V7 Grammar survived.
+
 
 ## Key Statement
 
