@@ -1,35 +1,50 @@
-@"
 # Auxiliary Execution Utilities (PineScript)
 
-These PineScript utilities are NOT trading strategies.
+These PineScript utilities are **not trading strategies**.
 
-They are operational tools used alongside the V7 Grammar System
-to provide execution context and risk suppression signals.
+They are execution-context tools designed to operate **alongside the V7 Grammar System**,  
+providing **risk suppression, regime awareness, and structural context** only.
+
+No decision authority resides in these scripts.
+
+---
 
 ## Design Principles
 
-- No entries or exits are generated
-- No performance optimization
-- No predictive assumptions
-- Used only to block or contextualize execution
-- Core decision logic remains unaffected
+- **No trade entries or exits**
+- **No performance optimization or backtesting**
+- **No predictive or directional assumptions**
+- Used strictly for **execution filtering and contextual awareness**
+- Core decision grammar remains **fully isolated and unaffected**
+
+These utilities are intentionally non-actionable.
+
+---
 
 ## Included Utilities
 
-- IVWAP / IVPOC  
-  Structural reference levels for contextual price positioning.
+### IVWAP / IVPOC Context
+Structural reference levels derived from clustered price–volume behavior.  
+Used to evaluate **relative price positioning**, not to trigger execution.
 
-- Spread Day Detector  
-  Identifies abnormal distribution days and regime anomalies.
+### Spread Day Detector (FLAG)
+Identifies abnormal distribution days and regime instability  
+based on structural stress, volatility dispersion, and execution risk markers.
 
-- Volatility Spike Filter  
-  Detects tail-risk conditions to suppress execution during instability.
+Used to **block execution on structurally hostile days**.
+
+### Volatility Spike Filter
+Detects tail-risk conditions such as volatility expansion and liquidity stress,  
+preventing execution during unstable or non-stationary market phases.
+
+---
 
 ## Role in the System
 
-The V7 Grammar System defines when execution is allowed.  
-These utilities help identify when execution should be avoided.
+The **V7 Grammar System** determines *when execution is allowed*.  
+These utilities help identify *when execution should be avoided*.
 
-They do not generate alpha.  
-They prevent structural mistakes.
-"@ | Set-Content utilities\pine\README.md
+They do **not** generate alpha.  
+They **prevent structural mistakes**.
+
+Execution authority always remains external to PineScript.
