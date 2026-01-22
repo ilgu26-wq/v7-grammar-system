@@ -360,6 +360,15 @@ for illustrative purposes only.
   - No execution, no live trading
 
   ---
+## Thinking Evolution
+
+This system was not designed in a single step.
+
+Its development history is documented as a git-style commit timeline,
+showing how unstable ideas were systematically eliminated:
+
+→ [Thinking Evolution: Git-Style Commit History](docs/THINKING_EVOLUTION_GIT_STYLE.md)
+
 
 ## Key Statement
 
