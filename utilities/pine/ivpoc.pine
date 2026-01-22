@@ -1,9 +1,70 @@
+//@version=5
+indicator("Cluster Ratio Context (Non-Strategy)", overlay=true, max_bars_back=500)
+
 // -----------------------------------------------------------------------------
 // Auxiliary Execution Utility
 //
-// This script does NOT generate trading signals.
-// It is used solely for execution context and risk suppression.
-// No entries, exits, or performance optimization are included.
-//
-// Core decision logic is handled externally by the V7 Grammar System.
+// Structural context ONLY:
+// - SPS 기반 클러스터 가격 분포
+// - 밀집 / 확산 상태 플래그 제공
+// - No signals, no grades, no alerts
 // -----------------------------------------------------------------------------
+
+// ═══════════════════════════════════════════════════════════════
+// Parameters
+// ═══════════════════════════════════════════════════════════════
+lookback_period     = input.int(50, "Cluster Lookback", minval=20, maxval=100)
+sps_z_threshold     = input.float(1.5, "SPS Z-score Threshold", minval=1.0, maxval=3.0)
+spread_range_limit  = input.float(20.0, "Spread Range Limit (pt)", minval=10.0, maxval=50.0)
+
+// ═══════════════════════════════════════════════════════════════
+// SPS strength (direction ignored)
+// ═══════════════════════════════════════════════════════════════
+body = math.abs(close - open)
+range_hl = high - low
+body_ratio = range_hl > 0 ? body / range_hl : 0
+wick_ratio = range_hl > 0 ? (high - math.max(close, open) + math.min(close, open) - low) / range_hl : 0
+
+valid_candle = body_ratio >= 0.15 and wick_ratio <= 0.70
+sps_raw = volume * body_ratio
+sps_mean = ta.sma(sps_raw, 10)
+sps_std  = ta.stdev(sps_raw, 10)
+zscore   = sps_std > 0 ? (sps_raw - sps_mean) / sps_std : 0
+
+is_strong_sps = valid_candle and math.abs(zscore) >= sps_z_threshold
+
+// ═══════════════════════════════════════════════════════════════
+// Cluster aggregation
+// ═══════════════════════════════════════════════════════════════
+var float[] cluster_prices = array.new_float(0)
+
+if is_strong_sps
+    array.push(cluster_prices, close)
+    while array.size(cluster_prices) > lookback_period
+        array.shift(cluster_prices)
+
+ivpoc = array.size(cluster_prices) > 0 ? array.avg(cluster_prices) : na
+
+cluster_high  = array.size(cluster_prices) > 0 ? array.max(cluster_prices) : na
+cluster_low   = array.size(cluster_prices) > 0 ? array.min(cluster_prices) : na
+cluster_range = not na(cluster_high) and not na(cluster_low) ? cluster_high - cluster_low : na
+
+cluster_compact  = not na(cluster_range) and cluster_range <= spread_range_limit
+cluster_expanded = not cluster_compact
+
+// ═══════════════════════════════════════════════════════════════
+// Spread-day context (UTC 기준)
+// ═══════════════════════════════════════════════════════════════
+hour_utc = hour(time, "UTC")
+is_spread_day = hour_utc >= 9 and hour_utc < 11
+
+// ═══════════════════════════════════════════════════════════════
+// Visualization (context only)
+// ═══════════════════════════════════════════════════════════════
+plot(ivpoc, title="iVPOC", color=color.purple, linewidth=2)
+
+p1 = plot(cluster_high, title="Cluster High", color=color.new(color.red, 70))
+p2 = plot(cluster_low,  title="Cluster Low",  color=color.new(color.green, 70))
+fill(p1, p2, color = cluster_compact ? color.new(color.green, 90) : color.new(color.red, 90))
+
+bgcolor(is_spread_day ? color.new(color.red, 92) : na)

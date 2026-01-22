@@ -1,0 +1,78 @@
+//@version=5
+indicator("STB Context (ATR + ER + RVOL)", overlay=false)
+
+// -----------------------------------------------------------------------------
+// Stabilization Context ONLY
+//
+// - ATR flat + cooled
+// - Kaufman ER 유지
+// - RVOL 정상 범위
+// - Optional prior volatility spike
+// - No entries, no exits, no alerts
+// -----------------------------------------------------------------------------
+
+// ====================
+// Inputs
+// ====================
+atrLen      = input.int(14, "ATR Length")
+erLen       = input.int(10, "ER Lookback")
+rvolLen     = input.int(20, "RVOL MA Length")
+
+flatBars    = input.int(3, "ATR flat bars", minval=2)
+flatThrPct  = input.float(0.03, "ATR flat threshold (%)", step=0.005)
+
+erMin       = input.float(0.50, "ER minimum", step=0.05)
+rvolMin     = input.float(1.00, "RVOL minimum", step=0.05)
+rvolMax     = input.float(2.00, "RVOL maximum", step=0.05)
+
+needSpike   = input.bool(true, "Require recent ATR spike?")
+spikeMult   = input.float(1.35, "Spike ATR multiplier", step=0.05)
+spikeLookbk = input.int(30, "Spike lookback bars", minval=5)
+
+// ====================
+// ATR
+// ====================
+tr = math.max(high - low, math.max(math.abs(high - close[1]), math.abs(low - close[1])))
+atrV  = ta.rma(tr, atrLen)
+atrMA = ta.sma(atrV, 20)
+
+atrPctChg = math.abs(atrV / atrV[1] - 1)
+atrFlat   = ta.sma(atrPctChg, flatBars) < flatThrPct
+atrCool   = atrV < atrMA * 1.20
+
+// ====================
+// Kaufman ER
+// ====================
+netMove = math.abs(close - close[erLen])
+totMove = ta.sum(math.abs(close - close[1]), erLen)
+er = totMove == 0 ? 0 : netMove / totMove
+erOK = er >= erMin
+
+// ====================
+// RVOL
+// ====================
+rvol = volume / ta.sma(volume, rvolLen)
+rvolOK = rvol >= rvolMin and rvol <= rvolMax
+
+// ====================
+// Spike detection
+// ====================
+spike = atrV > atrMA * spikeMult
+hadSpike = ta.highest(spike ? 1 : 0, spikeLookbk) == 1
+
+// ====================
+// Stabilized context flag
+// ====================
+stabilized = atrFlat and atrCool and erOK and rvolOK and (not needSpike or hadSpike)
+
+// ====================
+// Visualization
+// ====================
+plot(er, title="ER", linewidth=2)
+hline(erMin, linestyle=hline.style_dotted)
+
+plot(rvol, title="RVOL", linewidth=2)
+hline(rvolMin, linestyle=hline.style_dotted)
+hline(rvolMax, linestyle=hline.style_dotted)
+
+plotshape(stabilized, title="STABILIZED", style=shape.labelup, text="STB", size=size.tiny)
