@@ -304,19 +304,19 @@ Performance claims do not transfer back to V7.
   → [`validation/schemas/realtime_signal_results.schema.json`](validation/schemas/realtime_signal_results.schema.json)
 
 
-## Current Stage (OPA)
+### Current Status (OPA)
 
-- V7 decision grammar: **FROZEN (reference baseline)**
-- OPA decision policy: **ACTIVE DEVELOPMENT**
-- Outcome-driven adaptation: **ENABLED (controlled)**
-- Live shadow trading: **IN PROGRESS (policy learning phase)**
+- V7 decision grammar: frozen as a reference baseline
+- OPA decision policy: under active development
+- Outcome-driven adaptation: enabled in a controlled manner
+- Live shadow trading: in progress (policy learning phase)
 
 Structural guarantees apply **only** to the V7 grammar.
 OPA operates under a separate, explicitly adaptive methodology.
 
-Policy updates are expected.
-Validation focuses on **stability bounds and failure containment**,
-not frozen-rule invariance.
+As OPA evolves, policy updates may occur.
+Validation focuses primarily on stability bounds and failure containment,
+rather than on strict frozen-rule invariance.
 ---
 
 ### Empirical Validation Anchor (OPA θ=2)
