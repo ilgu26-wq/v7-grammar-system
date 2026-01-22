@@ -87,7 +87,7 @@ and evaluated **after execution**.
 
 Detailed definitions and empirical validation:
 → [EE Definition](docs/grammar/ee_definition.md) 
-→ [EE Continuation Manager](docs/validation/ee_continuation_manager.md)
+→ [EE Continuation Manager](validation/ee_continuation_manager.md)
 
 ### Origin, Evolution, and Methodological Boundary
 
@@ -160,14 +160,6 @@ do not transfer between methodologies.
 This separation is not a limitation.
 It is a requirement for methodological clarity.
 
-
-## Key Metrics
-
-| Component | Metric | Definition |
-|-----------|--------|------------|
-| Ratio | Price Momentum | (close - low) / (high - close) |
-| Channel% | Price Position | Relative position in 20-bar range |
-
 ---
 ## Validation Summary (Decision-Grammar Level)
 
@@ -217,36 +209,96 @@ These metrics do not imply directional forecasting accuracy.
 ---
 ## Repository Structure
 
-This repository enforces a strict separation between
+This repository enforces a **strict separation** between
 decision logic, research variants, validation, and conclusions.
 
-- `core/` — Immutable decision grammar and execution logic  
-- `experiments/` — Research variants and aggressive options (never modify core directly)  
-- `validation/` — Hypothesis tests, schemas, and execution contracts  
-- `paper/` — Research writeups, figures, and final conclusions  
-- `docs/` — Constitution, monitoring specs, and failure analysis  
+Each directory has a **non-overlapping responsibility**.
 
-**Promotion Flow:**  
-`experiments/` → `validation/` → `core/`
+core/         — Immutable decision grammar and execution logic
+experiments/ — Research variants and aggressive options
+validation/  — Hypothesis tests, schemas, and execution contracts
+paper/       — Research writeups, figures, and final conclusions
+docs/        — Constitution, monitoring specs, and failure analysis
 
-## Documentation
+### Directory Contracts
 
-- [V7 Grammar Table v1.0](v7_grammar_table.md)
-- [Strategy Overview](strategy_overview.md)
-- [Validation Cases (A–F)](validation/validation_cases.md)
-- [Live Results](live_results.md) *(In Progress)*
+- `core/`
+  - Contains only **fully validated decision logic**
+  - No experimental parameters
+  - Modified **only after passing validation**
 
----
+- `experiments/`
+  - Free-form research and exploratory logic
+  - May fail, overfit, or be discarded
+  - **Never modifies core directly**
 
-## Repository Data Policy
+- `validation/`
+  - Formal hypothesis tests
+  - Statistical and structural verification
+  - Defines promotion eligibility
 
-- Live operational data files
-  (`realtime_signal_results.json`, `ops_log.json`)
-  are **explicitly excluded from version control**.
-- This repository contains **definitions, contracts,
-  and validation results**, not live performance outcomes.
+- `paper/`
+  - Human-readable research conclusions
+  - Final results suitable for external review
 
-  
+- `docs/`
+  - System constitution and operational doctrine
+  - Monitoring rules and failure analysis
+
+### Promotion Flow
+
+All logic follows a one-way promotion pipeline:
+
+experiments/ → validation/ → core/
+
+No logic or parameter is allowed into `core/`
+without passing explicit validation criteria.
+
+### Design Philosophy
+
+Prediction may fail.
+Experiments may fail.
+But decision logic must not.
+
+This structure ensures that
+research volatility never contaminates execution integrity.
+
+
+## Authoritative Documents (Frozen)
+
+The following documents represent **finalized, non-experimental conclusions**.
+They are not subject to further modification.
+
+### Final Conclusions
+- **Representative Sample Results (19,157 trades)**  
+  → [`paper/final_conclusions.md`](paper/final_conclusions.md)
+
+These conclusions are considered **structurally complete**.
+No further logic changes are planned.
+
+## Research, Validation & Contracts
+
+This repository explicitly separates
+research artifacts, validation logic, and execution contracts.
+
+### Research & Theory
+- Theoretical Avg R Registry  
+  → [`research/avg_r/theoretical_avg_r_validation.md`](research/avg_r/theoretical_avg_r_validation.md)
+
+### Validation & Contracts
+- Signal Schema (Execution Contract)  
+  → [`validation/schemas/realtime_signal_results.schema.json`](validation/schemas/realtime_signal_results.schema.json)
+
+
+## Current Stage
+
+- Core decision grammar: **COMPLETE & LOCKED**
+- Structural validation: **FINISHED (24/24 tests passed)**
+- Live shadow trading: **IN PROGRESS (metric promotion pending)**
+
+No further logic changes are planned.
+Only data accumulation and metric promotion are ongoing.
+
 ---
 
 ## Communication Samples
@@ -258,14 +310,13 @@ for illustrative purposes only.
 
 ---
 
-## Current Stage
 
-- Core decision grammar: **COMPLETE & LOCKED**
-- Structural validation: **FINISHED (24/24 tests passed)**
-- Live shadow trading: **IN PROGRESS (metric promotion pending)**
+## Documentation
 
-No further logic changes are planned.
-Only data accumulation is ongoing.
+- [V7 Grammar Table v1.0](docs/v7_grammar_table.md)
+- [Strategy Overview](docs/strategy_overview.md)
+- [Validation Cases (A–F)](validation/validation_cases.md)
+- [Live Results](live_results.md) *(In Progress)*
 
 ---
 
@@ -276,33 +327,6 @@ Only data accumulation is ongoing.
   - No execution, no live trading
 
   ---
-
-## Canonical Documents (Authoritative)
-
-This repository separates **final conclusions**, **research artifacts**, and
-**validation contracts** explicitly.
-
-### Final Conclusions
-- **Representative Sample Results (19,157 trades)**  
-  → [`paper/final_conclusions.md`](paper/final_conclusions.md)
-
-### Research & Theory
-- Theoretical Avg R Registry  
-  → [`research/avg_r/theoretical_avg_r_validation.md`](research/avg_r/theoretical_avg_r_validation.md)
-
-### Validation & Contracts
-- Signal Schema (Execution Contract)  
-  → [`validation/schemas/realtime_signal_results.schema.json`](validation/schemas/realtime_signal_results.schema.json)
-
----
-
-## Reading Order (Recommended)
-
-1. README.md  
-2. paper/final_conclusions.md  
-3. research/  
-4. validation/  
-
 
 ## Key Statement
 
