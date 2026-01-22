@@ -1,0 +1,135 @@
+{
+  "experiment": "θ=2 Sensor Discovery",
+  "H_bars": 15,
+  "total_events": 13935,
+  "lockin_events": 7190,
+  "single_sensor_results": [
+    {
+      "feature": "impulse_count",
+      "threshold": 2,
+      "direction": ">",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "avg_lead_time": 11.397635605006954,
+      "tp": 7190,
+      "fp": 0,
+      "fn": 0,
+      "tn": 6745
+    },
+    {
+      "feature": "recovery_time",
+      "threshold": 4.0,
+      "direction": "<",
+      "precision": 0.9417552144824872,
+      "recall": 0.9984700973574409,
+      "f1": 0.9692837372578141,
+      "avg_lead_time": 11.395876863072852,
+      "tp": 7179,
+      "fp": 444,
+      "fn": 11,
+      "tn": 6301
+    },
+    {
+      "feature": "range_ratio",
+      "threshold": 1.1,
+      "direction": ">",
+      "precision": 0.950224931069511,
+      "recall": 0.9107093184979138,
+      "f1": 0.9300475818478801,
+      "avg_lead_time": 11.40226023213195,
+      "tp": 6548,
+      "fp": 343,
+      "fn": 642,
+      "tn": 6402
+    },
+    {
+      "feature": "run_length",
+      "threshold": 3.0,
+      "direction": ">",
+      "precision": 0.9009874566319722,
+      "recall": 0.9390820584144646,
+      "f1": 0.9196404249523291,
+      "avg_lead_time": 11.382849526066352,
+      "tp": 6752,
+      "fp": 742,
+      "fn": 438,
+      "tn": 6003
+    },
+    {
+      "feature": "vol_ratio",
+      "threshold": 1.2,
+      "direction": ">",
+      "precision": 0.9337554045707227,
+      "recall": 0.841029207232267,
+      "f1": 0.884969998536514,
+      "avg_lead_time": 11.412601289895816,
+      "tp": 6047,
+      "fp": 429,
+      "fn": 1143,
+      "tn": 6316
+    },
+    {
+      "feature": "pullback_depth",
+      "threshold": 5.0,
+      "direction": "<",
+      "precision": 0.773191349215062,
+      "recall": 0.9795549374130738,
+      "f1": 0.8642247990674274,
+      "avg_lead_time": 11.392304415731932,
+      "tp": 7043,
+      "fp": 2066,
+      "fn": 147,
+      "tn": 4679
+    },
+    {
+      "feature": "momentum_score",
+      "threshold": 0.5,
+      "direction": ">",
+      "precision": 0.7943709814387966,
+      "recall": 0.9107093184979138,
+      "f1": 0.8485712434393833,
+      "avg_lead_time": 11.404092852779474,
+      "tp": 6548,
+      "fp": 1695,
+      "fn": 642,
+      "tn": 5050
+    },
+    {
+      "feature": "acf1",
+      "threshold": 0.25,
+      "direction": ">",
+      "precision": 0.8493499152063313,
+      "recall": 0.8358831710709318,
+      "f1": 0.8425627365764755,
+      "avg_lead_time": 11.390016638935109,
+      "tp": 6010,
+      "fp": 1066,
+      "fn": 1180,
+      "tn": 5679
+    }
+  ],
+  "best_combination": {
+    "sensors": [
+      {
+        "feature": "impulse_count",
+        "threshold": 2,
+        "direction": ">"
+      },
+      {
+        "feature": "recovery_time",
+        "threshold": 4.0,
+        "direction": "<"
+      }
+    ],
+    "precision": 1.0,
+    "recall": 0.9984700973574409,
+    "f1": 0.9992344630802421
+  },
+  "theta2_definition": {
+    "condition1": "θ ≥ 1",
+    "condition2": "acf1 > 0.25",
+    "condition3": "recovery_time < 4",
+    "condition4": "vol_ratio > 1.2"
+  }
+}

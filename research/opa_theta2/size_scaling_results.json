@@ -1,0 +1,67 @@
+{
+  "theta2": {
+    "SMALL": {
+      "count": 4265,
+      "ev": 8.893903868698711,
+      "max_dd": 534.75,
+      "sl_count": 0,
+      "sl_rate": 0.0,
+      "std_dev": 17.9236306393441,
+      "total_pnl": 37932.5
+    },
+    "MEDIUM": {
+      "count": 4195,
+      "ev": 17.05089392133492,
+      "max_dd": 1160.5,
+      "sl_count": 0,
+      "sl_rate": 0.0,
+      "std_dev": 35.43294083437866,
+      "total_pnl": 71528.5
+    },
+    "LARGE": {
+      "count": 4253,
+      "ev": 33.44039501528333,
+      "max_dd": 2290.0,
+      "sl_count": 0,
+      "sl_rate": 0.0,
+      "std_dev": 70.67935716122815,
+      "total_pnl": 142222.0
+    }
+  },
+  "theta3": {
+    "SMALL": {
+      "count": 3242,
+      "ev": 32.331893892658854,
+      "max_dd": 0,
+      "sl_count": 0,
+      "sl_rate": 0.0,
+      "std_dev": 6.140916490597487,
+      "total_pnl": 104820.0
+    },
+    "MEDIUM": {
+      "count": 3238,
+      "ev": 64.63248919085855,
+      "max_dd": 0,
+      "sl_count": 0,
+      "sl_rate": 0.0,
+      "std_dev": 12.299835892035242,
+      "total_pnl": 209280.0
+    },
+    "LARGE": {
+      "count": 3260,
+      "ev": 129.85276073619633,
+      "max_dd": 0,
+      "sl_count": 0,
+      "sl_rate": 0.0,
+      "std_dev": 24.304560636566485,
+      "total_pnl": 423320.0
+    }
+  },
+  "validation": {
+    "sl_unchanged": true,
+    "dd_linear_theta2": true,
+    "dd_linear_theta3": true,
+    "ev_proportional": true
+  },
+  "conclusion": "OPA is State Machine - Structure Preserved"
+}

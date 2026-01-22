@@ -1,0 +1,81 @@
+{
+  "theta_distribution": {
+    "0": {
+      "label": "No State",
+      "count": 5222,
+      "tp": 0,
+      "sl": 5222,
+      "timeout": 0,
+      "winrate": 0.0,
+      "extension_count": 0,
+      "extension_rate": 0.0,
+      "avg_mfe": 0,
+      "avg_pnl": -27.422443508234394
+    },
+    "1": {
+      "label": "Birth",
+      "count": 9582,
+      "tp": 0,
+      "sl": 0,
+      "timeout": 9582,
+      "winrate": null,
+      "extension_count": 0,
+      "extension_rate": 0.0,
+      "avg_mfe": 0,
+      "avg_pnl": 0.8452045501982884
+    },
+    "2": {
+      "label": "Transition",
+      "count": 0
+    },
+    "3": {
+      "label": "Lock-in",
+      "count": 4353,
+      "tp": 4353,
+      "sl": 0,
+      "timeout": 0,
+      "winrate": 100.0,
+      "extension_count": 3926,
+      "extension_rate": 90.19067309901217,
+      "avg_mfe": 32.331725246956125,
+      "avg_pnl": 32.331725246956125
+    }
+  },
+  "characteristics": {
+    "sl_rates": {
+      "0": 100.0,
+      "1": 0.0,
+      "2": 0,
+      "3": 0.0
+    },
+    "tp_rates": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0,
+      "3": 100.0
+    },
+    "ext_rates": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0,
+      "3": 90.19067309901217
+    }
+  },
+  "hypothesis_verification": {
+    "h1_low_sl": true,
+    "h2_mid_certainty": true,
+    "h3_mid_extension": true,
+    "h4_unique_role": true
+  },
+  "formula": {
+    "theta_0": "No State",
+    "theta_1": "State Birth",
+    "theta_2": "State Transition",
+    "theta_3": "State Lock-in"
+  },
+  "execution_rules": {
+    "theta_0": "DENIED",
+    "theta_1_2": "ALLOWED, Fixed TP only, No trailing",
+    "theta_3": "ALLOWED, Extension optional"
+  }
+}
