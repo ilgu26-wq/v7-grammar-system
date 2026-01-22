@@ -87,7 +87,7 @@ and evaluated **after execution**.
 
 Detailed definitions and empirical validation:
 → [EE Definition](docs/grammar/ee_definition.md) 
-→ [EE Continuation Manager](validation/ee_continuation_manager.md)
+→ [EE Continuation Manager](docs/validation/ee_continuation_manager.md)
 
 ### Origin, Evolution, and Methodological Boundary
 
@@ -290,14 +290,20 @@ research artifacts, validation logic, and execution contracts.
   → [`validation/schemas/realtime_signal_results.schema.json`](validation/schemas/realtime_signal_results.schema.json)
 
 
-## Current Stage
+## Current Stage (OPA)
 
-- Core decision grammar: **COMPLETE & LOCKED**
-- Structural validation: **FINISHED (24/24 tests passed)**
-- Live shadow trading: **IN PROGRESS (metric promotion pending)**
+- V7 decision grammar: **FROZEN (reference baseline)**
+- OPA decision policy: **ACTIVE DEVELOPMENT**
+- Outcome-driven adaptation: **ENABLED (controlled)**
+- Live shadow trading: **IN PROGRESS (policy learning phase)**
 
-No further logic changes are planned.
-Only data accumulation and metric promotion are ongoing.
+Structural guarantees apply **only** to the V7 grammar.
+OPA operates under a separate, explicitly adaptive methodology.
+
+Policy updates are expected.
+Validation focuses on **stability bounds and failure containment**,
+not frozen-rule invariance.
+
 
 ---
 
