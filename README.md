@@ -143,6 +143,19 @@ Portfolio-level performance metrics are intentionally excluded.
 These metrics do not imply directional forecasting accuracy.
 
 ---
+## Repository Structure
+
+This repository enforces a strict separation between
+decision logic, research variants, validation, and conclusions.
+
+- `core/` — Immutable decision grammar and execution logic  
+- `experiments/` — Research variants and aggressive options (never modify core directly)  
+- `validation/` — Hypothesis tests, schemas, and execution contracts  
+- `paper/` — Research writeups, figures, and final conclusions  
+- `docs/` — Constitution, monitoring specs, and failure analysis  
+
+**Promotion Flow:**  
+`experiments/` → `validation/` → `core/`
 
 ## Documentation
 
