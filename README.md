@@ -346,7 +346,7 @@ for illustrative purposes only.
 
 ## Documentation
 
-- [V7 Grammar Table v1.0](docs/v7_grammar_table.md)
+- [V7 Grammar Table v1.0](docs/grammar/v7_grammar_table.md)
 - [Strategy Overview](docs/strategy_overview.md)
 - [Validation Cases (A–F)](validation/validation_cases.md)
 - [Live Results](live_results.md) *(In Progress)*
