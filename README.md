@@ -281,6 +281,20 @@ No further logic changes are planned.
 This repository explicitly separates
 research artifacts, validation logic, and execution contracts.
 
+### OPA (Operational Policy Authority)
+
+OPA defines **execution permission and sizing policy**
+on top of the immutable V7 decision grammar.
+
+- **OPA v7.4 Operator Guide (Production)**  
+  → [`docs/OPA_V74_OPERATOR_GUIDE.md`](docs/OPA_V74_OPERATOR_GUIDE.md)
+
+- **STB Sensor vs OPA Execution Analysis (Empirical)**  
+  → [`docs/opa/opa_stb_sensor_analysis.md`](docs/opa/opa_stb_sensor_analysis.md)
+
+OPA is a policy layer, not a strategy.
+Performance claims do not transfer back to V7.
+
 ### Research & Theory
 - Theoretical Avg R Registry  
   → [`research/avg_r/theoretical_avg_r_validation.md`](research/avg_r/theoretical_avg_r_validation.md)
