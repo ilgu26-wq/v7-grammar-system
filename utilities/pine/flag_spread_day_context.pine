@@ -1,2 +1,328 @@
-//@version=5
-indicator("FLAG v3 — SPREAD DAY + TRUE BLACK(XB) + GRAY Risk(G?) + GREEN_SPOT(opt)", overlay=true, max_labels_count=500)
+//@version=6
+indicator("FLAG v3 — SPREAD DAY + TRUE BLACK(XB) + GRAY Risk(G?) + GREEN_SPOT(opt) — VISUAL TUNED", overlay=true, max_labels_count=500)
+
+//====================================================
+// USER SETTINGS
+//====================================================
+grpDay = "DAY Classification (M1-based)"
+spreadTh    = input.float(0.0035, "SPREAD DAY if M1_BLACK_rate >= (0.0035 = 0.35%)", group=grpDay, step=0.0001)
+paintDayBg  = input.bool(true, "Paint background when SPREAD DAY", group=grpDay)
+dayBgAlpha  = input.int(85, "SPREAD DAY background alpha (0 strong ~ 100 faint)", group=grpDay, minval=0, maxval=100)
+showLabel   = input.bool(true, "Show label on last bar", group=grpDay)
+showTable   = input.bool(true, "Show table (today rate)", group=grpDay)
+
+grpMode = "Mode"
+useRTHOnly = input.bool(false, "RTH only for DAY rate", group=grpMode)
+rthSess    = input.session("0930-1600", "RTH session", group=grpMode)
+preSess    = input.session("0400-0930", "PRE session", group=grpMode)
+
+grpViz = "Visual"
+showM1BlackMarks = input.bool(true, "Show TRUE BLACK marks", group=grpViz)
+blackMarkSize    = input.string("tiny", "BLACK mark size", options=["tiny","small","normal"], group=grpViz)
+showGrayMarks    = input.bool(true, "Show GRAY risk marks", group=grpViz)
+showGreenSpot    = input.bool(false, "Show GREEN_SPOT marks (optional)", group=grpViz)
+
+// ✅ NEW: 투명도(알파) 조절
+blackMarkAlpha   = input.int(20, "BLACK mark alpha (0 진함 ~ 100 연함)", group=grpViz, minval=0, maxval=100)
+grayMarkAlpha    = input.int(75, "GRAY mark alpha (0 진함 ~ 100 연함)", group=grpViz, minval=0, maxval=100)
+greenMarkAlpha   = input.int(10, "GREEN mark alpha (0 진함 ~ 100 연함)", group=grpViz, minval=0, maxval=100)
+
+showDebug        = input.bool(false, "Show debug plots", group=grpViz)
+
+//====================================================
+// Core thresholds
+//====================================================
+atrLen = 14
+volLen = 20
+
+// Stabilization (S1)
+flatLook = 8
+flatPct  = 0.16
+erLook   = 8
+erMin    = 0.10
+rvolMax  = 1.40
+
+// Spike gate (S1)
+atrSpikeM = 1.10
+volSpikeM = 1.15
+expBars   = 7
+
+// Exec stress (used in S1/S2)
+gapBadATR   = 0.14
+wickBad     = 0.48
+thinBadRVOL = 1.05
+bodyGoodMin = 0.34
+execOkStressTh = 25.0
+
+// Structure (S2)
+ppLook     = 10
+ppMaxRatio = 0.90
+
+//====================================================
+// Scenario 1
+//====================================================
+f_s1() =>
+    atr  = ta.atr(atrLen)
+    atrS = ta.sma(atr, atrLen)
+    volS = ta.sma(volume, volLen)
+    rvol = volS > 0 ? volume / volS : na
+
+    atrBase  = ta.sma(atr, flatLook)
+    ATR_flat = atrBase > 0 ? (math.abs(atr - atrBase) <= atrBase * flatPct) : false
+
+    ch = math.abs(close - close[erLook])
+    float volat = 0.0
+    for i = 0 to erLook - 1
+        volat += math.abs(close[i] - close[i + 1])
+    ER    = volat > 0 ? (ch / volat) : 0.0
+    ER_ok = ER >= erMin
+    RVOL_normal = rvol <= rvolMax
+
+    atrSpike = atrS > 0 ? (atr > atrS * atrSpikeM) : false
+    volSpike = volS > 0 ? (volume > volS * volSpikeM) : false
+    Spike    = atrSpike or volSpike
+    SpikeEvt = Spike and not Spike[1]
+
+    var int spikeBar = na
+    if SpikeEvt
+        spikeBar := bar_index
+    spikeAge = not na(spikeBar) ? (bar_index - spikeBar) : na
+    afterExp = (not na(spikeAge)) and (spikeAge >= expBars)
+
+    rng       = high - low
+    body      = math.abs(close - open)
+    bodyRatio = rng > 0 ? (body / rng) : 0.0
+    upperW    = high - math.max(open, close)
+    lowerW    = math.min(open, close) - low
+    wickRatio = rng > 0 ? ((upperW + lowerW) / rng) : 1.0
+    gapAbs    = math.abs(open - close[1])
+
+    gapScore  = atr > 0 ? math.min(gapAbs / (atr * gapBadATR), 1) : 0
+    wickScore = math.min(math.max((wickRatio - wickBad) / math.max(1 - wickBad, 0.0001), 0), 1)
+    thinScore = na(rvol) ? 0 : math.min(math.max((thinBadRVOL - rvol) / math.max(thinBadRVOL, 0.0001), 0), 1)
+    bodyScore = math.min(math.max((bodyGoodMin - bodyRatio) / math.max(bodyGoodMin, 0.0001), 0), 1)
+
+    execStress = 100.0 * (0.35 * gapScore + 0.30 * wickScore + 0.20 * thinScore + 0.15 * bodyScore)
+    execOK = execStress < execOkStressTh
+
+    s1FailNeed = 3
+    s1FailCount = (ATR_flat ? 0 : 1) + (ER_ok ? 0 : 1) + (RVOL_normal ? 0 : 1) + (execOK ? 0 : 1)
+
+    afterExp and (s1FailCount >= s1FailNeed)
+
+//====================================================
+// Scenario 2
+//====================================================
+f_s2() =>
+    atr  = ta.atr(atrLen)
+    volS = ta.sma(volume, volLen)
+    rvol = volS > 0 ? volume / volS : na
+
+    rng       = high - low
+    body      = math.abs(close - open)
+    bodyRatio = rng > 0 ? (body / rng) : 0.0
+    upperW    = high - math.max(open, close)
+    lowerW    = math.min(open, close) - low
+    wickRatio = rng > 0 ? ((upperW + lowerW) / rng) : 1.0
+    gapAbs    = math.abs(open - close[1])
+
+    gapScore  = atr > 0 ? math.min(gapAbs / (atr * gapBadATR), 1) : 0
+    wickScore = math.min(math.max((wickRatio - wickBad) / math.max(1 - wickBad, 0.0001), 0), 1)
+    thinScore = na(rvol) ? 0 : math.min(math.max((thinBadRVOL - rvol) / math.max(thinBadRVOL, 0.0001), 0), 1)
+    bodyScore = math.min(math.max((bodyGoodMin - bodyRatio) / math.max(bodyGoodMin, 0.0001), 0), 1)
+
+    execStress = 100.0 * (0.35 * gapScore + 0.30 * wickScore + 0.20 * thinScore + 0.15 * bodyScore)
+    execOK = execStress < execOkStressTh
+
+    float gross = 0.0
+    for j = 0 to ppLook - 1
+        gross += math.abs(close[j] - close[j + 1])
+    net = math.abs(close - close[ppLook])
+    ppRatio = gross > 0 ? (net / gross) : 1.0
+    PingPong = ppRatio <= ppMaxRatio
+
+    Gap        = atr > 0 ? (gapAbs >= atr * gapBadATR) : false
+    WickExcess = wickRatio >= wickBad
+
+    structureScore = (PingPong ? 1 : 0) + (Gap ? 1 : 0) + (WickExcess ? 1 : 0)
+    (structureScore >= 2) and (not execOK)
+
+//====================================================
+// TRUE BLACK
+//====================================================
+f_black() =>
+    f_s1() and f_s2()
+
+//====================================================
+// TODAY M1 TRUE BLACK RATE (누적)
+//====================================================
+f_today_rate() =>
+    inSess = useRTHOnly ? not na(time("1", rthSess)) : true
+    b = (inSess and f_black()) ? 1 : 0
+    c = inSess ? 1 : 0
+
+    newDay = ta.change(time("D")) != 0
+    var int dayBlack = 0
+    var int dayBars  = 0
+    if newDay
+        dayBlack := 0
+        dayBars  := 0
+
+    dayBlack += b
+    dayBars  += c
+    dayBars > 0 ? (dayBlack / dayBars) : na
+
+//====================================================
+// GREEN SPOT (optional) — 그대로 유지
+//====================================================
+f_green_spot() =>
+    inPRE = not na(time("1", preSess))
+    inRTH = not na(time("1", rthSess))
+    newDay = ta.change(time("D")) != 0
+
+    atr = ta.atr(14)
+    volS = ta.sma(volume, 20)
+    rvol = volS > 0 ? volume / volS : na
+
+    rng = high - low
+    upperW = high - math.max(open, close)
+    lowerW = math.min(open, close) - low
+    wickRatio = rng > 0 ? (upperW + lowerW) / rng : 1.0
+
+    erL = 8
+    ch = math.abs(close - close[erL])
+    float volat = 0.0
+    for i = 0 to erL - 1
+        volat += math.abs(close[i] - close[i + 1])
+    ER = volat > 0 ? (ch / volat) : 0.0
+
+    gapAbs = math.abs(open - close[1])
+    body = math.abs(close - open)
+    bodyRatio = rng > 0 ? body / rng : 0.0
+
+    gapScore  = atr > 0 ? math.min(gapAbs / (atr * gapBadATR), 1) : 0
+    wickScore = math.min(math.max((wickRatio - wickBad) / math.max(1 - wickBad, 0.0001), 0), 1)
+    thinScore = na(rvol) ? 0 : math.min(math.max((thinBadRVOL - rvol) / math.max(thinBadRVOL, 0.0001), 0), 1)
+    bodyScore = math.min(math.max((bodyGoodMin - bodyRatio) / math.max(bodyGoodMin, 0.0001), 0), 1)
+    execStress = 100.0 * (0.35 * gapScore + 0.30 * wickScore + 0.20 * thinScore + 0.15 * bodyScore)
+
+    var float preExecSum = na
+    var float preERSum   = na
+    var float preWickSum = na
+    var int   preCnt     = 0
+
+    if newDay
+        preExecSum := na
+        preERSum := na
+        preWickSum := na
+        preCnt := 0
+
+    if inPRE
+        preExecSum := na(preExecSum) ? execStress : preExecSum + execStress
+        preERSum   := na(preERSum)   ? ER         : preERSum   + ER
+        preWickSum := na(preWickSum) ? wickRatio  : preWickSum + wickRatio
+        preCnt += 1
+
+    preExecAvg = preCnt > 0 ? preExecSum / preCnt : na
+    preERAvg   = preCnt > 0 ? preERSum   / preCnt : na
+    preWickAvg = preCnt > 0 ? preWickSum / preCnt : na
+
+    execY_mul = 0.80
+    erY_add   = 0.08
+    wickY_mul = 0.85
+    ys1 = execStress <= preExecAvg * execY_mul ? 1 : 0
+    ys2 = ER >= preERAvg + erY_add ? 1 : 0
+    ys3 = wickRatio <= preWickAvg * wickY_mul ? 1 : 0
+    yellowScore = ys1 + ys2 + ys3
+    YELLOW = inRTH and (yellowScore >= 2)
+
+    execG_mul = 0.65
+    erG_add   = 0.12
+    wickG_mul = 0.75
+    gs1 = execStress <= preExecAvg * execG_mul ? 1 : 0
+    gs2 = ER >= preERAvg + erG_add ? 1 : 0
+    gs3 = wickRatio <= preWickAvg * wickG_mul ? 1 : 0
+    greenScore = gs1 + gs2 + gs3
+
+    GREEN_RAW = YELLOW and (greenScore == 3)
+
+    var bool used = false
+    if newDay
+        used := false
+
+    GREEN_SPOT = GREEN_RAW and (not used)
+    if GREEN_SPOT
+        used := true
+
+    GREEN_SPOT
+
+//====================================================
+// M1 series
+//====================================================
+m1_s1         = request.security(syminfo.tickerid, "1", f_s1(), barmerge.gaps_off, barmerge.lookahead_off)
+m1_s2         = request.security(syminfo.tickerid, "1", f_s2(), barmerge.gaps_off, barmerge.lookahead_off)
+m1_black      = request.security(syminfo.tickerid, "1", f_black(), barmerge.gaps_off, barmerge.lookahead_off)
+m1_today_rate = request.security(syminfo.tickerid, "1", f_today_rate(), barmerge.gaps_off, barmerge.lookahead_off)
+m1_green_spot = request.security(syminfo.tickerid, "1", f_green_spot(), barmerge.gaps_off, barmerge.lookahead_off)
+
+m1_gray = (not m1_black) and (m1_s1 or m1_s2)
+
+//====================================================
+// SPREAD DAY background
+//====================================================
+isSpreadDay = m1_today_rate >= spreadTh
+bgcolor(paintDayBg and isSpreadDay ? color.new(color.red, dayBgAlpha) : na)
+
+//====================================================
+// MARKS (텍스트 제거 + 투명도 조절)
+//====================================================
+blk = showM1BlackMarks and m1_black
+gry = showGrayMarks and m1_gray
+grn = showGreenSpot and m1_green_spot
+
+blackCol = color.new(color.black, blackMarkAlpha)
+grayCol  = color.new(color.gray,  grayMarkAlpha)
+greenCol = color.new(color.lime,  greenMarkAlpha)
+
+// BLACK: size는 const라 3개로 분기 (✅ text 제거)
+plotshape(blk and blackMarkSize=="tiny",   title="TRUE BLACK tiny",   style=shape.xcross, size=size.tiny,   color=blackCol, location=location.abovebar)
+plotshape(blk and blackMarkSize=="small",  title="TRUE BLACK small",  style=shape.xcross, size=size.small,  color=blackCol, location=location.abovebar)
+plotshape(blk and blackMarkSize=="normal", title="TRUE BLACK normal", style=shape.xcross, size=size.normal, color=blackCol, location=location.abovebar)
+
+// GRAY: (✅ text 제거)
+plotshape(gry, title="GRAY risk", style=shape.xcross, size=size.tiny, color=grayCol, location=location.abovebar)
+
+// GREEN SPOT: (✅ text 제거)
+plotshape(grn, title="GREEN_SPOT", style=shape.circle, size=size.tiny, color=greenCol, location=location.belowbar)
+
+//====================================================
+// LAST BAR label + table
+//====================================================
+string nowState = m1_black ? "BLACK" : m1_gray ? "GRAY" : "OK"
+
+var label dayLbl = na
+if showLabel and barstate.islast
+    label.delete(dayLbl)
+    txt = isSpreadDay ? "SPREAD DAY" : "OK DAY"
+    dayLbl := label.new(bar_index, high,
+        txt +
+        "\nM1 TRUE BLACK rate: " + str.tostring(m1_today_rate * 100, "#.###") + "%" +
+        "\nNow: " + nowState +
+        "\nGreenSpot: " + (m1_green_spot ? "YES" : "no"),
+        style=label.style_label_down,
+        textcolor=color.white,
+        color=isSpreadDay ? color.red : color.new(color.green, 0))
+
+var table t = table.new(position.top_right, 1, 4, border_width=1)
+if showTable and barstate.islast
+    table.cell(t, 0, 0, isSpreadDay ? "SPREAD DAY" : "OK DAY", text_color=color.white, bgcolor=isSpreadDay ? color.new(color.red, 10) : color.new(color.green, 10))
+    table.cell(t, 0, 1, useRTHOnly ? "M1 TRUE BLACK rate (RTH)" : "M1 TRUE BLACK rate (ALL)", text_color=color.white, bgcolor=color.new(color.gray, 80))
+    table.cell(t, 0, 2, str.tostring(m1_today_rate * 100, "#.###") + "%", text_color=color.white, bgcolor=color.new(color.gray, 80))
+    table.cell(t, 0, 3, "Now: " + nowState, text_color=color.white, bgcolor=color.new(color.gray, 80))
+
+//====================================================
+// DEBUG
+//====================================================
+plot(showDebug ? m1_today_rate * 100 : na, title="M1 TRUE BLACK rate % (debug)", color=color.new(color.orange, 0))
+plot(showDebug ? (m1_s1 ? 1 : 0) : na, title="m1 S1 (debug)", color=color.new(color.yellow, 0))
+plot(showDebug ? (m1_s2 ? 1 : 0) : na, title="m1 S2 (debug)", color=color.new(color.purple, 0))
