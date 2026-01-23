@@ -400,15 +400,20 @@ showing how unstable ideas were systematically eliminated:
 
 ## System Integrity & Validation
 
-This repository includes an explicit system integrity audit based on live paper execution.
+This repository includes an explicit system integrity audit
+based on live paper execution.
 
-Guarantees:
+**Guarantees:**
 - No execution without a prior V7 decision
 - No execution at theta ≥ 3
 - No hidden or silent signal influence
 - Fully reproducible results
 
-See `analysis/validation` for details.
+Representative validation:
+- [System Integrity Validation Summary](analysis/validation/validation_summary.md)
+
+Full validation suite:
+- [`analysis/validation/`](analysis/validation/)
 
 
 
