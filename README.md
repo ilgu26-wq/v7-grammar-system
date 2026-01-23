@@ -398,6 +398,19 @@ showing how unstable ideas were systematically eliminated:
 > The Graveyard Appendix documents hundreds of tested ideas that failed,
 > and explains why only the current V7 Grammar survived.
 
+## System Integrity & Validation
+
+This repository includes an explicit system integrity audit based on live paper execution.
+
+Guarantees:
+- No execution without a prior V7 decision
+- No execution at theta ≥ 3
+- No hidden or silent signal influence
+- Fully reproducible results
+
+See `analysis/validation` for details.
+
+
 
 ## Key Statement
 
