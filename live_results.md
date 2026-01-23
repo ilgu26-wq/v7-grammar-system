@@ -1,4 +1,6 @@
 # Live Trading Results
+> Live shadow results are recorded daily.
+> Aggregated metrics will be published only after D+14 completes.
 
 ## Status: In Progress (Live Shadow Backtest)
 

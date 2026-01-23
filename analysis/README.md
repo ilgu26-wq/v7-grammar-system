@@ -1,4 +1,4 @@
-# Analysis Directory
+# Analysis & System Integrity
 
 This analysis verifies that Paper execution reflects V7 decisions faithfully, without signal leakage or execution-layer distortion.
 
@@ -11,6 +11,8 @@ This analysis verifies that Paper execution reflects V7 decisions faithfully, wi
 | `paper_consistency_analysis.py` | Analysis script |
 
 ## Purpose
+This analysis is performed after the V7 Grammar System
+was declared structurally frozen.
 
 - Verify V7_DECISION → OPA_EXECUTION consistency
 - Confirm theta-based protection (no theta≥3 execution)
@@ -22,7 +24,7 @@ This analysis verifies that Paper execution reflects V7 decisions faithfully, wi
 - All entries occur at theta=0 (pre-confirmation phase)
 - SL occurrence is structurally expected in t-ε scope
 - Audit checks: ALL PASS
-- System integrity: VERIFIED
+- System integrity: VERIFIED (no violations detected)
 
 ## Paper Consistency Analysis
 
