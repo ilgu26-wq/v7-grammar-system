@@ -24,6 +24,22 @@ This analysis verifies that Paper execution reflects V7 decisions faithfully, wi
 - Audit checks: ALL PASS
 - System integrity: VERIFIED
 
+## Paper Consistency Analysis
+
+This module verifies that paper-mode executions faithfully reflect
+V7 decision outputs without distortion.
+
+It audits:
+- V7 decision ↔ OPA execution identity
+- Theta-bound execution constraints
+- Structurally expected SL behavior
+- Scope (t-ε) execution timing
+- Reproducibility and audit honesty
+
+Outputs:
+- paper_consistency_report.json
+- paper_consistency_summary.md
+
 ---
 
 **Generated:** 2026-01-23
