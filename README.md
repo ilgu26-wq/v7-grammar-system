@@ -3,10 +3,15 @@
 The V7 Grammar System is **structurally frozen**.
 No further logic changes are planned.
 
-Current focus:
-- Live data accumulation
-- Execution monitoring
-- Risk behavior observation
+Ongoing activities are limited to:
+- live data observation
+- execution monitoring
+- risk behavior analysis
+
+These activities do not alter decision logic.
+This separation is enforced both conceptually and operationally.
+
+
 
 
 # V7 Grammar System
@@ -279,6 +284,16 @@ research volatility never contaminates execution integrity.
 
 The following documents represent **finalized, non-experimental conclusions**.
 They are not subject to further modification.
+
+## Archived Snapshot
+
+A frozen archival snapshot of verified conclusions
+(as of **2026-01-23**) is preserved here:
+
+→ `docs/ARCHIVE_2026_01_23.md`
+
+This snapshot marks the formal closure of V7 grammar research.
+Any future changes require a new dated archive.
 
 ### Final Conclusions
 - **Representative Sample Results (19,157 trades)**  
