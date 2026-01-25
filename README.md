@@ -1,15 +1,20 @@
 ## Project Status
 
-The V7 Grammar System is **structurally frozen**.
-No further logic changes are planned.
+The V7 Grammar System decision grammar is **structurally frozen**.
 
-Ongoing activities are limited to:
+No further changes are planned to:
+- V7 decision grammar
+- core admissibility rules
+- validated execution constraints
+
+Ongoing work is limited to:
 - live data observation
-- execution monitoring
-- risk behavior analysis
+- execution-layer integration
+- risk behavior monitoring
 
-These activities do not alter decision logic.
-This separation is enforced both conceptually and operationally.
+These activities do not modify decision logic.
+They operate strictly on top of the frozen grammar.
+
 
 
 
@@ -24,6 +29,22 @@ validated across assets, regimes, and execution constraints.*
 > **"This system does not predict markets.
 > It classifies decision states.
 > Prediction modules can be added without destabilizing the core."**
+
+## Operational Status
+
+As of 2026-01-25, the V7 Grammar System is in a
+**coverage-complete, paper-validated state**.
+
+All observed trades are guaranteed to be classified into
+predefined coverage buckets (UNKNOWN rate = 0%).
+
+The main branch represents:
+- Decision grammar (V7)
+- Policy layer (OPA v7.4)
+- Coverage audit and residual failure registry
+
+Execution logic and real-time usage are introduced incrementally
+and do not alter the underlying decision grammar.
 
 ---
 
@@ -434,6 +455,6 @@ not portfolio return.
 
 ---
 
-*Updated: 2026-01-20*
+*Updated: 2026-01-25*
 
 
