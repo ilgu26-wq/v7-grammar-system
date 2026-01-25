@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-01-25T06:19:16.737544",
+  "audit_name": "COVERAGE_AUDIT",
+  "total_trades": 134,
+  "bucket_distribution": {
+    "S0_T0_\u03b83": 39,
+    "S0_T0_\u03b80": 45,
+    "S0_T0_\u03b81": 49,
+    "S0_T0_P_OPEN": 1
+  },
+  "unknown_count": 0,
+  "unknown_rate": 0.0,
+  "coverage_pass": true,
+  "unknown_trades": []
+}

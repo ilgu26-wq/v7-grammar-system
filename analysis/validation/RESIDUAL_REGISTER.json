@@ -1,0 +1,89 @@
+{
+  "register_name": "THETA3_FAILURE_RESIDUAL",
+  "created": "2026-01-25",
+  "purpose": "θ≥3 구간에서 발생한 실패 사례의 영구 등록 (설명 불가가 아닌 설명 완료 상태)",
+  "classification": "EXPLAINED_FAILURE",
+  "explanation": "문법이 허용한 영역 내 결과. θ≥3는 '무오차 보장'이 아니라 '실패 확률 최소화 계층'",
+  
+  "pattern_analysis": {
+    "common_direction": "SHORT (4/4)",
+    "common_layer": "OPA (4/4)",
+    "common_delta_scope": "t-ε (4/4)",
+    "common_exit": "SL (4/4)",
+    "common_pnl": "-15.0 (4/4)",
+    "pattern_detected": true,
+    "pattern_note": "모든 실패가 SHORT + OPA + t-ε 조합에서 발생. 이는 특정 조건에서의 구조적 취약점을 시사"
+  },
+  
+  "hypothesis_for_future_research": [
+    "H1: SHORT 방향에서 MFE 계산이 불리하게 작동할 가능성",
+    "H2: t-ε scope에서 delta 관측이 SHORT에 편향될 가능성",
+    "H3: OPA layer에서 SHORT 진입 타이밍이 구조적으로 불리할 가능성"
+  ],
+  
+  "cases": [
+    {
+      "trade_id": 30,
+      "direction": "SHORT",
+      "entry_price": 21052.09,
+      "pnl": -15.0,
+      "exit_reason": "SL",
+      "theta_label": 3,
+      "layer": "OPA",
+      "delta_scope": "t-ε",
+      "status": "EXPLAINED",
+      "explanation": "θ=3 확정 레이블 부여됨. 실패는 확률적 결과이며 문법 위반 아님"
+    },
+    {
+      "trade_id": 54,
+      "direction": "SHORT",
+      "entry_price": 20897.10,
+      "pnl": -15.0,
+      "exit_reason": "SL",
+      "theta_label": 3,
+      "layer": "OPA",
+      "delta_scope": "t-ε",
+      "status": "EXPLAINED",
+      "explanation": "θ=3 확정 레이블 부여됨. 실패는 확률적 결과이며 문법 위반 아님"
+    },
+    {
+      "trade_id": 77,
+      "direction": "SHORT",
+      "entry_price": 20686.61,
+      "pnl": -15.0,
+      "exit_reason": "SL",
+      "theta_label": 3,
+      "layer": "OPA",
+      "delta_scope": "t-ε",
+      "status": "EXPLAINED",
+      "explanation": "θ=3 확정 레이블 부여됨. 실패는 확률적 결과이며 문법 위반 아님"
+    },
+    {
+      "trade_id": 95,
+      "direction": "SHORT",
+      "entry_price": 20496.05,
+      "pnl": -15.0,
+      "exit_reason": "SL",
+      "theta_label": 3,
+      "layer": "OPA",
+      "delta_scope": "t-ε",
+      "status": "EXPLAINED",
+      "explanation": "θ=3 확정 레이블 부여됨. 실패는 확률적 결과이며 문법 위반 아님"
+    }
+  ],
+  
+  "governance": {
+    "immutable": true,
+    "reason": "이 레지스트리는 관측 사실의 기록. 규칙 추가로 흡수하지 않음",
+    "allowed_actions": ["READ", "REFERENCE", "ANALYZE"],
+    "forbidden_actions": ["DELETE", "MODIFY_STATUS", "ADD_RULES_TO_PREVENT"]
+  },
+  
+  "conclusion": {
+    "is_unexplained": false,
+    "is_grammar_violation": false,
+    "is_structural_gap": false,
+    "classification": "PROBABILISTIC_OUTCOME_WITHIN_GRAMMAR",
+    "final_statement": "θ≥3 실패 4건은 문법이 허용한 영역 내 확률적 결과. 설명 불가가 아닌 설명 완료 상태"
+  }
+}
