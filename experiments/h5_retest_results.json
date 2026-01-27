@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-01-27 20:22:31.823089",
+  "test": "H5 재검증",
+  "comparisons": [
+    {
+      "condition": "V7 기본 (DC≥0.5, avg≥10, FR≥0.7)",
+      "n": 26,
+      "wr": 50.0
+    },
+    {
+      "condition": "V7 + Entry close ≤80%",
+      "n": 11,
+      "wr": 72.7
+    },
+    {
+      "condition": "역조건: DC < 0.5",
+      "n": 242,
+      "wr": 57.02479338842975
+    },
+    {
+      "condition": "역조건: Entry close ≥90%",
+      "n": 14,
+      "wr": 35.714285714285715
+    },
+    {
+      "condition": "역조건: Entry close ≥99%",
+      "n": 10,
+      "wr": 40.0
+    }
+  ],
+  "h5_retest": {
+    "entry_close_90": {
+      "n": 14,
+      "wr": 35.714285714285715
+    },
+    "entry_close_100": {
+      "n": 10,
+      "wr": 40.0
+    }
+  },
+  "conclusion": "C 선택 수용 — Entry close가 핵심 분리력"
+}

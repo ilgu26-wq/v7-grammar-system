@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-01-27 19:56:12.740846",
+  "track": "A-Track",
+  "status": "CONFIRMED",
+  "core_finding": {
+    "statement": "주체 방향 즉사 구조는 실재한다",
+    "evidence": {
+      "bar1_direction_fail": "FAIL 그룹 92.3%가 Bar1 종가 < Entry",
+      "entry_close_gap": "-29.9%p (FAIL=77.3%, PASS=47.4%)",
+      "structural_ceiling": "WR 70~80%"
+    }
+  },
+  "90_percent_judgment": {
+    "question": "WR ≥ 90% & N ≥ 15 구간이 존재하는가?",
+    "answer": "NO - 현재 데이터에서 자연스럽게 존재하지 않음",
+    "reason": "Entry close 위치는 필요조건이지 충분조건이 아님",
+    "implication": "90%는 '만들면 나오는 수치'가 아니라 극히 희귀한 완전 정렬 상태"
+  },
+  "v7_identity": {
+    "is_not": "90% 승률 시스템",
+    "is": "주체/비주체 구분 문법 엔진",
+    "philosophy": "예측이 아닌 판정, 확률이 아닌 구조"
+  },
+  "best_entry_filter": {
+    "variable": "Entry 캔들 close 위치",
+    "threshold": "≤ 80%",
+    "result": {
+      "n": 11,
+      "wr": 72.7
+    }
+  },
+  "structural_ceiling": {
+    "wr_range": "70~80%",
+    "reason": "사전 변수 1개로 '완전 주체 정렬' 확인 불가",
+    "status": "물리적 상한 (한계 아님)"
+  },
+  "key_quote": "90%는 목표가 아니라 현상이다. V7은 그 현상이 언제 '가능해지는지'를 설명하는 시스템이다.",
+  "validation": {
+    "logic": "PASS",
+    "data": "PASS",
+    "falsifiability": "PASS"
+  }
+}

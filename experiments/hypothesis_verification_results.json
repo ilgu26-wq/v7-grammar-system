@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-01-27 20:18:11.719661",
+  "results": {
+    "H1": "PASS",
+    "H2": "SKIP",
+    "H3": "PASS",
+    "H4": "PASS",
+    "H5": "FAIL"
+  },
+  "summary": {
+    "pass": 3,
+    "skip": 1,
+    "fail": 1
+  },
+  "final": "FAIL",
+  "declaration": "과적합 의심 → 폐기"
+}

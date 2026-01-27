@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-01-27 19:58:25.445516",
+  "experiment": "V7 vs WHEN/교집합 비교분석",
+  "v7": {
+    "n": 26,
+    "wr": 50.0,
+    "wr_filtered": 72.7,
+    "type": "문법 기반"
+  },
+  "when": {
+    "n": 34,
+    "wr": 64.7,
+    "type": "조건 중첩"
+  },
+  "intersection": {
+    "n": 94,
+    "wr": 23.404255319148938,
+    "best_wr": 37.5,
+    "type": "비율 조합"
+  },
+  "conclusion": {
+    "v7_advantage": "반증 가능, 물리적 설명력",
+    "when_advantage": "높은 WR 가능 (조건 추가 시)",
+    "common_trap": "조건 추가 → WR 상승 → N 감소 → 과적합"
+  }
+}
