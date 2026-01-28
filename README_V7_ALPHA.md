@@ -5,6 +5,17 @@
 > V7 certifies alpha ex-post with minimal failure cost.
 
 ---
+## Scope & Assumptions
+
+This document defines the Alpha Certification Layer of V7.
+
+- The V7 Grammar layer is assumed to be satisfied prior to this layer.
+- This layer does not generate trades.
+- This layer does not forecast alpha timing.
+- This layer certifies whether an already-entered position is valid.
+
+Anything outside this scope is explicitly excluded.
+
 
 ## System Identity
 
@@ -17,8 +28,20 @@
 | Prediction | Cannot forecast alpha timing | Impossible |
 | Optimization | Forbidden (overfitting risk) | Locked |
 
-Optimization is forbidden due to post-certification selection bias
-and observed instability under parameter tuning.
+**The distinction is not semantic. It is structural.**
+
+## Optimization Prohibition (Enforced)
+
+Optimization is forbidden due to **post-certification selection bias**
+and empirically observed instability under parameter tuning.
+
+Any optimization performed after certification
+invalidates the statistical meaning of the certification itself.
+
+This is not a design preference.  
+It is a **data-enforced boundary**.
+
+
 
 ---
 
@@ -41,6 +64,20 @@ and observed instability under parameter tuning.
 
 ---
 
+
+### Bar1 Uniqueness (Falsification Summary)
+
+Alternative certification points (Bar0.5, Bar2, Bar3) were explicitly tested.  
+None produced a certification gap exceeding **+30%p**.
+
+**Bar1 remains the earliest and only observable point**
+where alpha certification achieves structural separation.
+
+This is not an assumption.  
+It is a **negative result enforced by falsification**.
+
+---
+
 ## Direction Persistence: Critical Boundary
 
 ![Direction Persistence](visualizations/02_direction_persistence.png)
@@ -52,7 +89,9 @@ and observed instability under parameter tuning.
 | dir = 1 | 74.9% | **Collapse** |
 
 > dir ≥ 3 is the alpha completion condition.  
-> Below this threshold, the structure collapses.
+> Below this threshold, the structure does not partially degrade.  
+> It **collapses into noise that resembles alpha**.
+
 
 ---
 
@@ -67,9 +106,18 @@ and observed instability under parameter tuning.
 | H-RT3: Reformation Timing | **FAIL** | 1.0x (no predictive power) |
 | H-RT4: Bar1 Hold Judgment | **PASS** | **+49.1%p Gap** |
 
-**Conclusion:**
-- Cannot predict when alpha will occur
-- Can only certify alpha after Bar1
+All predictive hypotheses failed,
+leaving **post-entry Bar1 certification** as the only surviving mechanism.
+
+### Conclusion
+
+- Alpha timing **cannot be predicted**.
+- Alpha **can only be certified after Bar1**.
+
+Prediction failure is not a weakness.  
+It is a **boundary condition enforced by the data**.
+
+Any attempt to predict alpha timing violates this boundary.
 
 ---
 
@@ -90,8 +138,26 @@ and observed instability under parameter tuning.
 - 34% reappear within 10 bars
 
 > Cooldown is not a fixed waiting period.  
-> Alpha is cyclical, not consumable.
-Reappearance depends on structural reformation, not depletion.
+> Alpha is cyclical, not consumable.  
+> Reappearance depends on structural reformation, not depletion.
+
+
+Fixed cooldown assumptions were explicitly tested and failed.  
+Alpha reappearance is conditional on **structural reformation**, not elapsed time.
+
+---
+
+## Macro Context: Cost Shaping, Not Prediction
+
+Macro state (e.g., D→S transition) does **not** increase
+the probability of alpha success.
+
+It reduces the **cost of failure** when certification fails.
+
+This explains why prediction hypotheses fail,
+yet overall expectancy improves.
+
+Macro is a **risk-shaping layer**, not a signal.
 
 
 ---
@@ -121,6 +187,9 @@ BAR1 CERTIFICATION
   │
   └─ Hold = False ──▶ EXIT (cost: 1 bar)
 ```
+
+State transitions are deterministic.  
+There is no probability weighting inside the machine.
 
 ---
 
@@ -152,9 +221,7 @@ BAR1 CERTIFICATION
 ## Operational Protocol
 
 ```
-1. - Entry (any time - no prediction)
-+ Entry (unrestricted timing; no informational edge assumed)
-
+1. Entry (unrestricted timing; no informational edge assumed)
      │
 2. Wait for Bar1 close
      │
@@ -203,6 +270,36 @@ not from modifying this grammar or certification logic.
 
 ---
 
-*Document Version: V7-ALPHA-FINAL*  
+## Appendix A — Irreversibility Boundary (Open)
+
+This document intentionally does not claim any irreversible marker
+prior to Bar1.
+
+While it is plausible that irreversible microstructural events
+occur before Bar1, such claims require execution-level or tick-level data,
+which was not available in the current experimental scope.
+
+Until such data becomes accessible and produces a falsifiable result,
+Bar1 is treated as the earliest **observable and actionable certification point**.
+
+This boundary is left **open by design**, not by omission.
+
+---
+
+## Appendix B — What Can Be Challenged (Falsifiable Attacks)
+> This appendix is included for auditability and adversarial review.
+
+If you disagree with this system, attack these claims:
+
+1. **Bar1 uniqueness**: Show another point with Gap > 40%p  
+2. **dir ≥ 3 threshold**: Show stability below dir = 3  
+3. **Prediction impossibility**: Show Lift > 1.2x with any feature  
+4. **Cooldown variability**: Show a fixed window that outperforms variable reformation logic
+
+If none of these can be falsified, the system stands.
+
+---
+
+*Document Version: V7-ALPHA-FINAL-INTEGRATED*
 *Last Updated: 2026-01-28*  
 *Status: FROZEN (No further optimization allowed)*
