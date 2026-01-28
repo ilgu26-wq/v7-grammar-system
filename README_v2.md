@@ -145,6 +145,30 @@ Alpha modules may:
 
 V7 is therefore an **alpha host**, not an alpha generator.
 
+## What V7 Actually Provides to Alpha Design
+
+V7 does not generate alpha,
+but it **defines the distributional coordinate system
+in which alpha may operate meaningfully**.
+
+Concretely, V7:
+
+- isolates empirically verified common structural regions
+- rejects non-stationary or non-falsifiable regimes
+- maps market participation into stable, comparable buckets
+
+This allows external alpha to:
+
+- import additional data sources
+- express predictive bias conditionally
+- operate only within structurally admissible regions
+
+In this sense, V7 is not merely a filter.
+
+It is a **distributional reference frame**
+against which alpha hypotheses can be tested,
+rejected, or validated without contaminating the grammar itself.
+
 ---
 
 ## Practical Implication
