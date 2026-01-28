@@ -8,7 +8,7 @@
 
 ## System Identity
 
-![System Identity](../visualizations/06_system_identity.png)
+![System Identity](visualizations/06_system_identity.png)
 
 | Layer | Role | Status |
 |:------|:-----|:-------|
@@ -26,7 +26,7 @@ and observed instability under parameter tuning.
 
 ### Bar1 Certification Gap: +49%p
 
-![Bar1 Certification Gap](../visualizations/01_bar1_certification_gap.png)
+![Bar1 Certification Gap](visualizations/01_bar1_certification_gap.png)
 
 | Condition | N | TP Rate | Gap |
 |:----------|--:|--------:|----:|
@@ -43,7 +43,7 @@ and observed instability under parameter tuning.
 
 ## Direction Persistence: Critical Boundary
 
-![Direction Persistence](../visualizations/02_direction_persistence.png)
+![Direction Persistence](visualizations/02_direction_persistence.png)
 
 | Condition | Win Rate | Status |
 |:----------|:--------:|:-------|
@@ -58,7 +58,7 @@ and observed instability under parameter tuning.
 
 ## Realtime Protocol Test: Prediction IMPOSSIBLE
 
-![Realtime Protocol](../visualizations/04_realtime_protocol.png)
+![Realtime Protocol](visualizations/04_realtime_protocol.png)
 
 | Hypothesis | Result | Detail |
 |:-----------|:------:|:-------|
@@ -75,7 +75,7 @@ and observed instability under parameter tuning.
 
 ## Cooldown is VARIABLE
 
-![Cooldown Distribution](../visualizations/03_cooldown_distribution.png)
+![Cooldown Distribution](visualizations/03_cooldown_distribution.png)
 
 | Interval | N | Percentage | Cumulative |
 |:---------|--:|-----------:|-----------:|
@@ -98,7 +98,7 @@ Reappearance depends on structural reformation, not depletion.
 
 ## State Machine
 
-![State Machine](../visualizations/05_state_machine.png)
+![State Machine](visualizations/05_state_machine.png)
 
 ```
 IDLE
