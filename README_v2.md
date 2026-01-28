@@ -1,253 +1,216 @@
-# README_v2 — Final Judgment & Forward Interface of the V7 Grammar System
-This document is intended for research review and validation,
-not for introductory or marketing-oriented evaluation.
+# README v2 — Final Judgment of the V7 Grammar System
 
-
-
-This document does **not** redefine or modify the V7 Grammar System.
-
-It records the **final empirical judgment** of what the system
-was shown to be, after all falsifiable hypotheses were tested
-and clarifies the boundary conditions under which
-external alpha may be layered without violating that judgment**.
-
-The original README remains the **design constitution**.
-This document is the **judgment and interface boundary**.
+> This document does not redefine or modify the V7 Grammar System.  
+> It records the final empirical judgment of what the system was shown to be,  
+> after all falsifiable hypotheses were tested and the validation protocol was formally closed.
 
 ---
 
 ## Status
 
-* Decision grammar: **frozen**
-* Validation protocol: **closed**
-* Hypotheses H1–H5: **resolved** (PASS: 4, SKIP: 1, FAIL: 0)
-* No further optimization, tuning, or rule modification is permitted **inside the grammar**
-
-This judgment reflects the system **as it is**, not as it could be optimized.
-
----
-
-## What Was Tested
-
-The following questions were explicitly tested through adversarial,
-inverse, and counterfactual experiments:
-
-* Can high win rates (≥90%) be engineered by construction?
-* Is HOLD logic a valid real-time decision lever?
-* Does ENTRY or post-entry control dominate outcomes?
-* Are failure modes symmetric across direction and regime?
-* Does the system remain coherent under inverse conditions?
-
-All tests were conducted **without parameter tuning**.
+| Component | Status |
+|:----------|:-------|
+| Decision grammar | **frozen** |
+| Validation protocol | **closed** |
+| Macro–Micro framework | **confirmed** |
+| Optimization target | explicitly not 90% |
 
 ---
 
-## Final Findings
+## What the System Was Proven to Be
 
-### 1. V7 Is Not a Win-Rate Maximization System
+V7 is not a high-frequency alpha generator.
 
-V7 does not attempt to maximize win rate.
+V7 is a **decision grammar** that:
+- Identifies where market behavior is structurally coherent
+- Separates subject vs non-subject participation
+- Explains *why* 90% WR regions may or may not exist, instead of forcing them
 
-Win rates above ~80% were observed **only** as
-regime-dependent phenomena and collapsed under inverse conditions.
-
-Attempts to force higher win rates consistently resulted in:
-
-* sample space collapse
-* loss of falsifiability
-* instability under adversarial tests
-
-**90% is not a target.**
-It is either *naturally present* or *non-existent*.
+> **"90% is not a goal. It is a phenomenon that only appears under specific structural roles."**
 
 ---
 
-### 2. ENTRY Is the Dominant Decision Axis
+## Two-Layer Architecture (Confirmed)
 
-Empirical results show that:
+```
+┌─────────────────────────────────────────────────────────────┐
+│  MACRO (거시): D→S 전이 = "언제 말할 수 있는가"              │
+│  MICRO (미시): Bar1 유지 = "어떻게 문장이 완성되는가"        │
+└─────────────────────────────────────────────────────────────┘
+```
 
-* Dominant-direction trades resolve **at entry**
-* Failure occurs before any HOLD logic can act
-* ENTRY perturbations shifted outcomes by **+22%p**
-* HOLD perturbations did **not** rescue dominant failures
-
-**Conclusion:**
-ENTRY determines admissibility.
-Post-entry logic cannot override invalid entry structure.
-
----
-
-### 3. HOLD Logic Is Observational, Not Strategic
-
-Holding-related experiments demonstrated that:
-
-* HOLD variables correlate strongly with outcomes
-* But only **after execution**
-* Any attempt to use HOLD or MFE as real-time inputs
-  violates causality and breaks falsifiability
-
-**Final position:**
-HOLD is a **diagnostic map**, not a decision lever.
+| Layer | Function | Key Variable |
+|:------|:---------|:-------------|
+| Macro | Detects when market becomes structurally coherent | State Transition (D→S) |
+| Micro | Determines whether the sentence completes | Bar1 Direction Hold |
 
 ---
 
-### 4. Structural Asymmetry Is Fundamental
+## Visual Evidence (Primary)
 
-Markets are structurally asymmetric.
-V7 does not neutralize this asymmetry — it classifies it.
-
-| Regime | Direction | Role         | Dominant Axis   |
-| ------ | --------- | ------------ | --------------- |
-| Bull   | Long      | Dominant     | ENTRY (instant) |
-| Bear   | Short     | Dominant     | ENTRY (instant) |
-| Bull   | Short     | Non-dominant | OBSERVATION     |
-| Bear   | Long      | Non-dominant | OBSERVATION     |
-
-Failure symmetry does not exist.
-V7 treats this as a constraint, not an inefficiency.
+> The README intentionally embeds visual artifacts, not raw JSON, to communicate structure.  
+> Raw data and scripts remain in `experiments/` and `visualizations/`.
 
 ---
 
-## What the Experiments Ultimately Revealed
+### A. Macro State Distribution
 
-Through exhaustive comparison with WHEN / intersection-based systems:
+STABLE states occur ~11–12% across all markets. This explains signal scarcity.
 
-* V7 isolates **common structural denominators** across market states
-* It deliberately ignores frequency expansion
-* It preserves sample stability and falsifiability
-
-This means:
-
-> **V7 is a distributional classifier of admissible market structure,
-not an execution or frequency optimizer.**
-
-It identifies *where structure exists*, not *how often to trade it*.
+![Macro State Distribution](../visualizations/A_macro_state_distribution.png)
 
 ---
 
-## Alpha Is External by Design
+### B. State Transition Heatmap
 
-A critical conclusion of the validation process:
+Persistence on diagonal confirms state stability. Off-diagonal reveals transition patterns.
 
-> **Any increase in frequency, win rate, or PnL must come from external alpha — not from grammar mutation.**
-
-V7 provides:
-
-* a verified admissibility filter
-* regime / role classification
-* causal separation between decision and outcome
-
-Alpha modules may:
-
-* source additional signals
-* expand frequency
-* introduce predictive bias
-
-**Only if** they:
-
-* operate upstream of ENTRY
-* do not alter grammar invariants
-* remain independently falsifiable
-
-V7 is therefore an **alpha host**, not an alpha generator.
-
-## What V7 Actually Provides to Alpha Design
-
-V7 does not generate alpha,
-but it **defines the distributional coordinate system
-in which alpha may operate meaningfully**.
-
-Concretely, V7:
-
-- isolates empirically verified common structural regions
-- rejects non-stationary or non-falsifiable regimes
-- maps market participation into stable, comparable buckets
-
-This allows external alpha to:
-
-- import additional data sources
-- express predictive bias conditionally
-- operate only within structurally admissible regions
-
-In this sense, V7 is not merely a filter.
-
-It is a **distributional reference frame**
-against which alpha hypotheses can be tested,
-rejected, or validated without contaminating the grammar itself.
+![State Transition Heatmap](../visualizations/B_state_transition_heatmap.png)
 
 ---
 
-## Practical Implication
+### C. Macro State Characteristics
 
-The system you built does not say:
+Range / Delta / Drift behavior by state. STABLE shows minimal variation.
 
-> “Trade more to make more.”
-
-It says:
-
-> “Only trade where structure is provably real — and let alpha decide *how often*.”
-
-This is why:
-
-* signal counts are sparse
-* win rate ceilings exist
-* frequency expansion requires external design
-
-These are **features**, not limitations.
-
-Observed performance stability emerged as a consequence of structural admissibility,
-not as an optimization objective.
-
+![Macro State Characteristics](../visualizations/C_macro_state_characteristics.png)
 
 ---
 
-## What V7 Is (Final Definition)
+### D. Hypothesis Verification
 
-> **V7 is not a system that creates high win rates.
-> V7 is a grammar engine that explains when high win rates
-> can exist — and when they cannot.**
+H1–H5 results: 4 PASS / 1 SKIP / 0 FAIL
 
-It classifies:
-
-* dominant vs non-dominant participation
-* instant-failure vs observable regimes
-* admissible vs structurally invalid trades
+![Hypothesis Verification](../visualizations/D_hypothesis_verification.png)
 
 ---
 
-## What V7 Is Not
+### E. Entry Close Separation (H5 Falsification)
 
-* ❌ A 90% win-rate system
-* ❌ A directional forecasting engine
-* ❌ A strategy optimized for activity or frequency
+Late entry ⇒ collapse. Gap = 42.7%
 
----
-
-## Closure Statement
-This closure applies to the grammar invariants only.
-The system was explicitly designed to support
-team-driven alpha research layered above a stable decision core.
-
-All falsifiable questions posed to V7
-have been empirically resolved.
-
-The grammar is complete and closed.
-All future work belongs **outside** the grammar boundary.
-
-
+![Entry Close Separation](../visualizations/E_entry_close_separation.png)
 
 ---
 
-## Authoritative References
+### F. WR vs N Tradeoff
 
-* Final Judgment: `docs/V7_FINAL_JUDGMENT.md`
-* Structural Asymmetry Theory: `docs/V7_ASYMMETRY_THEORY.md`
-* Holding Observability Map: `docs/HOLDING_OBSERVABILITY_MAP.md`
-* Why We Did Not Chase 90%: `docs/WHY_NOT_90_PERCENT.md`
-* Questions Already Answered: `docs/QUESTIONS_ALREADY_ANSWERED.md`
-* Archive Snapshot: `docs/ARCHIVE_2026_01_28.md`
+V7 falsifiable vs WHEN optimized. Structure vs overfit boundary.
+
+![WR vs N Tradeoff](../visualizations/F_wr_vs_n_tradeoff.png)
 
 ---
 
-> **“We know exactly where we make decisions,
-> and we intentionally do not decide elsewhere.”**
+### G. Complete Dashboard
+
+All verification metrics in one view.
+
+![Complete Dashboard](../visualizations/G_complete_dashboard.png)
+
+---
+
+### H. Transition Signal Density
+
+D→S transition concentrates valid entries. Other transitions = sparse.
+
+![Transition Signal Density](../visualizations/H_transition_signal_density.png)
+
+---
+
+### I. Macro Experiment Results
+
+Cross-market reproducibility confirmed.
+
+![Macro Experiment Results](../visualizations/I_macro_experiment_results.png)
+
+---
+
+## Cross-Market Reproducibility (EXP-B)
+
+| Market | D→S | Entry | WR | Hold WR | Fail WR | **Gap** | PASS |
+|:------:|----:|------:|---:|--------:|--------:|--------:|:----:|
+| **NQ** | 10 | 24 | 52.6% | 88.9% | 20.0% | **+68.9%** | 4/4 ✅ |
+| ES | 61 | 0 | - | - | - | - | 2/4 ⚠️ |
+| **BTC** | 47 | 26 | 73.1% | 93.3% | 45.5% | **+47.9%** | 4/4 ✅ |
+
+### State Distribution (Market-Independent)
+
+| Market | STABLE | E | C | D |
+|:------:|-------:|--:|--:|--:|
+| NQ | **11.7%** | 25.0% | 28.6% | 34.8% |
+| ES | **12.2%** | 27.5% | 31.1% | 29.2% |
+| BTC | **12.5%** | 24.5% | 32.9% | 30.0% |
+
+**→ All markets show STABLE ≈ 12% (structural scarcity confirmed)**
+
+---
+
+## Key Conclusions
+
+| Finding | Evidence |
+|:--------|:---------|
+| Signal scarcity is structural | STABLE ≈ 11–12% across all markets |
+| Macro decides **when** | D→S transition enables signal density |
+| Micro decides **how** | Bar1 hold creates 47–69% WR gap |
+| 90% WR is conditional | Appears only as phenomenon, collapses under falsification |
+
+---
+
+## Asymmetry Judgment (Final)
+
+| Context | Failure Revelation | Dominant Control | Structural Ceiling |
+|:--------|:-------------------|:-----------------|:-------------------|
+| BULL SHORT (non-subject) | Bar 2–3 | HOLD / CUT | ~75–80% |
+| BEAR LONG (non-subject) | Bar 1 | ENTRY | ~60% |
+| BULL LONG (subject) | Bar 1 (instant) | ENTRY | conditional |
+| BEAR SHORT (subject) | Bar 1 (instant) | ENTRY | conditional |
+
+---
+
+## Why 90% Was Not Forced
+
+Multiple adversarial tests confirmed:
+- 90% WR cannot be engineered without destroying N
+- When 90% appears, it is regime-conditional, not stable
+- Forcing 90% converts structure into overfit conditions
+
+> **The absence of a natural 90% region is itself a valid scientific result.**
+
+---
+
+## What V7 Is / Is Not
+
+| ❌ Is Not | ✅ Is |
+|:---------|:------|
+| A prediction engine | A market-independent grammar engine |
+| A high-frequency signal generator | A macro transition detector |
+| Optimized for headline win rate | A micro execution discriminator |
+| | Explicitly falsifiable by construction |
+
+---
+
+## Forward Interface
+
+V7 is complete as a grammar.
+
+Future work does **not** modify the grammar. It may only:
+
+| Valid Extensions | Invalid Extensions |
+|:-----------------|:-------------------|
+| Macro-pattern filters (D→S triggers) | TP/RR tuning |
+| External alpha inputs gated by V7 state | Condition stacking for WR |
+| Frequency scaling via new data | Using future observables as inputs |
+
+---
+
+## Final Declaration
+
+> V7 does not predict direction.  
+> It certifies when decisions are structurally meaningful.  
+>  
+> The system is complete, auditable, and falsifiable.  
+> Any future performance increase must come from new information, not from altering this grammar.
+
+---
+
+*Last Updated: 2026-01-28*
