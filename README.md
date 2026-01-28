@@ -3,7 +3,9 @@
 > This README describes the **design constitution** of the V7 Grammar System.  
 > The **final empirical judgment and alpha interface** are documented in  
 > 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)
-
+> 👉 **[README_V7_ALPHA — Alpha Certification & Final Judgment](README_V7_ALPHA.md)**  
+>  
+> The alpha layer is **certified, frozen, and non-optimizable**.
 
 ## Project Status
 
