@@ -1,14 +1,15 @@
 > ⚠️ **Research Note**
 >  
-> This README describes the **design constitution** of the V7 Grammar System.  
-> The **final empirical judgment and alpha interface** are documented in  
-> 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)
->
-  👉 [README_V7_ALPHA — Alpha Certification & Final Judgment](README_V7_ALPHA.md)
+> This README documents the **design constitution** of the V7 Grammar System.  
+> The **final empirical judgment and authoritative alpha interface** are defined in:
 >  
-> The alpha layer is **certified and structurally frozen**.  
-> Optimization may occur **only outside the certified boundary**  
-> and must not alter the certified decision structure.
+> 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)  
+> 👉 [README_V7_ALPHA — Alpha Certification Layer (FINAL · FROZEN)](README_V7_ALPHA.md)
+>  
+> The alpha layer has been **empirically certified and structurally frozen**.  
+> Any form of optimization is permitted **only outside the certified boundary**  
+> and must not modify or reinterpret the certified decision structure.
+
 
 ## Project Status
 
