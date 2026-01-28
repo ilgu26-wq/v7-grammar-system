@@ -1,4 +1,6 @@
 # README_v2 — Final Judgment & Forward Interface of the V7 Grammar System
+This document is intended for research review, not for introductory evaluation.
+
 
 This document does **not** redefine or modify the V7 Grammar System.
 
@@ -189,6 +191,10 @@ This is why:
 
 These are **features**, not limitations.
 
+Observed performance stability emerged as a consequence of structural admissibility,
+not as an optimization objective.
+
+
 ---
 
 ## What V7 Is (Final Definition)
@@ -214,12 +220,16 @@ It classifies:
 ---
 
 ## Closure Statement
+This closure applies to the grammar invariants only.
+The system was explicitly designed to support
+team-driven alpha research layered above a stable decision core.
 
 All falsifiable questions posed to V7
 have been empirically resolved.
 
 The grammar is complete.
 Future work belongs **outside** the grammar boundary.
+
 
 ---
 
