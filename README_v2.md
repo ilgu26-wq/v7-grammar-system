@@ -56,7 +56,7 @@ V7 is a **decision grammar** that:
 
 STABLE states occur ~11–12% across all markets. This explains signal scarcity.
 
-![Macro State Distribution](../visualizations/A_macro_state_distribution.png)
+![Macro State Distribution](/visualizations/A_macro_state_distribution.png)
 
 ---
 
