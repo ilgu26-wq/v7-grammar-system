@@ -33,10 +33,9 @@ V7 is a **decision grammar** that:
 ## Two-Layer Architecture (Confirmed)
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  MACRO (거시): D→S 전이 = "언제 말할 수 있는가"              │
-│  MICRO (미시): Bar1 유지 = "어떻게 문장이 완성되는가"        │
-└─────────────────────────────────────────────────────────────┘
+│  MACRO: D→S transition = "when the system is allowed to speak" │
+│  MICRO: Bar1 hold       = "how the sentence completes"         │
+
 ```
 
 | Layer | Function | Key Variable |
@@ -65,7 +64,7 @@ STABLE states occur ~11–12% across all markets. This explains signal scarcity.
 
 Persistence on diagonal confirms state stability. Off-diagonal reveals transition patterns.
 
-![State Transition Heatmap](../visualizations/B_state_transition_heatmap.png)
+![State Transition Heatmap](visualizations/B_state_transition_heatmap.png)
 
 ---
 
@@ -73,7 +72,7 @@ Persistence on diagonal confirms state stability. Off-diagonal reveals transitio
 
 Range / Delta / Drift behavior by state. STABLE shows minimal variation.
 
-![Macro State Characteristics](../visualizations/C_macro_state_characteristics.png)
+![Macro State Characteristics](visualizations/C_macro_state_characteristics.png)
 
 ---
 
@@ -81,7 +80,7 @@ Range / Delta / Drift behavior by state. STABLE shows minimal variation.
 
 H1–H5 results: 4 PASS / 1 SKIP / 0 FAIL
 
-![Hypothesis Verification](../visualizations/D_hypothesis_verification.png)
+![Hypothesis Verification](visualizations/D_hypothesis_verification.png)
 
 ---
 
@@ -89,7 +88,7 @@ H1–H5 results: 4 PASS / 1 SKIP / 0 FAIL
 
 Late entry ⇒ collapse. Gap = 42.7%
 
-![Entry Close Separation](../visualizations/E_entry_close_separation.png)
+![Entry Close Separation](visualizations/E_entry_close_separation.png)
 
 ---
 
@@ -97,7 +96,7 @@ Late entry ⇒ collapse. Gap = 42.7%
 
 V7 falsifiable vs WHEN optimized. Structure vs overfit boundary.
 
-![WR vs N Tradeoff](../visualizations/F_wr_vs_n_tradeoff.png)
+![WR vs N Tradeoff](visualizations/F_wr_vs_n_tradeoff.png)
 
 ---
 
@@ -105,7 +104,7 @@ V7 falsifiable vs WHEN optimized. Structure vs overfit boundary.
 
 All verification metrics in one view.
 
-![Complete Dashboard](../visualizations/G_complete_dashboard.png)
+![Complete Dashboard](visualizations/G_complete_dashboard.png)
 
 ---
 
@@ -113,7 +112,7 @@ All verification metrics in one view.
 
 D→S transition concentrates valid entries. Other transitions = sparse.
 
-![Transition Signal Density](../visualizations/H_transition_signal_density.png)
+![Transition Signal Density](visualizations/H_transition_signal_density.png)
 
 ---
 
@@ -121,7 +120,7 @@ D→S transition concentrates valid entries. Other transitions = sparse.
 
 Cross-market reproducibility confirmed.
 
-![Macro Experiment Results](../visualizations/I_macro_experiment_results.png)
+![Macro Experiment Results](visualizations/I_macro_experiment_results.png)
 
 ---
 
