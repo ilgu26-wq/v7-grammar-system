@@ -1,12 +1,15 @@
 # README_v2 — Final Judgment & Forward Interface of the V7 Grammar System
-This document is intended for research review, not for introductory evaluation.
+This document is intended for research review and validation,
+not for introductory or marketing-oriented evaluation.
+
 
 
 This document does **not** redefine or modify the V7 Grammar System.
 
 It records the **final empirical judgment** of what the system
 was shown to be, after all falsifiable hypotheses were tested
-and the validation protocol was formally closed — **and clarifies how new alpha can be layered without violating that judgment**.
+and clarifies the boundary conditions under which
+external alpha may be layered without violating that judgment**.
 
 The original README remains the **design constitution**.
 This document is the **judgment and interface boundary**.
@@ -115,7 +118,8 @@ Through exhaustive comparison with WHEN / intersection-based systems:
 
 This means:
 
-> **V7 is a distributional classifier, not an execution optimizer.**
+> **V7 is a distributional classifier of admissible market structure,
+not an execution or frequency optimizer.**
 
 It identifies *where structure exists*, not *how often to trade it*.
 
@@ -227,8 +231,9 @@ team-driven alpha research layered above a stable decision core.
 All falsifiable questions posed to V7
 have been empirically resolved.
 
-The grammar is complete.
-Future work belongs **outside** the grammar boundary.
+The grammar is complete and closed.
+All future work belongs **outside** the grammar boundary.
+
 
 
 ---
