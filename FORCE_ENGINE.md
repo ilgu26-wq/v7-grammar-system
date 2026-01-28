@@ -8,7 +8,7 @@
 
 ## Engine Identity
 
-![Force Engine Overview](demos/visualizations/force_engine_overview.png)
+![Force Engine Overview](visualizations/force_engine_overview.png)
 
 | Component | Role |
 |:---------|:-----|
@@ -40,7 +40,7 @@ can continue **without internal resistance**.
 
 ## Force State Vector (Conceptual)
 
-![Force Vector](demos/visualizations/force_vector.png)
+![Force Vector](visualizations/force_vector.png)
 
 At every bar, the engine tracks a continuous force state:
 
@@ -76,7 +76,7 @@ Failure is detected *when force collapses*.
 
 ## Certification Boundary
 
-![Bar1 Boundary](demos/visualizations/bar1_boundary.png)
+![Bar1 Boundary](visualizations/bar1_boundary.png)
 
 There is exactly **one actionable certification point**:
 
@@ -97,7 +97,7 @@ not by design preference.
 
 ## Failure-First Architecture
 
-![Failure Cost](demos/visualizations/failure_cost.png)
+![Failure Cost](visualizations/failure_cost.png)
 
 The engine is designed so that:
 
@@ -130,7 +130,7 @@ Collapse is assumed until proven otherwise.
 
 ## State Machine (Deterministic)
 
-![Force State Machine](demos/visualizations/force_state_machine.png)
+![Force State Machine](visualizations/force_state_machine.png)
 
 ```
 IDLE
@@ -157,7 +157,7 @@ State priority: **KILL > EXIT > CONFIRM > HOLD > REENTRY**
 
 ## Re-Entry Philosophy
 
-![Reentry Cycle](demos/visualizations/reentry_cycle.png)
+![Reentry Cycle](visualizations/reentry_cycle.png)
 
 Force is not consumed by success.
 
