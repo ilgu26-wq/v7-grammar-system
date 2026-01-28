@@ -1,3 +1,10 @@
+> ⚠️ **Research Note**
+>  
+> This README describes the **design constitution** of the V7 Grammar System.  
+> The **final empirical judgment and alpha interface** are documented in  
+> 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)
+
+
 ## Project Status
 
 The V7 Grammar System decision grammar is **structurally frozen**.
