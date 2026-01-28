@@ -5,7 +5,7 @@
 >  
 > 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)  
 > 👉 [README_V7_ALPHA — Alpha Certification Layer (FINAL · FROZEN)](README_V7_ALPHA.md)  
-> 👉 [FORCE_ENGINE — Post-Entry Structural Evaluation Engine](docs/FORCE_ENGINE.md)  
+> 👉 [FORCE_ENGINE — Post-Entry Structural Evaluation Engine](FORCE_ENGINE.md)  
 >  
 > The alpha layer has been **empirically certified and structurally frozen**.  
 > Any form of optimization is permitted **only outside the certified boundary**  
