@@ -121,12 +121,31 @@ It appears **while** the water is already draining.
 
 ---
 
-## Scientific Tools We Used
+## How We Observed the Market
 
-We didn't use tools that try to predict.
-Instead, we observed the market using
-**boundaries, distributions, and conservation**—
-tools from physics.
+This system does not rely on prediction, fitting, or optimization.
+
+Instead, we used tools borrowed from physics and systems theory:
+
+- **Irreversible boundary detection**  
+  Identifying points where prior information cannot be recovered  
+  (e.g., Bar1, DC = 1)
+
+- **Distributional analysis**  
+  Comparing outcome distributions across state partitions,  
+  not individual price paths
+
+- **State-space decomposition**  
+  Observing the market in a three-dimensional state space  
+  (Force, Constraint, Release)
+
+- **Energy conservation checks**  
+  Verifying that force is redistributed across states,  
+  not created or destroyed
+
+- **Hypothesis collapse testing**  
+  Systematically removing assumptions layer by layer,  
+  retaining only what survives falsification
 
 ---
 
