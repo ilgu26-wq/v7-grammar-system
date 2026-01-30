@@ -1,20 +1,30 @@
 > ⚠️ **Research Note**
 >  
-> This README documents the **design constitution** of the V7 Grammar System.  
-> The **final empirical judgment and authoritative alpha interface** are defined in:
+> This README documents the **design constitution** of the V7 Grammar System.
 >  
+> The system demonstrates that **discretionary trading behavior can be
+> reconstructed and explained purely through observation data** —
+> without strategy, prediction, or optimization.
+>
+> Authoritative, frozen conclusions are defined in:
+>
 > 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)  
 > 👉 [README_V7_ALPHA — Alpha Certification Layer (FINAL · FROZEN)](README_V7_ALPHA.md)  
+> 👉 [SYSTEM_DESIGN.md — Design & Construction Document](SYSTEM_DESIGN.md)  
 > 👉 [FORCE_ENGINE — Post-Entry Structural Evaluation Engine](FORCE_ENGINE.md)  
 > 👉 [SIMPLE_GUIDE — How We Observe the Market (Non-Predictive)](docs/SIMPLE_GUIDE.md)
-> 👉 [SYSTEM_DESIGN.md — Design & Construction Document](SYSTEM_DESIGN.md)
+>
+> The alpha layer has been **empirically certified and structurally frozen**.
+> Any optimization is permitted **only outside the certified boundary**
+> and must not reinterpret or modify the decision grammar.
 
-> The alpha layer has been **empirically certified and structurally frozen**.  
-> Any form of optimization is permitted **only outside the certified boundary**  
-> and must not modify or reinterpret the certified decision structure.
 
 
 ## Project Status
+
+The system explains *when not to act* by reconstructing
+trader-like behavior from observable state constraints,
+rather than by forecasting outcomes.
 
 The V7 Grammar System decision grammar is **structurally frozen**.
 
@@ -76,6 +86,9 @@ any forecasting or alpha-generating module can be integrated without
 destabilizing execution integrity, risk semantics, or portfolio behavior.
 
 > **In this architecture, prediction is optional; decision quality is mandatory.**
+
+As a result, trader behavior is not encoded or imitated —
+it emerges naturally once the market state is sufficiently constrained.
 
 ---
 
