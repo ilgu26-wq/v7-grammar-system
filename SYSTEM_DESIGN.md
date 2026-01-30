@@ -1,6 +1,7 @@
 # V7 Grammar System — Design & Construction Document
 
 ## Objective
+**This system demonstrates that discretionary trading behavior can be reconstructed and explained purely through observation data, without strategy, prediction, or optimization.**
 
 This document records **how the V7 Grammar System was designed** and  
 **what logical verification stages it passed through to reach its current structure**.
@@ -15,6 +16,23 @@ That is:
 - Minimal judgment
 
 Decisions are made solely through **observable state** and **verified grammar**.
+
+In addition, this system demonstrates that
+**the way discretionary traders actually operate can be reconstructed
+purely from observation data**.
+
+Behaviors commonly described by traders as:
+- “waiting for confirmation”
+- “being patient”
+- “not forcing trades”
+- “letting winners run”
+
+are not treated here as subjective judgment or intuition,
+but as **natural consequences of observable state persistence
+and structural constraints**.
+
+> **Human trading behavior is not replaced.  
+> It is explained — through data.**
 
 ---
 
@@ -188,6 +206,27 @@ encoder.modify_action()
 
 ## How Entry and Holding Are "Explained" by Data
 
+### Reconstructing Trader Behavior Through Data
+
+This system does not attempt to invent new trading behavior.
+
+Instead, it demonstrates that **what experienced discretionary traders do
+can be reconstructed and explained entirely from observation data**.
+
+Actions traditionally attributed to:
+- intuition
+- experience
+- discipline
+- patience
+
+are shown here to emerge naturally once the market
+is described within a sufficiently constrained state space
+(Force, DC, Delta, τ).
+
+> **The trader is not modeled.  
+> The market state is.  
+> Trader-like behavior follows.**
+
 In this system, entry and holding are  
 **not decisions** but **observation results**.
 
@@ -306,16 +345,6 @@ That is:
 - Was dir ≥ 3 satisfied?
 
 ---
-### Verification Method Summary
-
-All claims in this document are derived from:
-- Full historical replay (35,064 candles)
-- Phase A–F hypothesis tests with pre-fixed conditions
-- Integrity checks (I-1~I-5) ensuring determinism and non-contamination
-- Theory–code mapping audit confirming 1:1 correspondence
-
-No simulated or optimized data was used.
-All explanations are observational, not inferential.
 
 ## Final Declaration
 
