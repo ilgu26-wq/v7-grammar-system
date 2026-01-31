@@ -288,14 +288,17 @@ to describe structures that survived observation.
 
 ## Want to Go Deeper?
 
-**Why do we keep failing to predict markets?**
 → [IRREVERSIBILITY.md](IRREVERSIBILITY.md)
+
+**Why do we keep failing to predict markets?**  
 → [AXIOM — Irreversibility (Locked)](AXIOM_IRREVERSIBILITY.md)
-**What exactly are we observing?**
+
+**What exactly are we observing?**  
 → [WHAT_WE_SEE.md](WHAT_WE_SEE.md)
 
-**What happens after the market "breaks"?**
+**What happens after the market "breaks"?**  
 → [TORNADO_MEDIATOR.md](TORNADO_MEDIATOR.md)
+
 
 ---
 
