@@ -290,7 +290,7 @@ to describe structures that survived observation.
 
 **Why do we keep failing to predict markets?**
 → [IRREVERSIBILITY.md](IRREVERSIBILITY.md)
-
+→ [AXIOM — Irreversibility (Locked)](AXIOM_IRREVERSIBILITY.md)
 **What exactly are we observing?**
 → [WHAT_WE_SEE.md](WHAT_WE_SEE.md)
 
