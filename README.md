@@ -13,11 +13,13 @@
 > 👉 [SYSTEM_DESIGN.md — Design & Construction Document](SYSTEM_DESIGN.md)  
 > 👉 [FORCE_ENGINE — Post-Entry Structural Evaluation Engine](FORCE_ENGINE.md)  
 > 👉 [SIMPLE_GUIDE — How We Observe the Market (Non-Predictive)](docs/SIMPLE_GUIDE.md)
->
-> The alpha layer has been **empirically certified and structurally frozen**.
-> Any optimization is permitted **only outside the certified boundary**
-> and must not reinterpret or modify the decision grammar.
+👉 **[STATUS.md — Pre-Causal Research Findings (Frozen)](STATUS.md)**
 
+This document defines:
+- what was empirically validated,
+- what is explicitly *not* claimed,
+- and why further progress requires a causal (dynamical) framework,
+  not additional classification.
 
 
 ## Project Status
