@@ -1,25 +1,29 @@
 > ⚠️ **Research Note**
->  
-> This README documents the **design constitution** of the V7 Grammar System.
->  
-> The system demonstrates that **discretionary trading behavior can be
-> reconstructed and explained purely through observation data** —
+>
+> This repository is a **research artifact**, not a production library.
+> Visual guides below explain **how the system is observed**,
+> not **what is claimed, optimized, or predicted**.
+>
+> The system demonstrates that discretionary trading behavior
+> can be reconstructed purely from **observation data** —
 > without strategy, prediction, or optimization.
->
-> Authoritative, frozen conclusions are defined in:
->
-> 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)  
-> 👉 [README_V7_ALPHA — Alpha Certification Layer (FINAL · FROZEN)](README_V7_ALPHA.md)  
-> 👉 [SYSTEM_DESIGN.md — Design & Construction Document](SYSTEM_DESIGN.md)  
-> 👉 [FORCE_ENGINE — Post-Entry Structural Evaluation Engine](FORCE_ENGINE.md)  
-> 👉 [SIMPLE_GUIDE — How We Observe the Market (Non-Predictive)](docs/SIMPLE_GUIDE.md)
-👉 **[STATUS.md — Pre-Causal Research Findings (Frozen)](STATUS.md)**
+
+**Authoritative, frozen conclusions:**
+- 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)  
+- 👉 [README_V7_ALPHA — Alpha Certification Layer (FINAL · FROZEN)](README_V7_ALPHA.md)  
+- 👉 [SYSTEM_DESIGN.md — Design & Construction Document](SYSTEM_DESIGN.md)  
+- 👉 [FORCE_ENGINE — Post-Entry Structural Evaluation Engine](FORCE_ENGINE.md)  
+- 👉 [SIMPLE_GUIDE — How We Observe the Market (Non-Predictive)](docs/SIMPLE_GUIDE.md)
+
+**Research boundary & pre-causal findings:**
+- 👉 **[STATUS.md — Pre-Causal Research Findings (Frozen)](STATUS.md)**
 
 This document defines:
 - what was empirically validated,
 - what is explicitly *not* claimed,
-- and why further progress requires a causal (dynamical) framework,
+- and why further progress requires a **causal (dynamical)** framework,
   not additional classification.
+
 
 
 ## Project Status
