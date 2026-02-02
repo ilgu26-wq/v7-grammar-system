@@ -1,10 +1,29 @@
-⚠️ **Research Note**
+> ⚠️ **Interpretation Rule**
+>
+> This README serves as the **constitutional index** of the system.
+> It defines what is frozen, what is proven, and what is out of scope.
+>
+> Detailed research history, experimental evolution,
+> and exploratory reasoning are preserved for transparency,
+> but do not redefine the system’s authoritative boundaries.
 
-## Current Position in the Research Flow
-...
-Everything else documents the path taken to reach this point.
 
 ---
+
+## World Validity Layer (Relativistic)
+
+This system does not operate in all market conditions.
+
+Before any decision grammar is applied,
+the market must satisfy **World Validity Conditions**.
+
+World validity is defined by:
+- Freedom Index
+- World Pattern (Planet State)
+- Irreversibility Axioms (RI_SPIKE / ZPOC_DEATH)
+
+Only when the world is alive,
+decisions are meaningful.
 
 ### Scope & Interpretation
 This repository is a **research artifact**, not a production library.
