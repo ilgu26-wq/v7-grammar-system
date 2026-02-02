@@ -25,48 +25,51 @@ World validity is defined by:
 Only when the world is alive,
 decisions are meaningful.
 
-### Scope & Interpretation
-This repository is a **research artifact**, not a production library.
-...
+---
 
-  This repository is an **archive of a moving structure**.
+## Quick Navigation
 
-  - The **decision grammar (V7)** is structurally frozen.
-  - The **pre-causal research phase** is closed and archived.
-  - The system currently stands **at the boundary between
-    structural classification and causal dynamics**.
+### 🔒 Authoritative & Frozen
+- **Final Judgment (What is proven)**  
+  → [README_v2 — Final Judgment & Forward Interface](README_v2.md)
 
-  If you are looking for:
-  - what is *proven* → start with `README_v2`
-  - where this research *stops* → see `STATUS.md`
-  - how the system is *observed* → see `SIMPLE_GUIDE`
+- **System Freeze Boundary**  
+  → [STATUS.md — Pre-Causal Research Findings (Frozen)](STATUS.md)
 
-  Everything else documents the path taken to reach this point.
+- **Design Constitution**  
+  → [SYSTEM_DESIGN.md — Design & Construction Document](SYSTEM_DESIGN.md)
 
-  > This repository is a **research artifact**, not a production library.
-  > Visual guides below explain **how the system is observed**,
-  > not **what is claimed, optimized, or predicted**.
-  >
-  > The system demonstrates that discretionary trading behavior
-  > can be reconstructed purely from **observation data** —
-  > without strategy, prediction, or optimization.
+---
 
-  **Authoritative, frozen conclusions:**
-  - 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)  
-  - 👉 [README_V7_ALPHA — Alpha Certification Layer (FINAL · FROZEN)](README_V7_ALPHA.md)  
-  - 👉 [SYSTEM_DESIGN.md — Design & Construction Document](SYSTEM_DESIGN.md)  
-  - 👉 [FORCE_ENGINE — Post-Entry Structural Evaluation Engine](FORCE_ENGINE.md)  
-  - 👉 [SIMPLE_GUIDE — How We Observe the Market (Non-Predictive)](docs/SIMPLE_GUIDE.md)
+### 🌍 Structural Extension (Relativistic Layer)
+- **Relativistic Market Structure**  
+  → [RELATIVISTIC_MARKET_STRUCTURE.md](RELATIVISTIC_MARKET_STRUCTURE.md)
 
-  **Research boundary & pre-causal findings:**
-  - 👉 **[STATUS.md — Pre-Causal Research Findings (Frozen)](STATUS.md)**
+- **Irreversibility Axiom (RI / RUPTURE)**  
+  → [AXIOM_RI_RUPTURE.md](AXIOM_RI_RUPTURE.md)
 
-  This document defines:
-  - what was empirically validated,
-  - what is explicitly *not* claimed,
-  - and why further progress requires a **causal (dynamical)** framework,
-    not additional classification.
+---
 
+### 👁️ How to Read the Market (Non-Predictive)
+- **Observation Guide (Start Here for Intuition)**  
+  → [SIMPLE_GUIDE — How We Observe the Market](docs/SIMPLE_GUIDE.md)
+
+- **Force Engine (Post-Entry Evaluation)**  
+  → [FORCE_ENGINE.md](FORCE_ENGINE.md)
+
+---
+
+### 🧪 Research & Experiments (Non-Authoritative)
+- **Pre-Causal Research Archive**  
+  → [archive-pre-causal branch](https://github.com/ilgu26-wq/v7-grammar-system/tree/archive-pre-causal)
+
+- **Experiment Logs (Raw, Unfiltered)**  
+  → [DUMP/EXPERIMENT_LOGS](DUMP/EXPERIMENT_LOGS)
+
+- **NEXT_PHASE (Causal Exploration)**  
+  → [NEXT_PHASE/](NEXT_PHASE/)
+
+---
 
 
   ## Project Status
@@ -523,6 +526,14 @@ This repository is a **research artifact**, not a production library.
 
 
   ---
+  
+## Recommended Reading Order
+
+1. README_v2 (Final Judgment)
+2. STATUS.md (Boundary & Freeze)
+3. SYSTEM_DESIGN.md (How it is built)
+4. RELATIVISTIC_MARKET_STRUCTURE.md (Why it does not always operate)
+5. SIMPLE_GUIDE (How to observe, not predict)
 
   ## Grade
 
