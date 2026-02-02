@@ -1,3 +1,15 @@
+## This repository is NOT:
+- A trading strategy
+- A prediction model
+- An alpha generator
+
+## This repository IS:
+- A safety layer for autonomous decision systems
+- A data-validated action mask
+- A study of irreversibility and freedom collapse
+
+---
+
 > ⚠️ **Interpretation Rule**
 >
 > This README serves as the **constitutional index** of the system.
