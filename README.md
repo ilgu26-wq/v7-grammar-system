@@ -542,6 +542,20 @@ decisions are meaningful.
 
   ---
   
+  ## Why V7 Is Not Predictive
+
+V7 does not try to predict markets.
+
+Prediction fails not because it is inaccurate,
+but because failure timing is unknowable.
+
+V7 enters only after structural confirmation (Bar1),
+reducing maximum adverse excursion
+and expected ruin.
+
+This is a survival system, not a forecasting system.
+
+
 ## Recommended Reading Order
 
 1. README_v2 (Final Judgment)
