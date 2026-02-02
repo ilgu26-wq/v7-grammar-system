@@ -1,0 +1,139 @@
+======================================================================
+EXP-ALL-LAWS-JOINT-01: Full Joint Distribution (ALL DATA)
+======================================================================
+Timestamp: 2026-02-01T18:26:12.941350
+
+Total bars: 27973
+Sample points: 2783 (every 10 bars)
+Valid events: 2783
+
+======================================================================
+1. FAST vs SLOW DISTRIBUTION (Terminal_Time_R)
+======================================================================
+
+Fast (Time_R < 0.3): N = 310 (11.1%)
+Slow (Time_R >= 0.3): N = 2473 (88.9%)
+
+Fast E_RESP Precedence: 63.2% (N=310)
+Slow E_RESP Precedence: 96.8% (N=2470)
+
+======================================================================
+2. 8-AXIS STATE DISTRIBUTION (Top 20 by N)
+======================================================================
+
+State Key                                                   N   Lead%   MAE_R
+--------------------------------------------------------------------------------
+Slow_High_Loose_Large_Weak_Low_Low_Mid                    162   95.0%   0.756
+Slow_Low_Loose_Large_Weak_Low_Low_Mid                     137   95.6%   0.761
+Slow_High_Loose_Small_Weak_Low_Low_Mid                    129   96.9%   0.754
+Slow_Low_Loose_Small_Weak_Low_Low_Mid                     104   99.0%   0.741
+Slow_Low_Loose_Large_Strong_High_Low_Top                   86   98.8%   0.756
+Slow_Low_Loose_Large_Strong_Low_Low_Top                    81   97.5%   0.784
+Slow_Low_Loose_Large_Strong_Low_Low_Mid                    74   98.6%   0.750
+Slow_Low_Comp_Large_Weak_Low_Low_Mid                       70   97.1%   0.764
+Slow_Low_Comp_Small_Weak_Low_Low_Mid                       68   98.5%   0.729
+Slow_High_Loose_Large_Strong_High_Low_Bot                  65   92.3%   0.767
+Slow_High_Loose_Large_Strong_Low_Low_Bot                   62  100.0%   0.771
+Slow_High_Comp_Small_Weak_Low_Low_Mid                      62   98.4%   0.759
+Slow_High_Loose_Large_Strong_Low_Low_Mid                   59   96.6%   0.760
+Slow_Low_Loose_Small_Strong_Low_Low_Mid                    57  100.0%   0.767
+Slow_High_Comp_Large_Weak_Low_Low_Mid                      56  100.0%   0.769
+Slow_Low_Loose_Large_Weak_Low_Low_Top                      53   98.1%   0.774
+Slow_High_Loose_Large_Weak_Low_Low_Bot                     51   98.0%   0.763
+Slow_High_Loose_Large_Weak_High_Low_Bot                    50   98.0%   0.789
+Slow_Low_Loose_Large_Weak_High_Low_Mid                     50   98.0%   0.788
+Slow_Low_Loose_Large_Strong_High_High_Top                  47   95.7%   0.757
+
+======================================================================
+3. FAST 내부 조합별 선행성 (섬 존재 여부)
+======================================================================
+
+State (7-axis excl Time)                               N  Valid   Lead%
+----------------------------------------------------------------------
+High_Loose_Large_Weak_Low_Low_Mid                     22     22   72.7%
+Low_Loose_Large_Weak_Low_Low_Mid                      18     18   72.2%
+Low_Loose_Large_Strong_Low_Low_Top                    16     16   62.5%
+Low_Loose_Small_Weak_Low_Low_Mid                      12     12   75.0%
+High_Loose_Large_Strong_Low_Low_Bot                   12     12   50.0%
+High_Comp_Large_Weak_Low_Low_Mid                      11     11   81.8%
+High_Loose_Large_Strong_High_High_Bot                 10     10   50.0%
+Low_Loose_Large_Weak_High_Low_Top                      9      9   77.8%
+Low_Loose_Large_Strong_Low_Low_Mid                     9      9   77.8%
+High_Loose_Large_Strong_High_Low_Bot                   9      9   66.7%
+Low_Loose_Large_Strong_High_High_Top                   9      9   77.8%
+Low_Comp_Small_Weak_Low_Low_Mid                        9      9   44.4%
+High_Loose_Large_Strong_Low_Low_Mid                    9      9   66.7%
+Low_Comp_Large_Weak_Low_Low_Mid                        9      9   66.7%
+High_Comp_Small_Weak_Low_Low_Mid                       8      8   50.0%
+
+✅ FAST 내 '판정 가능 섬' 발견: 4개
+   High_Loose_Large_Weak_Low_Low_Mid: 72.7% (N=22)
+   Low_Loose_Large_Weak_Low_Low_Mid: 72.2% (N=18)
+   Low_Loose_Small_Weak_Low_Low_Mid: 75.0% (N=12)
+   High_Comp_Large_Weak_Low_Low_Mid: 81.8% (N=11)
+
+======================================================================
+4. SLOW 내부 조합별 선행성 (90%+ 영역)
+======================================================================
+
+State (7-axis excl Time)                               N  Valid   Lead%
+----------------------------------------------------------------------
+High_Loose_Large_Weak_Low_Low_Mid                    162    161   95.0%
+Low_Loose_Large_Weak_Low_Low_Mid                     137    137   95.6%
+High_Loose_Small_Weak_Low_Low_Mid                    129    129   96.9%
+Low_Loose_Small_Weak_Low_Low_Mid                     104    104   99.0%
+Low_Loose_Large_Strong_High_Low_Top                   86     86   98.8%
+Low_Loose_Large_Strong_Low_Low_Top                    81     81   97.5%
+Low_Loose_Large_Strong_Low_Low_Mid                    74     74   98.6%
+Low_Comp_Large_Weak_Low_Low_Mid                       70     70   97.1%
+Low_Comp_Small_Weak_Low_Low_Mid                       68     68   98.5%
+High_Loose_Large_Strong_High_Low_Bot                  65     65   92.3%
+High_Loose_Large_Strong_Low_Low_Bot                   62     62  100.0%
+High_Comp_Small_Weak_Low_Low_Mid                      62     62   98.4%
+High_Loose_Large_Strong_Low_Low_Mid                   59     59   96.6%
+Low_Loose_Small_Strong_Low_Low_Mid                    57     57  100.0%
+High_Comp_Large_Weak_Low_Low_Mid                      56     56  100.0%
+
+✅ SLOW 내 '90%+ 고선행 영역' 발견: 15개
+   High_Loose_Large_Weak_Low_Low_Mid: 95.0% (N=161)
+   Low_Loose_Large_Weak_Low_Low_Mid: 95.6% (N=137)
+   High_Loose_Small_Weak_Low_Low_Mid: 96.9% (N=129)
+   Low_Loose_Small_Weak_Low_Low_Mid: 99.0% (N=104)
+   Low_Loose_Large_Strong_High_Low_Top: 98.8% (N=86)
+   Low_Loose_Large_Strong_Low_Low_Top: 97.5% (N=81)
+   Low_Loose_Large_Strong_Low_Low_Mid: 98.6% (N=74)
+   Low_Comp_Large_Weak_Low_Low_Mid: 97.1% (N=70)
+   Low_Comp_Small_Weak_Low_Low_Mid: 98.5% (N=68)
+   High_Loose_Large_Strong_High_Low_Bot: 92.3% (N=65)
+   High_Loose_Large_Strong_Low_Low_Bot: 100.0% (N=62)
+   High_Comp_Small_Weak_Low_Low_Mid: 98.4% (N=62)
+   High_Loose_Large_Strong_Low_Low_Mid: 96.6% (N=59)
+   Low_Loose_Small_Strong_Low_Low_Mid: 100.0% (N=57)
+   High_Comp_Large_Weak_Low_Low_Mid: 100.0% (N=56)
+
+======================================================================
+5. 증명 결과 (Proof A vs Proof B)
+======================================================================
+
+✅ 증명 A 성립: Fast 내부에도 판정 가능 섬이 존재
+   → '조합 판정이 진짜 세계' 확정
+
+======================================================================
+6. FINAL JOINT TABLE
+======================================================================
+
+┌───────────────────────────────────────────────────────┐
+│  FULL DATA JOINT ANALYSIS                            │
+├───────────────────────────────────────────────────────┤
+│  Total Events: 2,783                               │
+│  Fast Terminal: 310 (11.1%)                      │
+│  Slow Terminal: 2,473 (88.9%)                      │
+├───────────────────────────────────────────────────────┤
+│  Fast E_RESP Lead: 63.2%                          │
+│  Slow E_RESP Lead: 96.8%                          │
+├───────────────────────────────────────────────────────┤
+│  Fast 내 판정 가능 섬: 있음                       │
+│  Slow 내 90%+ 영역: 15개                            │
+└───────────────────────────────────────────────────────┘
+
+Results saved to: exp_all_laws_joint_01.json

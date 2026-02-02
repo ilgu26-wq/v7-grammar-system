@@ -1,0 +1,99 @@
+======================================================================
+EXP-CONSOLIDATED-01: 통합 가설 테스트
+======================================================================
+Timestamp: 2026-02-01T18:26:33.865707
+
+Events (Storm-IN + Revisit): N = 88
+
+======================================================================
+H1′: Terminal 선행성 (Soft/Absorb vs Hard 분리)
+======================================================================
+
+[Terminal_A: Soft + Absorb]
+N = 43
+P(E_RESP < Terminal) = 69.8%
+Median Gap = 5.0 bars
+
+[Terminal_B: Hard (즉사)]
+N = 9
+P(E_RESP < Terminal) = 22.2% (선행 불가 허용)
+Median Gap = 11.5 bars
+
+VERDICT: ❌ FAIL (Soft/Absorb 기준)
+
+======================================================================
+H2: Terminal 종류 스펙트럼 (Soft < Absorb < Hard)
+======================================================================
+SOFT: N = 7
+ABSORB: N = 11
+HARD: N = 43
+
+SOFT:
+  Mean MAE/ATR: 1.54
+  Mean DD/ATR: 1.80
+
+ABSORB:
+  Mean MAE/ATR: 2.55
+  Mean DD/ATR: 2.19
+
+HARD:
+  Mean MAE/ATR: 7.43
+  Mean DD/ATR: 5.69
+
+Monotonic: True
+VERDICT: ✅ PASS
+
+======================================================================
+H3′: Hard 즉사 = HTF 전환 트리거 (차원 분리 수정)
+======================================================================
+
+[Soft/Absorb: 미시 종료]
+N = 9
+Same TF Reverse Rate: 88.9% (기대: ≤50%)
+
+[Hard: 프레임 전환 트리거]
+N = 43
+HTF Switch Rate: 62.8% (프레임 전환)
+Same TF Reverse Rate: 58.1% (반전 허용)
+
+VERDICT: ✅ PASS
+
+======================================================================
+H4: Regime 증폭 가설
+======================================================================
+BULL (N=52): Up=17%, Down=27%, Skew=-10pp
+BEAR (N=17): Up=53%, Down=18%, Skew=+35pp
+FLAT (N=19): Up=79%, Down=21%, Skew=+58pp
+
+BEAR |Skew| >= 30: True
+BULL |Skew| <= 40: True
+VERDICT: ✅ PASS
+
+======================================================================
+H5: EXIT 시나리오 통합 효과
+======================================================================
+Baseline N = 88
+Hard Terminal: 43 (48.9%)
+Absorb: 11 (12.5%)
+Mean MAE/ATR: 4.22
+
+Scenario (E_RESP EXIT):
+Hard Delta: +0%
+Absorb Delta: +0%
+MAE Delta: -36%
+VERDICT: ✅ PASS
+
+======================================================================
+FINAL VERDICT
+======================================================================
+H1: ❌ FAIL
+H2: ✅ PASS
+H3: ✅ PASS
+H4: ✅ PASS
+H5: ✅ PASS
+
+Passed: 4/5
+
+FINAL VERDICT: ⚠️ ENGINEERING-GRADE (운용 가능)
+
+Results saved to: exp_consolidated_01.json

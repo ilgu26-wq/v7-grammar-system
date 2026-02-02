@@ -45,19 +45,6 @@ hypothesis-validated V7 trading system.
 > at the cost of physical guarantees."
 
 ---
-## Core Contract
-
-Files in this directory define the **immutable decision grammar** of V7.
-
-Rules:
-- No predictive logic
-- No parameter tuning based on market outcomes
-- No experimental code
-
-Any modification here must preserve:
-- execution ordering invariants
-- post-entry non-predictive evaluation
-- risk semantics consistency
 
 ## Locked Parameters
 
@@ -69,5 +56,3 @@ Any modification here must preserve:
 | `LWS_MFE_THRESHOLD` | 1.5pt | Energy failure threshold |
 | `DEFENSE_SL` | 12pt | Reduced SL for LWS |
 | `DEFAULT_SL` | 30pt | Base failure cost |
-
-

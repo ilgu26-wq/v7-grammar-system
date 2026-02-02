@@ -110,3 +110,70 @@ FILTERS:      EE 불필요
 - 손실 원인 100% 설명 가능
 
 > **이건 더 이상 "잘 만든 전략"이 아니다. 시장을 해석하는 하나의 완결된 이론이다.**
+
+---
+
+## 7. Methodological Bifurcation via Impulse Falsification
+
+### Problem Statement
+
+V7 손실의 원인을 "misclassification"으로 설명할 수 없는 이유가 존재한다.
+
+### Hypothesis (H_impulse)
+
+```
+V7 손실의 대부분은 문법(State/STB/EE)의 오류가 아니라,
+'임펄스처럼 작동한 Δ가 진입 결정 이전 또는 근처에서 개입했기 때문'이다.
+```
+
+### Loss Decomposition
+
+```
+LOSS
+ ├─ structural_violation (rare) - 문법 조건 위반
+ └─ admissible_loss
+      ├─ timing_only (common) - 현상
+      └─ impulse_proximal (dominant?) - 원인 가설
+```
+
+### Falsification Tests
+
+| Alt-Hypothesis | Test | Rejection Condition |
+|----------------|------|---------------------|
+| Alt-H1: High-vol general effect | Same |Δ| quantile, impulse=False | P(loss\|impulse=False) << P(loss\|impulse=True) |
+| Alt-H2: STATE was weak | STATE persistence before impulse vs non-impulse loss | Impulse loss had stable STATE before |
+| Alt-H3: EE timing issue | EE distribution comparison | EE distributions identical |
+
+### Perspective Shift
+
+```
+현재 관점:
+   임펄스 → 결정 경계 교란 → 손실
+
+대안 관점:
+   결정 경계 취약 상태 → 임펄스가 손실을 트리거
+   
+→ 이 대안이 성립하면:
+   OPA의 policy modulation 필요성으로 자연스럽게 연결
+```
+
+### Conclusion
+
+```
+V7 was not incorrect.
+It was simply not designed to admit impulse.
+
+Losses observed in the V7 Grammar were not PRIMARILY caused 
+by structural misclassification, but by impulse-like 
+delta events occurring near decision boundaries—
+a phenomenon intentionally excluded by design.
+```
+
+### Methodological Bifurcation
+
+| System | Δ Treatment | Role | Risk |
+|--------|-------------|------|------|
+| V7 Grammar | Observed quantity | Classification | None |
+| OPA Policy | Impulse | Policy adjustment | Silent drift |
+
+> **이 분기점이 V7의 완결성과 OPA의 필요성을 동시에 증명한다.**

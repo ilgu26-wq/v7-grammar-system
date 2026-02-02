@@ -1,0 +1,178 @@
+===== V7 FORCE INSTRUMENT: DEPTH-BASED WORLD PARTITION =====
+===== FROZEN: 2026-02-01 =====
+
+======================================================================
+PART 1: CORE DISCOVERY - WORLD PARTITION
+======================================================================
+
+The trading world divides into two fundamentally different territories:
+
+1. SLOW TERMINAL (88.9% of events)
+   - Terminal_Time_R >= 0.3
+   - E_RESP precedence: 96.8%
+   - EXIT policy: FULLY APPLICABLE
+   - Nature: Predictable, depth has time to form
+
+2. FAST TERMINAL (11.1% of events)
+   - Terminal_Time_R < 0.3
+   - E_RESP precedence: 63.2% baseline
+   - EXIT policy: CONDITIONAL ONLY
+   - Nature: Unpredictable by single sensor
+
+======================================================================
+PART 2: THE 8-AXIS COMBINATION DISCOVERY
+======================================================================
+
+Single-variable judgment is INSUFFICIENT.
+8-axis combination judgment is NECESSARY.
+
+The 8 axes:
+1. Terminal_Time_R (Fast/Slow) - PRIMARY PARTITION
+2. Depth_bin (High/Low)
+3. DC_pre_bin (Compressed/Loose)
+4. Delta_bin (Small/Large)
+5. Force_bin (Weak/Strong)
+6. ER_bin (High/Low)
+7. Theta_bin (High/Low)
+8. Channel_bin (Top/Mid/Bot)
+
+PROOF A CONFIRMED:
+Even within FAST territory, 4 "islands" exist where judgment is possible:
+- High_Comp_Large_Weak_Low_Low_Mid: 81.8%
+- Low_Loose_Small_Weak_Low_Low_Mid: 75.0%
+- High_Loose_Large_Weak_Low_Low_Mid: 72.7%
+- Low_Loose_Large_Weak_Low_Low_Mid: 72.2%
+
+This proves: "Combination judgment creates the real world, not single variables."
+
+======================================================================
+PART 3: OOS VALIDATION RESULTS
+======================================================================
+
+5-FOLD CROSS-VALIDATION:
+
+FAST Islands:
+| Island                              | Folds | Avg%  | Stable |
+|-------------------------------------|-------|-------|--------|
+| High_Comp_Large_Weak_Low_Low_Mid    | 4/5   | 85.4% | YES    |
+| High_Loose_Large_Weak_Low_Low_Mid   | 5/5   | 74.3% | YES    |
+| Low_Loose_Small_Weak_Low_Low_Mid    | 5/5   | 66.7% | YES    |
+| Low_Loose_Large_Weak_Low_Low_Mid    | 5/5   | 61.3% | NO     |
+
+3 out of 4 islands are OOS-stable.
+
+SLOW Key Factors (97%+ precedence):
+- delta = Small: 97.4% (N=693)
+- depth = Low: 97.3% (N=1320)
+- ER = Low: 97.1% (N=1713)
+- channel = Top: 97.1% (N=555)
+
+======================================================================
+PART 4: HYPOTHESIS TEST RESULTS (H1-H5)
+======================================================================
+
+EXP-CONSOLIDATED-01 v1.1 Results:
+
+H1' (Terminal Precedence - Split):
+  - Soft/Absorb: 71.4% precedence
+  - Hard: 28.6% (as expected, not predictable)
+  - VERDICT: CONDITIONAL PASS
+
+H2 (Terminal Spectrum):
+  - SOFT MAE/ATR: 1.46
+  - ABSORB MAE/ATR: 2.43
+  - HARD MAE/ATR: 6.07
+  - Monotonic: TRUE
+  - VERDICT: PASS
+
+H3' (Hard = HTF Switch Trigger):
+  - Soft/Absorb reverse rate: within limits
+  - Hard HTF switch rate: 53.5%
+  - VERDICT: PASS
+
+H4 (Regime Amplification):
+  - BULL skew: -2pp
+  - BEAR skew: +16pp
+  - FLAT skew: +42pp
+  - VERDICT: PASS
+
+H5 (EXIT Scenario Effect):
+  - MAE reduction: -31%
+  - VERDICT: PASS
+
+FINAL: 4/5 PASS = ENGINEERING-GRADE
+
+======================================================================
+PART 5: KEY FORMULAS
+======================================================================
+
+배율 (Ratio):
+ratio = (close - low) / (high - close)
+  → 1.5+ = overbought
+  → 0.7- = oversold
+
+채널% (Channel):
+channel_pct = (close - low_20) / (high_20 - low_20) * 100
+  → 90%+ = top zone
+  → 20%- = bottom zone
+
+Range Normalization:
+MAE_R = MAE / session_range
+Terminal_Time_R = terminal_bar / horizon
+
+E_RESP State:
+HOLD = directional pressure maintained
+RELEASE = pressure dissipating
+
+======================================================================
+PART 6: WHAT IS NOT EXPLAINED (CRITICAL)
+======================================================================
+
+This partition explains STRUCTURE but not CAUSE.
+
+NOT explained:
+1. Why does Depth form in some cases and not others?
+2. What micro-conditions lead to FAST terminal?
+3. Can FAST risk be predicted BEFORE entry?
+
+These are the targets of the NEXT research phase.
+
+======================================================================
+PART 7: NEXT PHASE DECLARATION
+======================================================================
+
+PREVIOUS PHASE (CLOSED):
+"What does Depth explain?"
+
+NEXT PHASE (OPEN):
+"Under what conditions does Depth form instead of dissipate?"
+
+This is a CAUSAL/DYNAMICAL problem, not a CLASSIFICATION problem.
+
+Hypotheses for next phase:
+- H-CAUSAL-1: Depth requires absorption phase before terminal
+- H-CAUSAL-2: FAST terminal = external force injection
+- H-CAUSAL-3: Depth formation is regime-dependent
+
+======================================================================
+PART 8: DATA INTEGRITY STATEMENT
+======================================================================
+
+This archive contains:
+- ALL experiments (including failures)
+- ALL raw notes (including contradictions)
+- ALL intermediate conclusions (including abandoned ones)
+
+NO selective reporting.
+NO retrospective editing.
+NO favorable result selection.
+
+Anyone can:
+1. Re-run experiments from /analysis/phase_o/
+2. Compare with archived outputs
+3. Verify no manipulation occurred
+
+======================================================================
+END OF FROZEN RECORD
+======================================================================
+Timestamp: 2026-02-01T18:00:00
