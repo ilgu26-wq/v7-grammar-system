@@ -1,14 +1,16 @@
 # Research Status (Updated: 2026-02-01)
 
-> 🔍 **How this structure was discovered**
+> 🧭 **If this feels hard to read**
 >
-> The reasoning paths, failed hypotheses, metaphors, and experimental detours
-> that led to this final structure are preserved in:
+> This system did not appear fully formed.
+> I tried many explanations.
+> Most of them felt right — and all of them failed.
+>
+> What remains is not an explanation,
+> but the place where meaning begins.
 >
 > → [`ARCHAEOLOGY.md`](ARCHAEOLOGY.md)
->
-> This record is historical and non-normative.
-> It explains *how* the structure was found, not *what* the structure is.
+
 
 ## Current State
 
