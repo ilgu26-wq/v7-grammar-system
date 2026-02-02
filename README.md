@@ -3,9 +3,9 @@
 > This README serves as the **constitutional index** of the system.
 > It defines what is frozen, what is proven, and what is out of scope.
 >
-> Detailed research history, experimental evolution,
-> and exploratory reasoning are preserved for transparency,
-> but do not redefine the system’s authoritative boundaries.
+> Structural interpretation documents (e.g. neural or physical analogies)
+> exist solely to clarify how the frozen grammar can be understood.
+> They introduce no new rules, guarantees, or decision authority.
 
 
 ---
@@ -47,6 +47,9 @@ decisions are meaningful.
 
 - **Irreversibility Axiom (RI / RUPTURE)**  
   → [AXIOM_RI_RUPTURE.md](AXIOM_RI_RUPTURE.md)
+
+- **Neural Interpretation of Market Structure**  
+  → [NEURAL_INTERPRETATION.md](NEURAL_INTERPRETATION.md)
 
 ---
 
@@ -544,6 +547,6 @@ decisions are meaningful.
 
   ---
 
-  *Updated: 2026-01-25*
+  *Updated: 2026-02-03*
 
 
