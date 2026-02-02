@@ -1,5 +1,15 @@
 # Research Status (Updated: 2026-02-01)
 
+> 🔍 **How this structure was discovered**
+>
+> The reasoning paths, failed hypotheses, metaphors, and experimental detours
+> that led to this final structure are preserved in:
+>
+> → [`ARCHAEOLOGY.md`](ARCHAEOLOGY.md)
+>
+> This record is historical and non-normative.
+> It explains *how* the structure was found, not *what* the structure is.
+
 ## Current State
 
 All structural experiments archived in `/DUMP`.
