@@ -2,23 +2,45 @@
 
 > **An irreversible, post-collapse decision grammar.**
 >
-> Before Bar1, information that determines outcome does not exist.
+> Before Bar1, information that determines outcome does not exist.  
 > After collapse, admissible decisions become observable.
 
 This repository formalizes a **non-predictive decision framework**
 that reconstructs trader-like behavior
 purely from **post-collapse observational structure**.
 
-Prediction is optional.
+Prediction is optional.  
 Decision integrity is not.
-> 
+
 ![V7 Grammar System — Irreversible Decision Space](images/market_planetary_system.png)
 
-This diagram formalizes the V7 Grammar System as an irreversible,
-post-Bar1 decision space.
-Different markets occupy isomorphic orbits,
-but admissible decisions emerge only after collapse,
-under the same structural physics.
+---
+
+## 📌 Authoritative Conclusions (Start Here)
+
+These documents represent **frozen, non-experimental conclusions**.
+They are not research notes.
+
+- **Axiom Layer**  
+  → [`00_AXIOMS.md`](docs/00_AXIOMS.md)
+
+- **Final Judgment**  
+  → [`01_FINAL_CONCLUSIONS.md`](docs/01_FINAL_CONCLUSIONS.md)
+
+- **Collapse Quality Law**  
+  → [`02_COLLAPSE_QUALITY.md`](docs/02_COLLAPSE_QUALITY.md)
+
+- **Isomorphic Market Orbits**  
+  → [`03_ISOMORPHIC_ORBITS.md`](docs/03_ISOMORPHIC_ORBITS.md)
+
+- **Falsification Attempts (All Failed)**  
+  → [`04_FALSIFICATION.md`](docs/04_FALSIFICATION.md)
+
+> If you only read one thing, read **01_FINAL_CONCLUSIONS.md**.
+
+
+
+
 
 ⚠️ **Research Note**
 >  
