@@ -3,19 +3,18 @@
 > This README documents the **design constitution** of the V7 Grammar System.
 >  
 > The system demonstrates that **discretionary trading behavior can be
-> reconstructed and explained purely through observation data** —
+> reconstructed and explained purely from observational data** —
 > without strategy, prediction, or optimization.
 >
 > Authoritative, frozen conclusions are defined in:
 >
-> 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)  
-> 👉 [README_V7_ALPHA — Alpha Certification Layer (FINAL · FROZEN)](README_V7_ALPHA.md)  
-> 👉 [SYSTEM_DESIGN.md — Design & Construction Document](SYSTEM_DESIGN.md)  
-> 👉 [FORCE_ENGINE — Post-Entry Structural Evaluation Engine](FORCE_ENGINE.md)  
-> 👉 [SIMPLE_GUIDE — How We Observe the Market (Non-Predictive)](docs/SIMPLE_GUIDE.md)
-> 👉 [WINDMILL_AXIS — Execution & Alpha Boundary](https://github.com/ilgu26-wq/v7-grammar-system/blob/archive-pre-causal/WINDMILL_AXIS.md)
-
-
+> - 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)  
+> - 👉 [README_V7_ALPHA — Alpha Certification Layer (FINAL · FROZEN)](README_V7_ALPHA.md)  
+> - 👉 [SYSTEM_DESIGN.md — Design & Construction Document](SYSTEM_DESIGN.md)  
+> - 👉 [FORCE_ENGINE — Post-Entry Structural Evaluation Engine](FORCE_ENGINE.md)  
+> - 👉 [SIMPLE_GUIDE — How We Observe the Market (Non-Predictive)](docs/SIMPLE_GUIDE.md)  
+> - 👉 [WINDMILL_AXIS — Execution & Alpha Boundary](https://github.com/ilgu26-wq/v7-grammar-system/blob/archive-pre-causal/WINDMILL_AXIS.md)
+>
 > The alpha layer has been **empirically certified and structurally frozen**.
 > Any optimization is permitted **only outside the certified boundary**
 > and must not reinterpret or modify the decision grammar.
