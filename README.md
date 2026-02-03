@@ -1,11 +1,34 @@
-> ⚠️ **Research Note**
+# V7 Grammar System
+
+> **An irreversible, post-collapse decision grammar.**
+>
+> Before Bar1, information that determines outcome does not exist.
+> After collapse, admissible decisions become observable.
+
+This repository formalizes a **non-predictive decision framework**
+that reconstructs trader-like behavior
+purely from **post-collapse observational structure**.
+
+Prediction is optional.
+Decision integrity is not.
+> 
+![V7 Grammar System — Irreversible Decision Space](images/market_planetary_system.png)
+
+This diagram formalizes the V7 Grammar System as an irreversible,
+post-Bar1 decision space.
+Different markets occupy isomorphic orbits,
+but admissible decisions emerge only after collapse,
+under the same structural physics.
+
+⚠️ **Research Note**
 >  
 > This README documents the **design constitution** of the V7 Grammar System.
 >  
-> The system demonstrates that **discretionary trading behavior can be
-> reconstructed and explained purely from observational data** —
-> without strategy, prediction, or optimization.
->
+> The system demonstrates that discretionary trading behavior
+can be **reconstructed and explained**
+from post-collapse observational data,
+without strategy optimization or predictive forecasting.
+
 > Authoritative, frozen conclusions are defined in:
 >
 > - 👉 [README_v2 — Final Judgment & Forward Interface](README_v2.md)  
