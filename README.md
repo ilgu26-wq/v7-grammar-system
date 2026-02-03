@@ -13,7 +13,8 @@
 > 👉 [SYSTEM_DESIGN.md — Design & Construction Document](SYSTEM_DESIGN.md)  
 > 👉 [FORCE_ENGINE — Post-Entry Structural Evaluation Engine](FORCE_ENGINE.md)  
 > 👉 [SIMPLE_GUIDE — How We Observe the Market (Non-Predictive)](docs/SIMPLE_GUIDE.md)
-> 👉 [WINDMILL_AXIS — Execution & Alpha Boundary](WINDMILL_AXIS.md)
+> 👉 [WINDMILL_AXIS — Execution & Alpha Boundary](https://github.com/ilgu26-wq/v7-grammar-system/blob/archive-pre-causal/WINDMILL_AXIS.md)
+
 
 > The alpha layer has been **empirically certified and structurally frozen**.
 > Any optimization is permitted **only outside the certified boundary**
