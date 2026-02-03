@@ -18,25 +18,15 @@ Decision integrity is not.
 
 ## 📌 Authoritative Conclusions (Start Here)
 
-These documents represent **frozen, non-experimental conclusions**.
-They are not research notes.
+- [`00_AXIOMS.md`](docs/00_AXIOMS.md) — Irreversibility Axiom  
+- [`01_MICROPLANET_RULES.md`](docs/01_MICROPLANET_RULES.md) — Forbidden Orbits  
+- [`02_COLLAPSE_QUALITY.md`](docs/02_COLLAPSE_QUALITY.md) — Q-State  
+- [`03_ISOMORPHIC_ORBITS.md`](docs/03_ISOMORPHIC_ORBITS.md) — Isomorphic Structure  
+- [`04_FALSIFICATION.md`](docs/04_FALSIFICATION.md) — Adversarial Tests  
+- [`05_IMPLICATIONS.md`](docs/05_IMPLICATIONS.md) — Meaning & Scope
 
-- **Axiom Layer**  
-  → [`00_AXIOMS.md`](docs/00_AXIOMS.md)
 
-- **Final Judgment**  
-  → [`01_FINAL_CONCLUSIONS.md`](docs/01_FINAL_CONCLUSIONS.md)
 
-- **Collapse Quality Law**  
-  → [`02_COLLAPSE_QUALITY.md`](docs/02_COLLAPSE_QUALITY.md)
-
-- **Isomorphic Market Orbits**  
-  → [`03_ISOMORPHIC_ORBITS.md`](docs/03_ISOMORPHIC_ORBITS.md)
-
-- **Falsification Attempts (All Failed)**  
-  → [`04_FALSIFICATION.md`](docs/04_FALSIFICATION.md)
-
-> If you only read one thing, read **01_FINAL_CONCLUSIONS.md**.
 
 
 
